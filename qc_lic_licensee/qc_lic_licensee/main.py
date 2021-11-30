@@ -8,9 +8,9 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
     def parse(self, file_name):
         return sqaaas_utils.load_json(file_name)
 
-    def validate(self, file_name):
+    def validate(self, stdout_input):
         print('Running LicenseeValidator..')
-        data = self.parse(file_name)
+        data = self.parse(stdout_input)
         at_least_one_license = False
         trusted_licenses_no = 0
         for license_data in data['matched_files']:
