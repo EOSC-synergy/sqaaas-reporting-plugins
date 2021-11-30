@@ -3,7 +3,7 @@ from setuptools import setup
 
 
 setup(
-    name='sqaaas_validator_licensee',
+    name='report2sqaaas-plugin-licensee',
     version='1.0.0',
     description='Output validator for the licensee tool',
     author='Pablo Orviz',
