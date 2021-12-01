@@ -7,6 +7,7 @@ logger = logging.getLogger('sqaaas.reporting.plugins.licensee')
 
 
 class LicenseeValidator(sqaaas_utils.BaseValidator):
+    name = 'licensee'
     valid = False
     valid_threshold = 50
 
