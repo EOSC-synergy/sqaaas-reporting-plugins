@@ -1,4 +1,9 @@
+import logging
+
 from report2sqaaas import utils as sqaaas_utils
+
+
+logger = logging.getLogger('sqaaas.reporting.plugins.licensee')
 
 
 class LicenseeValidator(sqaaas_utils.BaseValidator):
@@ -9,7 +14,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         return sqaaas_utils.load_json(file_name)
 
     def validate(self, stdout_input):
-        print('Running LicenseeValidator..')
+        logger.debug('Running SQAaaS\' <licensee> validator')
         data = self.parse(stdout_input)
         at_least_one_license = False
         trusted_licenses_no = 0
