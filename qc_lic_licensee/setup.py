@@ -19,7 +19,7 @@ setup(
     packages=find_packages(),
     entry_points={
         'sqaaas.validators': [
-            'licensee = qc_lic_licensee.main:LicenseeValidator',
+            'licensee = report2sqaaas_plugins_licensee.main:LicenseeValidator',
         ],
     },
 )
