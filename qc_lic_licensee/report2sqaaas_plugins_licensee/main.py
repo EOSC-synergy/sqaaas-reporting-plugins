@@ -11,6 +11,18 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
     valid = False
     valid_threshold = 50
 
+    @staticmethod
+    def populate_parser(parser):
+        parser.add_argument(
+            '--threshold',
+            metavar='NUMBER',
+            type=int,
+            help=(
+                'Optional argument required by some plugins in order to state '
+                'whether the validation is successful'
+            )
+        )
+
     def parse(self, file_name):
         return sqaaas_utils.load_json(file_name)
 
