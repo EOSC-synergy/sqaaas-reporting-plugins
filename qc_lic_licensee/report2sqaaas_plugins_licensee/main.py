@@ -7,9 +7,7 @@ logger = logging.getLogger('sqaaas.reporting.plugins.licensee')
 
 
 class LicenseeValidator(sqaaas_utils.BaseValidator):
-    name = 'licensee'
     valid = False
-    valid_threshold = 50
 
     @staticmethod
     def populate_parser(parser):
@@ -26,13 +24,13 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
     def parse(self, file_name):
         return sqaaas_utils.load_json(file_name)
 
-    def validate(self, stdout_input):
+    def validate(self):
         logger.debug('Running SQAaaS\' <%s> validator' % self.name)
-        data = self.parse(stdout_input)
+        data = self.parse(self.opts.stdout)
         at_least_one_license = False
         trusted_licenses_no = 0
         for license_data in data['matched_files']:
-            if license_data['matcher']['confidence'] > self.valid_threshold:
+            if license_data['matcher']['confidence'] > self.opts.threshold:
                 at_least_one_license = True
                 trusted_licenses_no += 1
         if at_least_one_license:
