@@ -27,7 +27,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         return sqaaas_utils.load_json(file_name)
 
     def validate(self, stdout_input):
-        logger.debug('Running SQAaaS\' <%s> validator' % name)
+        logger.debug('Running SQAaaS\' <%s> validator' % self.name)
         data = self.parse(stdout_input)
         at_least_one_license = False
         trusted_licenses_no = 0
