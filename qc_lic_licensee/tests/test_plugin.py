@@ -25,3 +25,10 @@ def test_is_validate_method_defined(validator_opts):
         LicenseeValidator(validator_opts).validate()
     except TypeError:
         pytest.fail('LicenseeValidator class does not implement validate() method')
+
+
+def test_is_validate_method_output(validator_opts):
+    validator = LicenseeValidator(validator_opts)
+    result = validator.validate()
+    assert type(result) is dict
+    assert 'valid' in list(result)
