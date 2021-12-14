@@ -4,15 +4,16 @@ from types import SimpleNamespace
 from report2sqaaas_plugins_licensee.main import LicenseeValidator
 
 
-# fixture for <stdout>??
-licensee_stdout = """
-{
-    "matched_files": []
-}
-"""
+@pytest.fixture
+def licensee_stdout():
+    return """
+    {
+        "matched_files": []
+    }
+    """
 
 @pytest.fixture
-def validator_opts():
+def validator_opts(licensee_stdout):
     class_args = {
         'validator': 'licensee',
         'stdout': licensee_stdout
