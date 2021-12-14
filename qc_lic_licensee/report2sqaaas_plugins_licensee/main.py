@@ -15,6 +15,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             '--threshold',
             metavar='NUMBER',
             type=int,
+            default=50,
             help=(
                 'Optional argument required by some plugins in order to state '
                 'whether the validation is successful'
