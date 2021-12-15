@@ -26,10 +26,12 @@ def validator(validator_opts):
     return LicenseeValidator(validator_opts)
 
 
+@pytest.mark.dependency()
 def test_is_validate_method_defined(validator_opts):
     assert LicenseeValidator(validator_opts).validate()
 
 
+@pytest.mark.dependency(depends=["test_is_validate_method_defined"])
 def test_is_validate_method_output(validator):
     result = validator.validate()
     assert type(result) is dict
