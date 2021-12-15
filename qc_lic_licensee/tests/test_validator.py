@@ -13,20 +13,21 @@ def licensee_stdout():
     """
 
 @pytest.fixture
-def validator(licensee_stdout):
+def validator_opts(licensee_stdout):
     class_args = {
         'validator': 'licensee',
         'stdout': licensee_stdout
     }
-    opts = SimpleNamespace(**class_args)
-    return LicenseeValidator(opts)
+    return SimpleNamespace(**class_args)
 
 
-def test_is_validate_method_defined(validator):
-    try:
-        validator.validate()
-    except TypeError:
-        pytest.fail('LicenseeValidator class does not implement validate() method')
+@pytest.fixture
+def validator(validator_opts):
+    return LicenseeValidator(validator_opts)
+
+
+def test_is_validate_method_defined(validator_opts):
+    assert LicenseeValidator(validator_opts).validate()
 
 
 def test_is_validate_method_output(validator):
