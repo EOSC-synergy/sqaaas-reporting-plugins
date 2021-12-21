@@ -32,7 +32,7 @@ def test_is_validate_method_defined(validator_opts):
 
 
 @pytest.mark.dependency(depends=["test_is_validate_method_defined"])
-def test_is_validate_method_output(validator):
+def test_validate_method_output(validator):
     result = validator.validate()
     assert type(result) is dict
     assert 'valid' in list(result)

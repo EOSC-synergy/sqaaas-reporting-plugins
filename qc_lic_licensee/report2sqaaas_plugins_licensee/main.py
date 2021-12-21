@@ -27,15 +27,19 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
 
     def validate(self):
         logger.debug('Running SQAaaS\' <%s> validator' % self.name)
-        data = self.parse(self.opts.stdout)
-        at_least_one_license = False
-        trusted_licenses_no = 0
-        for license_data in data['matched_files']:
-            if license_data['matcher']['confidence'] > self.opts.threshold:
-                at_least_one_license = True
-                trusted_licenses_no += 1
-        if at_least_one_license:
-            self.valid = True
+        try:
+            data = self.parse(self.opts.stdout)
+            at_least_one_license = False
+            trusted_licenses_no = 0
+            for license_data in data['matched_files']:
+                if license_data['matcher']['confidence'] > self.opts.threshold:
+                    at_least_one_license = True
+                    trusted_licenses_no += 1
+            if at_least_one_license:
+                self.valid = True
+        except ValueError:
+            data = {}
+            logger.error('Input data does not contain a valid JSON')
 
         return {
             'valid': self.valid,
