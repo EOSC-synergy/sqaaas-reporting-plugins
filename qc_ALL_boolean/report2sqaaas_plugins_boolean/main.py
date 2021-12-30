@@ -8,3 +8,14 @@ logger = logging.getLogger('sqaaas.reporting.plugins.boolean')
 
 class BooleanValidator(sqaaas_utils.BaseValidator):
     valid = False
+
+    @staticmethod
+    def validate():
+        if self.opts.stdout.lower() in [
+            'true', 'false'
+        ]:
+            self.valid = True
+
+        return {
+            'valid': self.valid,
+        }
