@@ -1,0 +1,263 @@
+[
+    {
+        "filename": "/sqa/README.md",
+        "line": 13,
+        "rule": "MD009",
+        "aliases": [
+            "no-trailing-spaces"
+        ],
+        "description": "Trailing spaces"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 26,
+        "rule": "MD009",
+        "aliases": [
+            "no-trailing-spaces"
+        ],
+        "description": "Trailing spaces"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 70,
+        "rule": "MD012",
+        "aliases": [
+            "no-multiple-blanks"
+        ],
+        "description": "Multiple consecutive blank lines"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 9,
+        "rule": "MD013",
+        "aliases": [
+            "line-length"
+        ],
+        "description": "Line length"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 13,
+        "rule": "MD013",
+        "aliases": [
+            "line-length"
+        ],
+        "description": "Line length"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 14,
+        "rule": "MD013",
+        "aliases": [
+            "line-length"
+        ],
+        "description": "Line length"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 161,
+        "rule": "MD013",
+        "aliases": [
+            "line-length"
+        ],
+        "description": "Line length"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 187,
+        "rule": "MD013",
+        "aliases": [
+            "line-length"
+        ],
+        "description": "Line length"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 188,
+        "rule": "MD013",
+        "aliases": [
+            "line-length"
+        ],
+        "description": "Line length"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 269,
+        "rule": "MD013",
+        "aliases": [
+            "line-length"
+        ],
+        "description": "Line length"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 43,
+        "rule": "MD022",
+        "aliases": [
+            "blanks-around-headers"
+        ],
+        "description": "Headers should be surrounded by blank lines"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 46,
+        "rule": "MD022",
+        "aliases": [
+            "blanks-around-headers"
+        ],
+        "description": "Headers should be surrounded by blank lines"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 49,
+        "rule": "MD022",
+        "aliases": [
+            "blanks-around-headers"
+        ],
+        "description": "Headers should be surrounded by blank lines"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 80,
+        "rule": "MD022",
+        "aliases": [
+            "blanks-around-headers"
+        ],
+        "description": "Headers should be surrounded by blank lines"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 39,
+        "rule": "MD029",
+        "aliases": [
+            "ol-prefix"
+        ],
+        "description": "Ordered list item prefix"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 76,
+        "rule": "MD029",
+        "aliases": [
+            "ol-prefix"
+        ],
+        "description": "Ordered list item prefix"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 77,
+        "rule": "MD029",
+        "aliases": [
+            "ol-prefix"
+        ],
+        "description": "Ordered list item prefix"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 78,
+        "rule": "MD029",
+        "aliases": [
+            "ol-prefix"
+        ],
+        "description": "Ordered list item prefix"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 179,
+        "rule": "MD029",
+        "aliases": [
+            "ol-prefix"
+        ],
+        "description": "Ordered list item prefix"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 180,
+        "rule": "MD029",
+        "aliases": [
+            "ol-prefix"
+        ],
+        "description": "Ordered list item prefix"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 187,
+        "rule": "MD029",
+        "aliases": [
+            "ol-prefix"
+        ],
+        "description": "Ordered list item prefix"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 188,
+        "rule": "MD029",
+        "aliases": [
+            "ol-prefix"
+        ],
+        "description": "Ordered list item prefix"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 276,
+        "rule": "MD029",
+        "aliases": [
+            "ol-prefix"
+        ],
+        "description": "Ordered list item prefix"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 277,
+        "rule": "MD029",
+        "aliases": [
+            "ol-prefix"
+        ],
+        "description": "Ordered list item prefix"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 82,
+        "rule": "MD031",
+        "aliases": [
+            "blanks-around-fences"
+        ],
+        "description": "Fenced code blocks should be surrounded by blank lines"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 87,
+        "rule": "MD031",
+        "aliases": [
+            "blanks-around-fences"
+        ],
+        "description": "Fenced code blocks should be surrounded by blank lines"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 89,
+        "rule": "MD031",
+        "aliases": [
+            "blanks-around-fences"
+        ],
+        "description": "Fenced code blocks should be surrounded by blank lines"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 191,
+        "rule": "MD031",
+        "aliases": [
+            "blanks-around-fences"
+        ],
+        "description": "Fenced code blocks should be surrounded by blank lines"
+    },
+    {
+        "filename": "/sqa/README.md",
+        "line": 130,
+        "rule": "MD046",
+        "aliases": [
+            "code-block-style"
+        ],
+        "description": "Code block style"
+    }
+]
