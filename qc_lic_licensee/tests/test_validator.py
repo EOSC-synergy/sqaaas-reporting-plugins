@@ -6,11 +6,12 @@ from report2sqaaas_plugins_licensee.main import LicenseeValidator
 
 @pytest.fixture
 def licensee_stdout():
-    return """
-    {
-        "matched_files": []
-    }
-    """
+    file = pathlib.Path(request.node.fspath.strpath)
+    stdout = file.with_name('licensee.out.json')
+    with stdout.open() as fp:
+        json_data = json.load(fp)
+        return json.dumps(json_data)
+
 
 @pytest.fixture
 def validator_opts(licensee_stdout):
