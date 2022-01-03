@@ -6,8 +6,7 @@ from report2sqaaas_plugins_boolean.main import BooleanValidator
 
 @pytest.fixture
 def boolean_stdout():
-    # FIXME Return a sample tool's stdout as string
-    return ""
+    return "False"
 
 @pytest.fixture
 def validator_opts(boolean_stdout):
