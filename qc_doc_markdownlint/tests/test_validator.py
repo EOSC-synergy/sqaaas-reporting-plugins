@@ -14,6 +14,7 @@ def markdownlint_stdout(request):
         json_data = json.load(fp)
         return json.dumps(json_data)
 
+
 @pytest.fixture
 def validator_opts(markdownlint_stdout):
     class_args = {
