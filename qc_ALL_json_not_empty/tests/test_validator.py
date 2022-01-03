@@ -6,8 +6,7 @@ from report2sqaaas_plugins_json_not_empty.main import JsonNotEmptyValidator
 
 @pytest.fixture
 def json_not_empty_stdout():
-    # FIXME Return a sample tool's stdout as string
-    return ""
+    return """{"foo": "bar"}"""
 
 @pytest.fixture
 def validator_opts(json_not_empty_stdout):
