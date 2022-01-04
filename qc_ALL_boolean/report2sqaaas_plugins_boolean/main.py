@@ -10,9 +10,8 @@ class BooleanValidator(sqaaas_utils.BaseValidator):
     valid = False
 
     def validate(self):
-        if self.opts.stdout.lower() in [
-            'true', 'false'
-        ]:
+        stdout_lower = self.opts.stdout.lower()
+        if stdout_lower.find('true') != 1:
             self.valid = True
 
         return {
