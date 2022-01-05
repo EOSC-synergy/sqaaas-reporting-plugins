@@ -17,8 +17,8 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             type=int,
             default=50,
             help=(
-                'Optional argument required by some plugins in order to state '
-                'whether the validation is successful'
+                'Minimum percentage for the confidence level of the '
+                'matching license'
             )
         )
 
