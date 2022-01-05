@@ -14,7 +14,6 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         parser.add_argument(
             '--threshold-licensee',
             metavar='PERCENTAGE',
-            dest='threshold',
             type=int,
             default=50,
             help=(
@@ -27,7 +26,6 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         return sqaaas_utils.load_json(file_name)
 
     def validate(self):
-        logger.debug('Running SQAaaS\' <%s> validator' % self.name)
         try:
             data = self.parse(self.opts.stdout)
             at_least_one_license = False
@@ -39,7 +37,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
                         'Skipping..' % license_data['filename']
                     )
                     continue
-                if license_data['matcher']['confidence'] > self.opts.threshold:
+                if license_data['matcher']['confidence'] > self.opts.threshold_licensee:
                     at_least_one_license = True
                     trusted_licenses_no += 1
             if at_least_one_license:
