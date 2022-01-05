@@ -12,8 +12,9 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
     @staticmethod
     def populate_parser(parser):
         parser.add_argument(
-            '--threshold',
-            metavar='NUMBER',
+            '--threshold-licensee',
+            metavar='PERCENTAGE',
+            dest='threshold',
             type=int,
             default=50,
             help=(
