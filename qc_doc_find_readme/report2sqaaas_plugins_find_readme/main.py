@@ -8,19 +8,9 @@ logger = logging.getLogger('sqaaas.reporting.plugins.find_readme')
 
 class FindReadmeValidator(sqaaas_utils.BaseValidator):
     valid = False
-
-    @staticmethod
-    def populate_parser(parser):
-        parser.add_argument(
-            '--threshold-find_readme',
-            metavar='NUMBER',
-            type=int,
-            default=0,
-            help='Minimum size of the README file (in bytes)'
-        )
+    threshold = 1
 
     def validate(self):
-        threshold = self.opts.threshold_find_readme
         try:
             readme_data_list = sqaaas_utils.load_json(self.opts.stdout)
         except ValueError:
@@ -31,10 +21,10 @@ class FindReadmeValidator(sqaaas_utils.BaseValidator):
         if readme_data_list:
             for readme_data in readme_data_list:
                 for readme_file, readme_size in readme_data.items():
-                    if readme_size['size'] <= threshold:
+                    if readme_size['size'] < self.threshold:
                         logger.warn((
-                            'README file <%s> is not big enough (threshold '
-                            '%s)' % (readme_file, threshold)
+                            'README file <%s> is not big enough (self.threshold '
+                            '%s)' % (readme_file, self.threshold)
                         ))
                         self.valid = False
         else:
