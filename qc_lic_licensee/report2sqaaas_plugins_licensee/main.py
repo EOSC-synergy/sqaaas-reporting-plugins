@@ -30,9 +30,9 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
                     trusted_licenses_no += 1
             if at_least_one_license:
                 self.valid = True
-        except ValueError:
+        except ValueError as e:
             data = {}
-            logger.error('Input data does not contain a valid JSON')
+            logger.error('Input data does not contain a valid JSON: %s' % e)
 
         return {
             'valid': self.valid,
