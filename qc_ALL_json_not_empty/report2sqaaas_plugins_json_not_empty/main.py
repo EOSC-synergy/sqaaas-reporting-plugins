@@ -12,9 +12,9 @@ class JsonNotEmptyValidator(sqaaas_utils.BaseValidator):
     def validate(self):
         try:
             data = sqaaas_utils.load_json(self.opts.stdout)
-        except ValueError:
+        except ValueError as e:
             data = {}
-            reason = 'Input data does not contain a valid JSON'
+            reason = 'Input data does not contain a valid JSON: %s' % e
             logger.error(reason)
         else:
             if data:
