@@ -3,9 +3,9 @@ from setuptools import setup
 
 
 setup(
-    name='report2sqaaas-plugin-find_readme',
+    name='report2sqaaas-plugin-find_doc_files',
     version='1.0.0',
-    description='Output validator for the find_readme.py tool',
+    description='Output validator for the find_doc_files.py tool',
     author='Pablo Orviz',
     author_email='orviz@ifca.unican.es',
     url='http://github.com/eosc-synergy/sqaaas-reporting-plugins',
@@ -19,7 +19,7 @@ setup(
     packages=find_packages(),
     entry_points={
         'sqaaas.validators': [
-            'find_readme = report2sqaaas_plugins_find_readme.main:FindReadmeValidator',
+            'find_doc_files = report2sqaaas_plugins_find_doc_files.main:FindDocFilesValidator',
         ],
     },
 )

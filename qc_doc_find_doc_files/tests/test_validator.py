@@ -1,11 +1,11 @@
 import pytest
 from types import SimpleNamespace
 
-from report2sqaaas_plugins_find_readme.main import FindReadmeValidator
+from report2sqaaas_plugins_find_doc_files.main import FindDocFilesValidator
 
 
 @pytest.fixture
-def find_readme_stdout():
+def find_doc_files_stdout():
     # FIXME Return a sample tool's stdout as string
     return """
     [
@@ -18,22 +18,22 @@ def find_readme_stdout():
     """
 
 @pytest.fixture
-def validator_opts(find_readme_stdout):
+def validator_opts(find_doc_files_stdout):
     class_args = {
-        'validator': 'find_readme',
-        'stdout': find_readme_stdout
+        'validator': 'find_doc_files',
+        'stdout': find_doc_files_stdout
     }
     return SimpleNamespace(**class_args)
 
 
 @pytest.fixture
 def validator(validator_opts):
-    return FindReadmeValidator(validator_opts)
+    return FindDocFilesValidator(validator_opts)
 
 
 @pytest.mark.dependency()
 def test_is_validate_method_defined(validator_opts):
-    assert FindReadmeValidator(validator_opts).validate()
+    assert FindDocFilesValidator(validator_opts).validate()
 
 
 @pytest.mark.dependency(depends=["test_is_validate_method_defined"])

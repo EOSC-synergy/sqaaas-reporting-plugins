@@ -1,4 +1,4 @@
-# SQAaaS reporting validator plugin for the find_readme.py tool
+# SQAaaS reporting validator plugin for the find_doc_files.py tool
 
 [![License](https://img.shields.io/github/license/fzhu2e/GraphEM)](https://opensource.org/licenses/GPL-3.0)
 
@@ -10,12 +10,12 @@
 
 
 ## Description
-This plugin validates the output of the [find_readme.py](https://github.com/EOSC-synergy/sqaaas-tooling/raw/staging/QC.Doc/find_readme.py) tool."
+This plugin validates the output of the [find_doc_files.py](https://github.com/EOSC-synergy/sqaaas-tooling/raw/staging/QC.Doc/find_doc_files.py) tool."
 
 ## Quick start
 The plugin can be installed from this repository using `pip`:
 ```
-$ pip install git+https://github.com/EOSC-synergy/sqaaas-reporting-plugins@main#egg=report2sqaaas-plugin-find_readme&subdirectory=qc_doc_find_readme
+$ pip install git+https://github.com/EOSC-synergy/sqaaas-reporting-plugins@main#egg=report2sqaaas-plugin-find_doc_files&subdirectory=qc_doc_find_doc_files
 ```
 ### Configuration
 No additional configuration is needed. The plugin is added to the
@@ -25,7 +25,7 @@ No additional configuration is needed. The plugin is added to the
 The plugin can be readily used through the CLI offered by the
 [report2sqaaas](https://github.com/eosc-synergy/sqaaas-reporting) module:
 ```
-$ report2sqaaas find_readme find_readme.py.stdout
+$ report2sqaaas find_doc_files find_doc_files.py.stdout
 ```
 
 Note that you will need to have the

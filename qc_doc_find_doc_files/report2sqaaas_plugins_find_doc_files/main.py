@@ -3,39 +3,39 @@ import logging
 from report2sqaaas import utils as sqaaas_utils
 
 
-logger = logging.getLogger('sqaaas.reporting.plugins.find_readme')
+logger = logging.getLogger('sqaaas.reporting.plugins.find_doc_files')
 
 
-class FindReadmeValidator(sqaaas_utils.BaseValidator):
+class FindDocFilesValidator(sqaaas_utils.BaseValidator):
     valid = False
     threshold = 1
 
     def validate(self):
         reason = None
         try:
-            readme_data_list = sqaaas_utils.load_json(self.opts.stdout)
-            logger.debug('Parsing output: %s' % readme_data_list)
+            data_list = sqaaas_utils.load_json(self.opts.stdout)
+            logger.debug('Parsing output: %s' % data_list)
         except ValueError:
-            readme_data_list = []
+            data_list = []
             reason = 'Input data does not contain a valid JSON'
             logger.error(reason)
         else:
-            if readme_data_list:
+            if data_list:
                 self.valid = True
-                for readme_data in readme_data_list:
-                    for readme_file, readme_size in readme_data.items():
-                        if readme_size['size'] < self.threshold:
+                for data in data_list:
+                    for file_name, size in data.items():
+                        if size['size'] < self.threshold:
                             logger.warn((
                                 'File <%s> is not big enough (self.threshold '
-                                '%s)' % (readme_file, self.threshold)
+                                '%s)' % (file_name, self.threshold)
                             ))
                             self.valid = False
                         else:
                             logger.debug((
                                 'Size good enough for <%s> collaboration-enabling '
                                 'file: %s bytes' % (
-                                    readme_file,
-                                    readme_size
+                                    file_name,
+                                    size
                                 )
                             ))
             else:
@@ -44,7 +44,7 @@ class FindReadmeValidator(sqaaas_utils.BaseValidator):
 
         out = {
             'valid': self.valid,
-            'data_unstructured': readme_data_list
+            'data_unstructured': data_list
         }
         if reason:
             out['reason'] = reason
