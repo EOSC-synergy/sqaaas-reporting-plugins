@@ -23,8 +23,11 @@ class FindDocFilesValidator(sqaaas_utils.BaseValidator):
                 self.valid = True
                 for data in data_list:
                     for file_type, file_data in data.items():
-                        if not file_type:
-                            report.append('%s file not found' % file_type)
+                        if not file_data:
+                            report.append((
+                                '%s file not found in the '
+                                'repository' % file_type
+                            ))
                         for file_name, size in file_data.items():
                             if size['size'] < self.threshold:
                                 self.valid = False
