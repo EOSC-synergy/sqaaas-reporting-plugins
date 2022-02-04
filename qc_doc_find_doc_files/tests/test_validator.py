@@ -1,3 +1,5 @@
+import json
+import pathlib
 import pytest
 from types import SimpleNamespace
 
@@ -5,17 +7,12 @@ from report2sqaaas_plugins_find_doc_files.main import FindDocFilesValidator
 
 
 @pytest.fixture
-def find_doc_files_stdout():
-    # FIXME Return a sample tool's stdout as string
-    return """
-    [
-        {
-            'README.md': {
-                'size': 280
-            }
-        }
-    ]
-    """
+def find_doc_files_stdout(request):
+    file = pathlib.Path(request.node.fspath.strpath)
+    stdout = file.with_name('find_doc_files.out.json')
+    with stdout.open() as fp:
+        json_data = json.load(fp)
+        return json.dumps(json_data)
 
 @pytest.fixture
 def validator_opts(find_doc_files_stdout):
