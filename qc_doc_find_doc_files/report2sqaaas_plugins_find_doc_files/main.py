@@ -37,14 +37,16 @@ class FindDocFilesValidator(sqaaas_utils.BaseValidator):
                                     '%s)' % (
                                         file_type,
                                         file_name,
-                                        size,
+                                        size['size'],
                                         self.threshold
                                     )
                                 )
                             else:
-                                report.append('%s file found: %s (size %s)' % (
-                                    file_type, file_name, size
-                                ))
+                                report.append(
+                                    '%s file found: %s (size: %s bytes)' % (
+                                        file_type, file_name, size['size']
+                                    )
+                                )
             else:
                 report.append('JSON payload is empty')
 
