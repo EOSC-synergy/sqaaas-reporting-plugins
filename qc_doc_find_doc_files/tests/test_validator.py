@@ -6,15 +6,22 @@ from report2sqaaas_plugins_find_doc_files.main import FindDocFilesValidator
 
 @pytest.fixture
 def find_doc_files_stdout():
-    # FIXME Return a sample tool's stdout as string
     return """
-    [
-        {
-            'README.md': {
-                'size': 280
-            }
-        }
-    ]
+	[
+	    {
+	        "README": {
+	            "README.md": {
+	                "size": 1250
+	            }
+	        }
+	    },
+	    {
+	        "CODE_OF_CONDUCT": {}
+	    },
+	    {
+	        "CONTRIBUTING": {}
+	    }
+	]
     """
 
 @pytest.fixture

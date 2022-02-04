@@ -11,42 +11,48 @@ class FindDocFilesValidator(sqaaas_utils.BaseValidator):
     threshold = 1
 
     def validate(self):
-        reason = None
+        report = []
         try:
             data_list = sqaaas_utils.load_json(self.opts.stdout)
             logger.debug('Parsing output: %s' % data_list)
         except ValueError:
             data_list = []
-            reason = 'Input data does not contain a valid JSON'
-            logger.error(reason)
+            report.append('Input data does not contain a valid JSON')
         else:
             if data_list:
                 self.valid = True
                 for data in data_list:
-                    for file_name, size in data.items():
-                        if size['size'] < self.threshold:
-                            logger.warn((
-                                'File <%s> is not big enough (self.threshold '
-                                '%s)' % (file_name, self.threshold)
-                            ))
-                            self.valid = False
-                        else:
-                            logger.debug((
-                                'Size good enough for <%s> collaboration-enabling '
-                                'file: %s bytes' % (
-                                    file_name,
-                                    size
+                    for file_type, file_data in data.items():
+                        if not file_type:
+                            report.append('%s file not found' % file_type)
+                        for file_name, size in file_data.items():
+                            if size['size'] < self.threshold:
+                                self.valid = False
+                                report.append(
+                                    '%s file found, but size (%s bytes) is '
+                                    'considered insufficient: %s (threshold '
+                                    '%s)' % (
+                                        file_type,
+                                        file_name,
+                                        size,
+                                        self.threshold
+                                    )
                                 )
-                            ))
+                            else:
+                                report.append('%s file found: %s (size %s)' % (
+                                    file_type, file_name, size
+                                ))
             else:
-                reason = 'JSON payload is empty'
-                logger.warn(reason)
+                report.append('JSON payload is empty')
+
+        # Print report messages
+        for reason in report:
+            logger.debug(reason)
 
         out = {
             'valid': self.valid,
+            'report': report,
             'data_unstructured': data_list
         }
-        if reason:
-            out['reason'] = reason
 
-        return  out
+        return out
