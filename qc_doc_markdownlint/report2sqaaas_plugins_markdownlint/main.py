@@ -10,18 +10,18 @@ class MarkdownLintValidator(sqaaas_utils.BaseValidator):
     valid = False
 
     def validate(self):
-        report = []
+        evidence = []
         try:
             data = sqaaas_utils.load_json(self.opts.stdout)
         except ValueError:
             data = {}
-            report.append('Input data does not contain a valid JSON')
+            evidence.append('Input data does not contain a valid JSON')
 
         if not data:
-            report.append('No issues found by <markdownlint> tool')
+            evidence.append('No issues found by <markdownlint> tool')
             self.valid = True
         else:
-            report.append('Issues found by <markdownlint> tool')
+            evidence.append('Issues found by <markdownlint> tool')
 
         data_to_return = {}
         for rule_issue in data:
@@ -43,12 +43,12 @@ class MarkdownLintValidator(sqaaas_utils.BaseValidator):
                         rule_code: d_rule
                     }
 
-        # Print report messages
-        for reason in report:
+        # Print evidence messages
+        for reason in evidence:
             logger.debug(reason)
 
         return {
             'valid': self.valid,
-            'report': report,
+            'evidence': evidence,
             'data_unstructured': data_to_return
         }
