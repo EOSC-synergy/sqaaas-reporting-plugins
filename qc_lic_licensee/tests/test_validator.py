@@ -1,3 +1,5 @@
+import json
+import pathlib
 import pytest
 from types import SimpleNamespace
 
@@ -5,7 +7,7 @@ from report2sqaaas_plugins_licensee.main import LicenseeValidator
 
 
 @pytest.fixture
-def licensee_stdout():
+def licensee_stdout(request):
     file = pathlib.Path(request.node.fspath.strpath)
     stdout = file.with_name('licensee.out.json')
     with stdout.open() as fp:
