@@ -10,23 +10,23 @@ class JsonNotEmptyValidator(sqaaas_utils.BaseValidator):
     valid = False
 
     def validate(self):
+        evidence = []
         try:
             data = sqaaas_utils.load_json(self.opts.stdout)
         except ValueError as e:
             data = {}
-            reason = 'Input data does not contain a valid JSON: %s' % e
-            logger.error(reason)
+            evidence.append(
+                'Input data does not contain a valid JSON: %s' % e
+            )
         else:
             if data:
-                reason = 'Found a non-empty JSON payload'
-                logger.info(reason)
                 self.valid = True
+                evidence.append('Found a non-empty JSON payload')
             else:
-                reason = 'JSON payload is empty'
-                logger.info(reason)
+                evidence.append('JSON payload is empty')
 
         return {
             'valid': self.valid,
-            'reason': reason,
+            'evidence': evidence,
             'data_unstructured': data
         }
