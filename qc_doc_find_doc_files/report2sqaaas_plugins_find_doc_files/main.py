@@ -13,18 +13,22 @@ class FindDocFilesValidator(sqaaas_utils.BaseValidator):
     def validate(self):
         reason = None
         try:
-            data_list = sqaaas_utils.load_json(self.opts.stdout)
-            logger.debug('Parsing output: %s' % data_list)
+            data = sqaaas_utils.load_json(self.opts.stdout)
+            logger.debug('Parsing output: %s' % data)
         except ValueError:
-            data_list = []
+            data = {}
             reason = 'Input data does not contain a valid JSON'
             logger.error(reason)
         else:
-            if data_list:
+            if data:
                 self.valid = True
-                for data in data_list:
-                    for file_name, size in data.items():
-                        if size['size'] < self.threshold:
+                for file_type, file_list in data.items():
+                    if not file_list:
+                        logger.warn('%s file not found' % file_type)
+                    for file_data in file_list:
+                        file_name = file_data['file_name']
+                        size = file_data['size']
+                        if size < self.threshold:
                             logger.warn((
                                 'File <%s> is not big enough (self.threshold '
                                 '%s)' % (file_name, self.threshold)
@@ -44,7 +48,7 @@ class FindDocFilesValidator(sqaaas_utils.BaseValidator):
 
         out = {
             'valid': self.valid,
-            'data_unstructured': data_list
+            'data_unstructured': data
         }
         if reason:
             out['reason'] = reason
