@@ -9,12 +9,21 @@ logger = logging.getLogger('sqaaas.reporting.plugins.licensee')
 class LicenseeValidator(sqaaas_utils.BaseValidator):
     valid = False
     threshold = 50
+    standard = {
+        'title': (
+            'A set of Common Software Quality Assurance Baseline Criteria for '
+            'Research Projects'
+        ),
+        'version': 'v4.0',
+        'url': 'https://github.com/indigo-dc/sqa-baseline/releases/tag/v4.0',
+        'subcriteria': ['QC.Lic01']
+    }
 
     def parse(self, file_name):
         return sqaaas_utils.load_json(file_name)
 
     def validate(self):
-        evidence = []
+        evidence = None
         try:
             data = self.parse(self.opts.stdout)
             at_least_one_license = False
@@ -33,19 +42,24 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
                     trusted_licenses_no += 1
             if at_least_one_license:
                 self.valid = True
-                evidence.append(
+                evidence = (
                     'Valid LICENSE found (confidence level: %s): %s' % (
                         confidence_level, file_name
                     )
                 )
             else:
-                evidence.append('No valid LICENSE found')
+                evidence = 'No valid LICENSE found'
         except ValueError as e:
             data = {}
-            evidence.append('Input data does not contain a valid JSON: %s' % e)
+            evidence = 'Input data does not contain a valid JSON: %s' % e
 
         return {
             'valid': self.valid,
-            'evidence': evidence,
+            'subcriteria': {
+                'id': 'QC.Lic01',
+                'evidence': evidence,
+                'valid': self.valid,
+                'standard': self.standard
+            },
             'data_unstructured': data
         }
