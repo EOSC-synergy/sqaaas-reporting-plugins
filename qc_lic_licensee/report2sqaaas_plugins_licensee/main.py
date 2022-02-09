@@ -14,7 +14,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         return sqaaas_utils.load_json(file_name)
 
     def validate(self):
-        report = []
+        evidence = []
         try:
             data = self.parse(self.opts.stdout)
             at_least_one_license = False
@@ -33,19 +33,19 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
                     trusted_licenses_no += 1
             if at_least_one_license:
                 self.valid = True
-                report.append(
+                evidence.append(
                     'Valid LICENSE found (confidence level: %s): %s' % (
                         confidence_level, file_name
                     )
                 )
             else:
-                report.append('No valid LICENSE found')
+                evidence.append('No valid LICENSE found')
         except ValueError as e:
             data = {}
-            report.append('Input data does not contain a valid JSON: %s' % e)
+            evidence.append('Input data does not contain a valid JSON: %s' % e)
 
         return {
             'valid': self.valid,
-            'report': report,
+            'evidence': evidence,
             'data_unstructured': data
         }
