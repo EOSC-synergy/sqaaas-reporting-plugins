@@ -20,7 +20,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
     }
     criterion_data = None
 
-    def validate_qc_lic01(self, license_file):
+    def validate_qc_lic01(self, license_type):
         # QC.Lic01
         subcriterion = 'QC.Lic01'
         subcriterion_data = self.criterion_data[subcriterion]
@@ -28,7 +28,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         evidence = None
         if self.valid:
             subcriterion_valid = True
-            evidence = subcriterion_data['evidence']['success'] % license_file
+            evidence = subcriterion_data['evidence']['success'] % license_type
         else:
             evidence = subcriterion_data['evidence']['failure']
 
@@ -130,7 +130,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             else:
                 logger.warn('No valid LICENSE found')
 
-        subcriteria.append(self.validate_qc_lic01(file_name))
+        subcriteria.append(self.validate_qc_lic01(matched_license))
         # FIXME QC.Lic02 is NOT part of parsing licensee output, but for the
         # time being it is easier to be checked here as it requires to know
         # (have as input) the license found
