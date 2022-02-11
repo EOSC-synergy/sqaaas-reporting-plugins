@@ -1,4 +1,5 @@
 import logging
+import requests
 
 from report2sqaaas import utils as sqaaas_utils
 
@@ -38,6 +39,56 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             'evidence': evidence,
             'standard': self.standard
         }
+
+    def validate_qc_lic02(self, license_type):
+        subcriteria = []
+        for subcriterion in [
+                {
+                    'id': 'QC.Lic02',
+                    'keyword': 'approved',
+                    'osi_endpoint': 'osi-approved'
+                },
+                {
+                    'id': 'QC.Lic02.1',
+                    'keyword': 'popular',
+                    'osi_endpoint': 'popular'
+                }
+        ]:
+            _id = subcriterion['id']
+            _endpoint = subcriterion['osi_endpoint']
+            _keyword = subcriterion['keyword']
+            subcriterion_data = self.criterion_data[_id]
+            subcriterion_valid = False
+            OSI_ENDPOINT = 'https://api.opensource.org/licenses/%s' % _endpoint
+            r = requests.get(OSI_ENDPOINT)
+            try:
+                r.raise_for_status()
+            except requests.exceptions.HTTPError as e:
+                logger.error((
+                    'Cannot check compliance with Open Source Initiative\'s '
+                    '%s licenses: %s' % (e, _keyword)
+                ))
+            else:
+                license_list = r.json()
+                licenses = [
+                    license_data['id'] for license_data in license_list
+                ]
+                if license_type in licenses:
+                    subcriterion_valid = True
+                    evidence = subcriterion_data['evidence']['success']
+                else:
+                    evidence = subcriterion_data['evidence']['failure']
+                evidence = evidence % license_type
+                logger.info(evidence)
+
+            subcriteria.append({
+                'id': _id,
+                'description': subcriterion_data['description'],
+                'valid': subcriterion_valid,
+                'evidence': evidence,
+                'standard': self.standard
+            })
+        return subcriteria
 
     def validate(self):
         criterion = 'QC.Lic'
@@ -80,6 +131,10 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
                 logger.warn('No valid LICENSE found')
 
         subcriteria.append(self.validate_qc_lic01(file_name))
+        # FIXME QC.Lic02 is NOT part of parsing licensee output, but for the
+        # time being it is easier to be checked here as it requires to know
+        # (have as input) the license found
+        subcriteria.extend(self.validate_qc_lic02(matched_license))
 
         return {
             'valid': self.valid,
