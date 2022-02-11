@@ -63,17 +63,19 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
                     )
                     continue
                 file_name = license_data['filename']
+                matched_license = license_data['matched_license']
                 confidence_level = license_data['matcher']['confidence']
                 if confidence_level > self.threshold:
                     at_least_one_license = True
                     trusted_licenses_no += 1
             if at_least_one_license:
                 self.valid = True
-                logger.info(
-                    'Valid LICENSE found (confidence level: %s): %s' % (
-                        confidence_level, file_name
+                logger.info((
+                    'Open source\'s <%s> license found (file: %s, confidence '
+                    'level: %s)' % (
+                        matched_license, confidence_level, file_name
                     )
-                )
+                ))
             else:
                 logger.warn('No valid LICENSE found')
 
