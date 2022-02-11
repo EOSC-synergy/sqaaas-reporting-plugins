@@ -1,4 +1,5 @@
 import logging
+import pathlib
 import requests
 
 from report2sqaaas import utils as sqaaas_utils
@@ -20,7 +21,8 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
     }
     criterion_data = None
 
-    def validate_qc_lic01(self, license_type):
+    def validate_qc_lic01(self, license_type, license_file):
+        subcriteria = []
         # QC.Lic01
         subcriterion = 'QC.Lic01'
         subcriterion_data = self.criterion_data[subcriterion]
@@ -31,14 +33,32 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             evidence = subcriterion_data['evidence']['success'] % license_type
         else:
             evidence = subcriterion_data['evidence']['failure']
-
-        return {
+        subcriteria.append({
             'id': subcriterion,
             'description': subcriterion_data['description'],
             'valid': subcriterion_valid,
             'evidence': evidence,
             'standard': self.standard
-        }
+        })
+        # QC.Lic01.1
+        subcriterion = 'QC.Lic01.1'
+        subcriterion_data = self.criterion_data[subcriterion]
+        subcriterion_valid = False
+        license_path = pathlib.Path(license_file)
+        evidence = None
+        if license_path.parent.as_posix() in ['.']:
+            subcriterion_valid = True
+            evidence = subcriterion_data['evidence']['success'] % license_file
+        else:
+            evidence = subcriterion_data['evidence']['failure'] % license_file
+        subcriteria.append({
+            'id': subcriterion,
+            'description': subcriterion_data['description'],
+            'valid': subcriterion_valid,
+            'evidence': evidence,
+            'standard': self.standard
+        })
+        return subcriteria
 
     def validate_qc_lic02(self, license_type):
         subcriteria = []
@@ -130,7 +150,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             else:
                 logger.warn('No valid LICENSE found')
 
-        subcriteria.append(self.validate_qc_lic01(matched_license))
+        subcriteria.extend(self.validate_qc_lic01(matched_license, file_name))
         # FIXME QC.Lic02 is NOT part of parsing licensee output, but for the
         # time being it is easier to be checked here as it requires to know
         # (have as input) the license found
