@@ -16,7 +16,6 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         ),
         'version': 'v4.0',
         'url': 'https://github.com/indigo-dc/sqa-baseline/releases/tag/v4.0',
-        'subcriteria': ['QC.Lic01']
     }
 
     def validate_qc_lic01():
