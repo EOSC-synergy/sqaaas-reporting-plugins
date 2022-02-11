@@ -57,13 +57,13 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             at_least_one_license = False
             trusted_licenses_no = 0
             for license_data in data['matched_files']:
-                file_name = license_data['filename']
                 if not license_data.get('matcher', None):
                     logger.warn(
                         'Matcher data not found for file <%s>. '
                         'Skipping..' % file_name
                     )
                     continue
+                file_name = license_data['filename']
                 confidence_level = license_data['matcher']['confidence']
                 if confidence_level > self.threshold:
                     at_least_one_license = True
