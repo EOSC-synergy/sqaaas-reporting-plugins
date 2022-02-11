@@ -49,7 +49,11 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
 
         evidence = None
         try:
-            data = self.parse(self.opts.stdout)
+            data = sqaaas_utils.load_json(self.opts.stdout)
+        except ValueError as e:
+            data = {}
+            logger.error('Input data does not contain a valid JSON: %s' % e)
+        else:
             at_least_one_license = False
             trusted_licenses_no = 0
             for license_data in data['matched_files']:
@@ -66,21 +70,18 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
                     trusted_licenses_no += 1
             if at_least_one_license:
                 self.valid = True
-                evidence = (
+                logger.info(
                     'Valid LICENSE found (confidence level: %s): %s' % (
                         confidence_level, file_name
                     )
                 )
             else:
-                evidence = 'No valid LICENSE found'
-        except ValueError as e:
-            data = {}
-            evidence = 'Input data does not contain a valid JSON: %s' % e
+                logger.warn('No valid LICENSE found')
 
         subcriteria.append(self.validate_qc_lic01())
 
         return {
             'valid': self.valid,
             'subcriteria': subcriteria,
-            'data_unstructured': self.stdin
+            'data_unstructured': data
         }
