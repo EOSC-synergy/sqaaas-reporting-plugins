@@ -19,10 +19,34 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         'subcriteria': ['QC.Lic01']
     }
 
+    def validate_qc_lic01():
+        # QC.Lic01
+        subcriterion = 'QC.Lic01'
+        subcriterion_data = criterion_data[subcriterion]
+        subcriterion_valid = False
+        evidence = None
+        if self.valid:
+            subcriterion_valid = True
+            evidence = subcriterion_data['evidence']['success']
+        else:
+            evidence = subcriterion_data['evidence']['failure']
+
+        return {
+            'id': subcriterion,
+            'description': subcriterion_data['description'],
+            'valid': subcriterion_valid,
+            'evidence': evidence,
+            'standard': self.standard
+        }
+
     def parse(self, file_name):
         return sqaaas_utils.load_json(file_name)
 
     def validate(self):
+        criterion = 'QC.Lic'
+        criterion_data = sqaaas_utils.load_criterion_from_standard(criterion)
+        subcriteria = []
+
         evidence = None
         try:
             data = self.parse(self.opts.stdout)
@@ -53,13 +77,10 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             data = {}
             evidence = 'Input data does not contain a valid JSON: %s' % e
 
+        subcriteria.append(self.validate_qc_lic01())
+
         return {
             'valid': self.valid,
-            'subcriteria': {
-                'id': 'QC.Lic01',
-                'evidence': evidence,
-                'valid': self.valid,
-                'standard': self.standard
-            },
-            'data_unstructured': data
+            'subcriteria': subcriteria,
+            'data_unstructured': self.stdin
         }
