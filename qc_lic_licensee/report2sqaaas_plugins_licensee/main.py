@@ -17,16 +17,17 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         'version': 'v4.0',
         'url': 'https://github.com/indigo-dc/sqa-baseline/releases/tag/v4.0',
     }
+    criterion_data = None
 
-    def validate_qc_lic01():
+    def validate_qc_lic01(self, license_file):
         # QC.Lic01
         subcriterion = 'QC.Lic01'
-        subcriterion_data = criterion_data[subcriterion]
+        subcriterion_data = self.criterion_data[subcriterion]
         subcriterion_valid = False
         evidence = None
         if self.valid:
             subcriterion_valid = True
-            evidence = subcriterion_data['evidence']['success']
+            evidence = subcriterion_data['evidence']['success'] % license_file
         else:
             evidence = subcriterion_data['evidence']['failure']
 
@@ -38,15 +39,14 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             'standard': self.standard
         }
 
-    def parse(self, file_name):
-        return sqaaas_utils.load_json(file_name)
-
     def validate(self):
         criterion = 'QC.Lic'
-        criterion_data = sqaaas_utils.load_criterion_from_standard(criterion)
+        self.criterion_data = sqaaas_utils.load_criterion_from_standard(
+            criterion
+        )
         subcriteria = []
-
         evidence = None
+
         try:
             data = sqaaas_utils.load_json(self.opts.stdout)
         except ValueError as e:
@@ -77,7 +77,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             else:
                 logger.warn('No valid LICENSE found')
 
-        subcriteria.append(self.validate_qc_lic01())
+        subcriteria.append(self.validate_qc_lic01(file_name))
 
         return {
             'valid': self.valid,
