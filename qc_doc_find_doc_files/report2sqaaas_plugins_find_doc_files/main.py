@@ -55,7 +55,6 @@ class FindDocFilesValidator(sqaaas_utils.BaseValidator):
                                 '%s)' % (file_name, self.threshold)
                             ))
                             logger.warn(evidence)
-                            self.valid = False
                         else:
                             evidence = subcriterion_data['evidence']['success']
                             subcriterion_valid = True
@@ -68,6 +67,12 @@ class FindDocFilesValidator(sqaaas_utils.BaseValidator):
                             'standard': self.standard
                         })
                         logger.info(evidence)
+                    requirement_level = subcriterion_data['requirement_level']
+                    if (
+                        (not subcriterion_valid) and
+                        (requirement_level in ['MUST'])
+                    ):
+                        self.valid = False
             else:
                 logger.error('JSON payload is empty!')
 
