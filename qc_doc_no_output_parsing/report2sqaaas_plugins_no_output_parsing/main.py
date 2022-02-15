@@ -7,8 +7,16 @@ logger = logging.getLogger('sqaaas.reporting.plugins.no_output_parsing')
 
 
 class NoOutputParsingValidator(sqaaas_utils.BaseValidator):
-    valid = False
+    valid = True
     stdin = None
+
+    def set_valid(self, subcriterion_data, subcriterion_valid):
+        requirement_level = subcriterion_data['requirement_level']
+        if (
+            (not subcriterion_valid) and
+            (requirement_level in ['MUST'])
+        ):
+            self.valid = False
 
     def validate_qc_doc01(self, criterion_data):
         # QC.Doc01.1
@@ -22,6 +30,7 @@ class NoOutputParsingValidator(sqaaas_utils.BaseValidator):
         else:
             subcriterion_valid = True
             evidence = subcriterion_data['evidence']['success']
+        self.set_valid(subcriterion_data, subcriterion_valid)
 
         return {
             'id': subcriterion,

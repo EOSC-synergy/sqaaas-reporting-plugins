@@ -21,6 +21,14 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
     }
     criterion_data = None
 
+    def set_valid(self, subcriterion_data, subcriterion_valid):
+        requirement_level = subcriterion_data['requirement_level']
+        if (
+            (not subcriterion_valid) and
+            (requirement_level in ['MUST'])
+        ):
+            self.valid = False
+
     def validate_qc_lic01(self, license_type, license_file):
         subcriteria = []
         # QC.Lic01
@@ -40,6 +48,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             'evidence': evidence,
             'standard': self.standard
         })
+        self.set_valid(subcriterion_data, subcriterion_valid)
         # QC.Lic01.1
         subcriterion = 'QC.Lic01.1'
         subcriterion_data = self.criterion_data[subcriterion]
@@ -58,6 +67,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             'evidence': evidence,
             'standard': self.standard
         })
+        self.set_valid(subcriterion_data, subcriterion_valid)
         return subcriteria
 
     def validate_qc_lic02(self, license_type):
@@ -108,6 +118,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
                 'evidence': evidence,
                 'standard': self.standard
             })
+            self.set_valid(subcriterion_data, subcriterion_valid)
         return subcriteria
 
     def validate(self):
