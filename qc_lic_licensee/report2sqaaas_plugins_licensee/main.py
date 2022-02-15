@@ -116,7 +116,6 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             criterion
         )
         subcriteria = []
-        evidence = None
 
         try:
             data = sqaaas_utils.load_json(self.opts.stdout)
