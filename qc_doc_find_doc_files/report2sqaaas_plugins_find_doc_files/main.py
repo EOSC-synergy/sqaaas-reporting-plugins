@@ -9,48 +9,70 @@ logger = logging.getLogger('sqaaas.reporting.plugins.find_doc_files')
 class FindDocFilesValidator(sqaaas_utils.BaseValidator):
     valid = False
     threshold = 1
+    criteria_mapping = {
+        'README': 'QC.Doc06.1',
+        'CONTRIBUTING': 'QC.Doc06.2',
+        'CODE_OF_CONDUCT': 'QC.Doc06.3'
+    }
+    standard = {
+        'title': (
+            'A set of Common Software Quality Assurance Baseline Criteria for '
+            'Research Projects'
+        ),
+        'version': 'v4.0',
+        'url': 'https://github.com/indigo-dc/sqa-baseline/releases/tag/v4.0',
+    }
 
     def validate(self):
-        reason = None
+        criterion = 'QC.Doc'
+        criterion_data = sqaaas_utils.load_criterion_from_standard(
+            criterion
+        )
+        subcriteria = []
         try:
             data = sqaaas_utils.load_json(self.opts.stdout)
             logger.debug('Parsing output: %s' % data)
         except ValueError:
             data = {}
-            reason = 'Input data does not contain a valid JSON'
-            logger.error(reason)
+            logger.error('Input data does not contain a valid JSON')
         else:
             if data:
                 self.valid = True
                 for file_type, file_list in data.items():
+                    subcriterion = self.criteria_mapping[file_type]
+                    subcriterion_data = criterion_data[subcriterion]
+                    subcriterion_valid = False
+                    evidence = None
                     if not file_list:
-                        logger.warn('%s file not found' % file_type)
+                        evidence = subcriterion_data['evidence']['failure']
                     for file_data in file_list:
                         file_name = file_data['file_name']
                         size = file_data['size']
                         if size < self.threshold:
-                            logger.warn((
-                                'File <%s> is not big enough (self.threshold '
+                            evidence = ((
+                                'README file <%s> exists in the code '
+                                'repository, but not big enough (threshold '
                                 '%s)' % (file_name, self.threshold)
                             ))
+                            logger.warn(evidence)
                             self.valid = False
                         else:
-                            logger.debug((
-                                'Size good enough for <%s> collaboration-enabling '
-                                'file: %s bytes' % (
-                                    file_name,
-                                    size
-                                )
-                            ))
+                            evidence = subcriterion_data['evidence']['success']
+                            subcriterion_valid = True
+                    if evidence:
+                        subcriteria.append({
+                            'id': subcriterion,
+                            'description': subcriterion_data['description'],
+                            'valid': subcriterion_valid,
+                            'evidence': evidence,
+                            'standard': self.standard
+                        })
+                        logger.info(evidence)
             else:
-                reason = 'JSON payload is empty'
-                logger.warn(reason)
+                logger.error('JSON payload is empty!')
 
-        out = {
+        return {
             'valid': self.valid,
+            'subcriteria': subcriteria,
             'data_unstructured': data
         }
-        if reason:
-            out['reason'] = reason
-
-        return  out
