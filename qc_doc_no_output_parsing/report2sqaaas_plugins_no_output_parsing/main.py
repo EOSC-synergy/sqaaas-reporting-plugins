@@ -9,6 +9,14 @@ logger = logging.getLogger('sqaaas.reporting.plugins.no_output_parsing')
 class NoOutputParsingValidator(sqaaas_utils.BaseValidator):
     valid = True
     stdin = None
+    standard = {
+        'title': (
+            'A set of Common Software Quality Assurance Baseline Criteria for '
+            'Research Projects'
+        ),
+        'version': 'v4.0',
+        'url': 'https://github.com/indigo-dc/sqa-baseline/releases/tag/v4.0',
+    }
 
     def set_valid(self, subcriterion_data, subcriterion_valid):
         requirement_level = subcriterion_data['requirement_level']
@@ -36,7 +44,8 @@ class NoOutputParsingValidator(sqaaas_utils.BaseValidator):
             'id': subcriterion,
             'description': subcriterion_data['description'],
             'valid': subcriterion_valid,
-            'evidence': evidence
+            'evidence': evidence,
+            'standard': self.standard
         }
 
     def validate(self):
