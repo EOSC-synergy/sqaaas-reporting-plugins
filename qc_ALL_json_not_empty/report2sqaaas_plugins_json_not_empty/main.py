@@ -18,15 +18,6 @@ class JsonNotEmptyValidator(sqaaas_utils.BaseValidator):
         'url': 'https://github.com/indigo-dc/sqa-baseline/releases/tag/v4.0',
     }
 
-    def get_criterion(self):
-        criterion = None
-        pattern = '(^(SvcQC|QC)\.[A-Z][a-z]{2})'
-        match = re.search(pattern, self.opts.subcriterion)
-        if match:
-            criterion = match.group(0)
-            logger.debug('Matching criterion found: %s' % criterion)
-        return criterion
-
     def validate(self):
         criterion = self.get_criterion()
         criterion_data = sqaaas_utils.load_criterion_from_standard(
