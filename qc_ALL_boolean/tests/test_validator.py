@@ -12,7 +12,8 @@ def boolean_stdout():
 def validator_opts(boolean_stdout):
     class_args = {
         'validator': 'boolean',
-        'stdout': boolean_stdout
+        'stdout': boolean_stdout,
+        'subcriterion': 'QC.Met01'
     }
     return SimpleNamespace(**class_args)
 
