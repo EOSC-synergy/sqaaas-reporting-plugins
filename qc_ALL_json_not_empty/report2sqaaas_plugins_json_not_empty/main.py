@@ -1,5 +1,4 @@
 import logging
-import re
 
 from report2sqaaas import utils as sqaaas_utils
 
