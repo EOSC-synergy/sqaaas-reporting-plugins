@@ -12,7 +12,8 @@ def json_not_empty_stdout():
 def validator_opts(json_not_empty_stdout):
     class_args = {
         'validator': 'json_not_empty',
-        'stdout': json_not_empty_stdout
+        'stdout': json_not_empty_stdout,
+        'subcriterion': 'QC.Acc01'
     }
     return SimpleNamespace(**class_args)
 
