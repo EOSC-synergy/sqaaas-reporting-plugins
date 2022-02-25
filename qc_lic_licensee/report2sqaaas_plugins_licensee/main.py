@@ -45,8 +45,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             'id': subcriterion,
             'description': subcriterion_data['description'],
             'valid': subcriterion_valid,
-            'evidence': evidence,
-            'standard': self.standard
+            'evidence': evidence
         })
         self.set_valid(subcriterion_data, subcriterion_valid)
         # QC.Lic01.1
@@ -64,8 +63,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             'id': subcriterion,
             'description': subcriterion_data['description'],
             'valid': subcriterion_valid,
-            'evidence': evidence,
-            'standard': self.standard
+            'evidence': evidence
         })
         self.set_valid(subcriterion_data, subcriterion_valid)
         return subcriteria
@@ -115,8 +113,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
                 'id': _id,
                 'description': subcriterion_data['description'],
                 'valid': subcriterion_valid,
-                'evidence': evidence,
-                'standard': self.standard
+                'evidence': evidence
             })
             self.set_valid(subcriterion_data, subcriterion_valid)
         return subcriteria
@@ -169,5 +166,6 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         return {
             'valid': self.valid,
             'subcriteria': subcriteria,
+            'standard': self.standard,
             'data_unstructured': data
         }

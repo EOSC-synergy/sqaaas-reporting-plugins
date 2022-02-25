@@ -51,8 +51,7 @@ class MarkdownLintValidator(sqaaas_utils.BaseValidator):
             'id': subcriterion,
             'description': subcriterion_data['description'] % doc_file_type,
             'valid': subcriterion_valid,
-            'evidence': evidence % (doc_file_type, doc_file_standard),
-            'standard': self.standard
+            'evidence': evidence % (doc_file_type, doc_file_standard)
         })
 
         requirement_level = subcriterion_data['requirement_level']
@@ -86,5 +85,6 @@ class MarkdownLintValidator(sqaaas_utils.BaseValidator):
         return {
             'valid': self.valid,
             'subcriteria': subcriteria,
+            'standard': self.standard,
             'data_unstructured': data_to_return
         }

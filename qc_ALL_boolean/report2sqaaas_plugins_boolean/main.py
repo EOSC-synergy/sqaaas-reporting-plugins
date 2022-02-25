@@ -46,11 +46,11 @@ class BooleanValidator(sqaaas_utils.BaseValidator):
             'id': self.opts.subcriterion,
             'description': subcriterion_data['description'],
             'valid': subcriterion_valid,
-            'evidence': evidence,
-            'standard': self.standard
+            'evidence': evidence
         })
 
         return {
             'valid': self.valid,
-            'subcriteria': subcriteria
+            'subcriteria': subcriteria,
+            'standard': self.standard
         }

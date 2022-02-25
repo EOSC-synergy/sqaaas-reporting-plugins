@@ -44,8 +44,7 @@ class NoOutputParsingValidator(sqaaas_utils.BaseValidator):
             'id': subcriterion,
             'description': subcriterion_data['description'],
             'valid': subcriterion_valid,
-            'evidence': evidence,
-            'standard': self.standard
+            'evidence': evidence
         }
 
     def validate(self):
@@ -62,5 +61,6 @@ class NoOutputParsingValidator(sqaaas_utils.BaseValidator):
         return {
             'valid': self.valid,
             'subcriteria': subcriteria,
+            'standard': self.standard,
             'data_unstructured': self.stdin
         }
