@@ -1,3 +1,5 @@
+import json
+import pathlib
 import pytest
 from types import SimpleNamespace
 
@@ -5,9 +7,12 @@ from report2sqaaas_plugins_bandit.main import BanditValidator
 
 
 @pytest.fixture
-def bandit_stdout():
-    # FIXME Return a sample tool's stdout as string
-    return ""
+def bandit_stdout(request):
+    file = pathlib.Path(request.node.fspath.strpath)
+    stdout = file.with_name('bandit.out.json')
+    with stdout.open() as fp:
+        json_data = json.load(fp)
+        return json.dumps(json_data)
 
 @pytest.fixture
 def validator_opts(bandit_stdout):
@@ -35,4 +40,4 @@ def test_validate_method_output(validator):
     assert 'valid' in list(result)
     assert 'subcriteria' in list(result)
     assert type(result['subcriteria']) is list
-    
+
