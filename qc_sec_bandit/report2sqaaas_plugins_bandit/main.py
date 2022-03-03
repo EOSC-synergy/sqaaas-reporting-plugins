@@ -40,7 +40,7 @@ class BanditValidator(sqaaas_utils.BaseValidator):
                 logger.info(evidence)
             else:
                 evidence = subcriterion_data['evidence']['failure']
-                logger.warn((
+                logger.warning((
                     'Bandit found %s high rated security '
                     'issues' % len(data['results'])
                 ))
