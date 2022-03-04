@@ -1,0 +1,84 @@
+import logging
+import re
+
+from report2sqaaas import utils as sqaaas_utils
+
+
+logger = logging.getLogger('sqaaas.reporting.plugins.flake8')
+
+
+class Flake8Validator(sqaaas_utils.BaseValidator):
+    valid = False
+    standard = {
+        'title': (
+            'A set of Common Software Quality Assurance Baseline Criteria for '
+            'Research Projects'
+        ),
+        'version': 'v4.0',
+        'url': 'https://github.com/indigo-dc/sqa-baseline/releases/tag/v4.0',
+    }
+
+    def validate(self):
+        criterion = 'QC.Sty'
+        criterion_data = sqaaas_utils.load_criterion_from_standard(
+            criterion
+        )
+        subcriteria = []
+        # QC.Sty01
+        subcriterion = 'QC.Sty01'
+        subcriterion_data = criterion_data[subcriterion]
+        subcriterion_valid = True
+        evidence = None
+
+        data = self.opts.stdout.strip()
+        lines = data.split('\n')
+        if not lines:
+            logger.error('No flake8 output has been generated')
+        else:
+            for line in lines:
+                try:
+                    path, row, col, code, text = re.findall(
+                        '(.+):(\d+):(\d+): ([A-Z]\d{3}) (.+)', line
+                    )[0]
+                except IndexError:
+                    logger.warn(
+                        'Could not parse flake8 output line: "%s"' % line
+                    )
+                else:
+                    if code[0] in ['W']:
+                        logger.debug('Found a stylistic lint warning: %s' % line)
+                    else:
+                        subcriterion_valid = False
+                        if code[0] in ['E']:
+                            logger.debug('Found a stylistic lint error: %s' % line)
+                        if code[0] in ['F', 'C']:
+                            logger.debug('Found a logical lint error: %s' % line)
+            if subcriterion_valid:
+                evidence = subcriterion_data['evidence']['success']
+            else:
+                evidence = subcriterion_data['evidence']['failure']
+            logger.info(evidence)
+
+            file_type = 'Python'
+            file_standard = 'flake8 (pycodestyle, pyflakes, mccabe)'
+
+            subcriteria.append({
+                'id': subcriterion,
+                'description': subcriterion_data['description'] % file_type,
+                'valid': subcriterion_valid,
+                'evidence': evidence % (file_type, file_standard)
+            })
+
+            requirement_level = subcriterion_data['requirement_level']
+            if (
+                (not subcriterion_valid) and
+                (requirement_level in ['MUST'])
+            ):
+                self.valid = False
+
+        return {
+            'valid': self.valid,
+            'subcriteria': subcriteria,
+            'standard': self.standard,
+            'data_unstructured': data
+        }
