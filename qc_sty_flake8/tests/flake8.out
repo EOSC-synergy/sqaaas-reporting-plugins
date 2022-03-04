@@ -1,0 +1,13 @@
+./qc_doc_markdownlint/setup.py:12:1: W191 indentation contains tabs
+./qc_doc_markdownlint/setup.py:12:1: E101 indentation contains mixed spaces and tabs
+./qc_doc_markdownlint/setup.py:12:2: E131 continuation line unaligned for hanging indent
+./qc_doc_markdownlint/setup.py:15:80: E501 line too long (85 > 79 characters)
+./qc_doc_markdownlint/setup.py:22:80: E501 line too long (91 > 79 characters)
+./qc_lic_licensee/setup.py:12:1: W191 indentation contains tabs
+./qc_lic_licensee/setup.py:12:1: E101 indentation contains mixed spaces and tabs
+./qc_lic_licensee/setup.py:12:2: E131 continuation line unaligned for hanging indent
+./qc_lic_licensee/setup.py:15:80: E501 line too long (85 > 79 characters)
+./qc_lic_licensee/tests/test_validator.py:9:12: F821 undefined name 'pathlib'
+./qc_lic_licensee/tests/test_validator.py:9:25: F821 undefined name 'request'
+./qc_lic_licensee/tests/test_validator.py:12:21: F821 undefined name 'json'
+./qc_lic_licensee/tests/test_validator.py:13:16: F821 undefined name 'json'
