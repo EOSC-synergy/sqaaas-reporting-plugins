@@ -37,16 +37,18 @@ class Flake8Validator(sqaaas_utils.BaseValidator):
         else:
             for line in lines:
                 try:
-                    path, row, col, code, text = re.findall(
-                        '(.+):(\d+):(\d+): ([A-Z]\d{3}) (.+)', line
-                    )[0]
-                except IndexError:
-                    logger.warn(
-                        'Could not parse flake8 output line: "%s"' % line
-                    )
-                else:
-                    if code[0] in ['W']:
-                        logger.debug('Found a stylistic lint warning: %s' % line)
+                    matches = re.match(pattern, line)
+                except re.error:
+                    matches = None
+                if matches:
+                    try:
+                        path, row, col, code, text = re.findall(
+                            pattern, line
+                        )[0]
+                    except IndexError:
+                        logger.warning(
+                            'Could not parse flake8 output line: "%s"' % line
+                        )
                     else:
                         subcriterion_valid = False
                         if code[0] in ['E']:
