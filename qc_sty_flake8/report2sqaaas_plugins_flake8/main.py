@@ -30,7 +30,7 @@ class Flake8Validator(sqaaas_utils.BaseValidator):
         subcriterion_valid = True
         evidence = None
 
-        data = self.opts.stdout.strip()
+        data = sqaaas_utils.load_data(self.opts.stdout.strip())
         lines = data.split('\n')
         if not lines:
             logger.error('No flake8 output has been generated')
