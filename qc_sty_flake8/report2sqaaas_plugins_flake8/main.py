@@ -75,10 +75,10 @@ class Flake8Validator(sqaaas_utils.BaseValidator):
                 evidence = subcriterion_data['evidence']['success']
             else:
                 evidence = subcriterion_data['evidence']['failure']
-            logger.info(evidence)
-
             file_type = 'Python'
             file_standard = 'flake8 (pycodestyle, pyflakes, mccabe)'
+            evidence = evidence % (file_type, file_standard)
+            logger.info(evidence)
 
             for linting_type, metrics in summary.items():
                 logger.info('Linting %s issues found: %s' % (
@@ -89,7 +89,7 @@ class Flake8Validator(sqaaas_utils.BaseValidator):
                 'id': subcriterion,
                 'description': subcriterion_data['description'] % file_type,
                 'valid': subcriterion_valid,
-                'evidence': evidence % (file_type, file_standard)
+                'evidence': evidence
             })
 
             requirement_level = subcriterion_data['requirement_level']
