@@ -32,6 +32,16 @@ class Flake8Validator(sqaaas_utils.BaseValidator):
 
         data = sqaaas_utils.load_data(self.opts.stdout.strip())
         lines = data.split('\n')
+        lines = list(filter(None, lines))
+        pattern = '(.+):(\d+):(\d+): ([A-Z]\d{3}) (.+)'
+        summary = {
+            'stylistic': {
+                'warnings': 0,
+                'errors': 0
+            },
+            'logical': 0,
+            'analytical': 0
+        }
         if not lines:
             logger.error('No flake8 output has been generated')
         else:
@@ -50,11 +60,17 @@ class Flake8Validator(sqaaas_utils.BaseValidator):
                             'Could not parse flake8 output line: "%s"' % line
                         )
                     else:
-                        subcriterion_valid = False
-                        if code[0] in ['E']:
-                            logger.debug('Found a stylistic lint error: %s' % line)
-                        if code[0] in ['F', 'C']:
-                            logger.debug('Found a logical lint error: %s' % line)
+                        if code[0] in ['W']:
+                            summary['stylistic']['warnings'] += 1
+                        else:
+                            subcriterion_valid = False
+                            if code[0] in ['E']:
+                                summary['stylistic']['errors'] += 1
+                            if code[0] in ['F']:
+                                summary['logical'] += 1
+                            if code[0] in ['C']:
+                                summary['analytical'] += 1
+
             if subcriterion_valid:
                 evidence = subcriterion_data['evidence']['success']
             else:
@@ -63,6 +79,11 @@ class Flake8Validator(sqaaas_utils.BaseValidator):
 
             file_type = 'Python'
             file_standard = 'flake8 (pycodestyle, pyflakes, mccabe)'
+
+            for linting_type, metrics in summary.items():
+                logger.info('Linting %s issues found: %s' % (
+                    linting_type, metrics
+                ))
 
             subcriteria.append({
                 'id': subcriterion,
