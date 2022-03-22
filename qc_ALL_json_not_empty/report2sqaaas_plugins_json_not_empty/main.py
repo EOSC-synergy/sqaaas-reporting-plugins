@@ -34,6 +34,7 @@ class JsonNotEmptyValidator(sqaaas_utils.BaseValidator):
             logger.error('Input data does not contain a valid JSON: %s' % e)
         else:
             if data:
+                subcriterion_valid = True
                 evidence = subcriterion_data['evidence']['success']
                 logger.debug('Found a non-empty JSON payload')
             else:
@@ -43,6 +44,13 @@ class JsonNotEmptyValidator(sqaaas_utils.BaseValidator):
         if evidence:
             logger.info(evidence)
 
+        subcriteria.append({
+            'id': self.opts.subcriterion,
+            'description': subcriterion_data['description'],
+            'valid': subcriterion_valid,
+            'evidence': evidence
+        })
+
         self.valid = subcriterion_valid
         requirement_level = subcriterion_data['requirement_level']
         if (
@@ -50,13 +58,6 @@ class JsonNotEmptyValidator(sqaaas_utils.BaseValidator):
             (requirement_level in ['MUST'])
         ):
             self.valid = False
-
-        subcriteria.append({
-            'id': self.opts.subcriterion,
-            'description': subcriterion_data['description'],
-            'valid': subcriterion_valid,
-            'evidence': evidence
-        })
 
         return {
             'valid': self.valid,
