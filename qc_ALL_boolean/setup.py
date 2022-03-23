@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='report2sqaaas-plugin-boolean',
-    version='1.0.0',
+    version='1.2.0',
     description='Output validator for the boolean tool',
     author='Pablo Orviz',
     author_email='orviz@ifca.unican.es',
