@@ -18,13 +18,13 @@ class MarkdownLintValidator(sqaaas_utils.BaseValidator):
     }
 
     def validate(self):
-        criterion = 'QC.Sty'
+        criterion = 'QC.Doc'
         criterion_data = sqaaas_utils.load_criterion_from_standard(
             criterion
         )
         subcriteria = []
         # QC.Sty01
-        subcriterion = 'QC.Sty01'
+        subcriterion = 'QC.Doc02.X'
         subcriterion_data = criterion_data[subcriterion]
         subcriterion_valid = False
         evidence = None
@@ -51,16 +51,17 @@ class MarkdownLintValidator(sqaaas_utils.BaseValidator):
             'id': subcriterion,
             'description': subcriterion_data['description'] % doc_file_type,
             'valid': subcriterion_valid,
-            'evidence': evidence % (doc_file_type, doc_file_standard)
+            'evidence': evidence % doc_file_standard
         })
 
         requirement_level = subcriterion_data['requirement_level']
-        self.valid = subcriterion_valid
         if (
             (not subcriterion_valid) and
             (requirement_level in ['MUST'])
         ):
             self.valid = False
+        else:
+            self.valid = True
 
         data_to_return = {}
         for rule_issue in data:
