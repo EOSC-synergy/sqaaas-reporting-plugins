@@ -1,0 +1,23 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.1.0
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Sec:
+    repos:
+      this_repo:
+        commands:
+        - bandit --recursive .
+        container: qc.sec_cozy-cyan-iguana
+  QC.Sty:
+    repos:
+      this_repo:
+        commands:
+        - flake8 qc_*
+        container: flake8-service
+timeout: 600
