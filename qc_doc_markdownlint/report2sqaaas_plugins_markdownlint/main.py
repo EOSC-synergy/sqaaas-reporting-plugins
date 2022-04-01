@@ -17,6 +17,28 @@ class MarkdownLintValidator(sqaaas_utils.BaseValidator):
         'url': 'https://github.com/indigo-dc/sqa-baseline/releases/tag/v4.0',
     }
 
+    def parse_markdownlint(self, data):
+        data_to_return = {}
+        for rule_issue in data:
+            file_name = rule_issue['filename']
+            rule_code = rule_issue['rule']
+            line = rule_issue['line']
+
+            if rule_code in list(data_to_return.get(file_name, {})):
+                data_to_return[file_name][rule_code]['line'].append(line)
+            else:
+                d_rule = {
+                    'description': rule_issue['description'],
+                    'line': [line]
+                }
+                try:
+                    data_to_return[file_name][rule_code] = d_rule
+                except KeyError:
+                    data_to_return[file_name] = {
+                        rule_code: d_rule
+                    }
+        return data_to_return
+
     def validate(self):
         criterion = 'QC.Doc'
         criterion_data = sqaaas_utils.load_criterion_from_standard(
@@ -64,25 +86,10 @@ class MarkdownLintValidator(sqaaas_utils.BaseValidator):
         else:
             self.valid = True
 
-        data_to_return = {}
-        for rule_issue in data:
-            file_name = rule_issue['filename']
-            rule_code = rule_issue['rule']
-            line = rule_issue['line']
-
-            if rule_code in list(data_to_return.get(file_name, {})):
-                data_to_return[file_name][rule_code]['line'].append(line)
-            else:
-                d_rule = {
-                    'description': rule_issue['description'],
-                    'line': [line]
-                }
-                try:
-                    data_to_return[file_name][rule_code] = d_rule
-                except KeyError:
-                    data_to_return[file_name] = {
-                        rule_code: d_rule
-                    }
+        if doc_file_type in ['Markdown']:
+            data_to_return = self.parse_markdownlint(data)
+        else:
+            data_to_return = data
 
         return {
             'valid': self.valid,
