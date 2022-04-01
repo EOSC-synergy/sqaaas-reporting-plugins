@@ -19,6 +19,8 @@ def markdownlint_stdout(request):
 def validator_opts(markdownlint_stdout):
     class_args = {
         'validator': 'markdownlint',
+        'doc_file_type': 'Markdown',
+        'doc_file_standard': 'markdownlint',
         'stdout': markdownlint_stdout
     }
     return SimpleNamespace(**class_args)

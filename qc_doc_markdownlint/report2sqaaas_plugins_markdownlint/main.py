@@ -23,7 +23,7 @@ class MarkdownLintValidator(sqaaas_utils.BaseValidator):
             criterion
         )
         subcriteria = []
-        # QC.Sty01
+        # QC.Doc02.X
         subcriterion = 'QC.Doc02.X'
         subcriterion_data = criterion_data[subcriterion]
         subcriterion_valid = False
@@ -41,8 +41,8 @@ class MarkdownLintValidator(sqaaas_utils.BaseValidator):
         else:
             evidence = subcriterion_data['evidence']['failure']
 
-        doc_file_type = 'Markdown'
-        doc_file_standard = 'markdownlint'
+        doc_file_type = self.opts.doc_file_type
+        doc_file_standard = self.opts.doc_file_standard
 
         evidence = evidence % doc_file_standard
         if evidence:
