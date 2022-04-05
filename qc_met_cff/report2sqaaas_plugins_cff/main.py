@@ -3,10 +3,10 @@ import logging
 from report2sqaaas import utils as sqaaas_utils
 
 
-logger = logging.getLogger('sqaaas.reporting.plugins.json_not_empty')
+logger = logging.getLogger('sqaaas.reporting.plugins.cff')
 
 
-class JsonNotEmptyValidator(sqaaas_utils.BaseValidator):
+class CFFConvertValidator(sqaaas_utils.BaseValidator):
     valid = False
     standard = {
         'title': (
@@ -18,34 +18,32 @@ class JsonNotEmptyValidator(sqaaas_utils.BaseValidator):
     }
 
     def validate(self):
-        criterion = self.get_criterion()
+        criterion = 'QC.Met'
         criterion_data = sqaaas_utils.load_criterion_from_standard(
             criterion
         )
         subcriteria = []
-        subcriterion_data = criterion_data[self.opts.subcriterion]
-        subcriterion_valid = False
+
+        subcriterion = 'QC.Met01'
+        subcriterion_data = criterion_data[subcriterion]
+        subcriterion_valid = True
         evidence = None
 
-        try:
-            data = sqaaas_utils.load_json(self.opts.stdout)
-        except ValueError as e:
-            data = {}
-            logger.error('Input data does not contain a valid JSON: %s' % e)
-        else:
-            if data:
-                subcriterion_valid = True
-                evidence = subcriterion_data['evidence']['success']
-                logger.debug('Found a non-empty JSON payload')
-            else:
-                evidence = subcriterion_data['evidence']['failure']
-                logger.debug('JSON payload is empty')
+        data = sqaaas_utils.load_data(self.opts.stdout.strip())
+        lines = data.split('\n')
+        lines = list(filter(None, lines))
 
-        if evidence:
-            logger.info(evidence)
+        for line in lines:
+            if line.find('ValidationError') != -1:
+                subcriterion_valid = False
+
+        if subcriterion_valid:
+            evidence = subcriterion_data['evidence']['success']
+        else:
+            evidence = subcriterion_data['evidence']['failure']
 
         subcriteria.append({
-            'id': self.opts.subcriterion,
+            'id': subcriterion,
             'description': subcriterion_data['description'],
             'valid': subcriterion_valid,
             'evidence': evidence

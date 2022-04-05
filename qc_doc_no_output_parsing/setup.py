@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='report2sqaaas-plugin-no_output_parsing',
-    version='1.0.0',
+    version='1.2.0',
     description='Output validator for the no_output_parsing tool',
     author='Pablo Orviz',
     author_email='orviz@ifca.unican.es',

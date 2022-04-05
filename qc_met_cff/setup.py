@@ -3,9 +3,9 @@ from setuptools import setup
 
 
 setup(
-    name='report2sqaaas-plugin-boolean',
-    version='1.2.0',
-    description='Output validator for the boolean tool',
+    name='report2sqaaas-plugin-cff',
+    version='1.0.0',
+    description='Output validator for the cffconvert tool',
     author='Pablo Orviz',
     author_email='orviz@ifca.unican.es',
     url='http://github.com/eosc-synergy/sqaaas-reporting-plugins',
@@ -19,7 +19,7 @@ setup(
     packages=find_packages(),
     entry_points={
         'sqaaas.validators': [
-            'boolean = report2sqaaas_plugins_boolean.main:BooleanValidator',
+            'cff = report2sqaaas_plugins_cff.main:CFFConvertValidator',
         ],
     },
 )

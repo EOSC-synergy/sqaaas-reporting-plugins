@@ -1,0 +1,38 @@
+./o3api/tests/test_api.py:79:39: E241 multiple spaces after ':'
+                                  END:   str(end_year),
+                                      ^
+./o3api/tests/test_api.py:85:33: E124 closing bracket does not match visual indentation
+                                }
+                                ^
+./o3api/tests/test_api.py:86:51: W291 trailing whitespace
+        request_q = ''.join([key + "=" + val + "&" 
+                                                  ^
+./o3api/tests/test_api.py:87:37: E231 missing whitespace after ','
+                             for key,val in plots_tco3_query_dict.items()])
+                                    ^
+./o3api/tests/test_api.py:91:5: E303 too many blank lines (2)
+    def test_api_info(self):
+    ^
+./o3api/tests/test_api.py:96:9: E265 block comment should start with '# '
+        #self.assertTrue(type(meta.data) is dict)
+        ^
+./o3api/tests/test_api.py:109:32: E124 closing bracket does not match visual indentation
+                               )
+                               ^
+./o3api/tests/test_api.py:121:32: E124 closing bracket does not match visual indentation
+                               )
+                               ^
+./o3api/tests/test_api.py:132:5: E265 block comment should start with '# '
+    #def test_api_models_list(self):
+    ^
+./o3api/tests/test_api.py:134:80: E501 line too long (86 > 79 characters)
+    #    request_q = ''.join([key + "=" + val + "&" for key,val in request_j.items()])
+                                                                               ^
+./o3api/tests/test_api.py:162:32: E124 closing bracket does not match visual indentation
+                               )
+                               ^
+./o3api/tests/test_api.py:174:32: E124 closing bracket does not match visual indentation
+                               )
+                               ^
+./o3api/tests/test_api.py:179:1: E305 expected 2 blank lines after class or function definition, found 1
+if __name__ == '__main__':
