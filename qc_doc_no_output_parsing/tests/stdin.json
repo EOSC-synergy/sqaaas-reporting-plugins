@@ -1,0 +1,10 @@
+{
+    "repo_code": {
+        "repo": "https://github.com/eosc-synergy/sqaaas-api-spec",
+        "branch": "master"
+    },
+    "repo_docs": {
+        "repo": "https://github.com/eosc-synergy/sqaaas-api-spec",
+        "branch": "master"
+    }
+}
