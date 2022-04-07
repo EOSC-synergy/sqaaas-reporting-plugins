@@ -3,9 +3,9 @@ from setuptools import setup
 
 
 setup(
-    name='report2sqaaas-plugin-fairEvaluator',
+    name='report2sqaaas-plugin-fairEva',
     version='1.0.0',
-    description='Output validator for the fairEvaluator tool',
+    description='Output validator for the fairEva tool',
     author='Fernando Aguilar',
     author_email='aguilarf@ifca.unican.es',
     url='http://github.com/eosc-synergy/sqaaas-reporting-plugins',
@@ -19,7 +19,7 @@ setup(
     packages=find_packages(),
     entry_points={
         'sqaaas.validators': [
-            'fairEvaluator = report2sqaaas_plugins_fairEvaluator.main:fairEvaluatorValidator',
+            'fairEva = report2sqaaas_plugins_fairEva.main:fairEva',
         ],
     },
 )
