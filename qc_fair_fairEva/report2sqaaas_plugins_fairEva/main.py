@@ -6,7 +6,7 @@ from report2sqaaas import utils as sqaaas_utils
 logger = logging.getLogger('sqaaas.reporting.plugins.fairEva')
 
 
-class fairEvaValidator(sqaaas_utils.BaseValidator):
+class fairEva(sqaaas_utils.BaseValidator):
     valid = False
 
     def parse(self, file_name):
@@ -25,12 +25,12 @@ class fairEvaValidator(sqaaas_utils.BaseValidator):
                     else:
                         valid = False
 
-                    result.append({"id": json_res[sb][key],
+                    result.append({"id": json_res[sb][key]['name'],
                                    "valid": valid,
                                     "description": json_res[sb][key]['msg'],
                                     "evidence": "Indicator: %s | Check: https://doi.org/10.15497/rda00050" % json_res[sb][key]['name'],
                                     }
-                                })
+                                 )
         if len(result) > 0:
             self.valid = True
 
