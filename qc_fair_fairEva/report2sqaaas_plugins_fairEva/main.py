@@ -3,10 +3,10 @@ import logging
 from report2sqaaas import utils as sqaaas_utils
 
 
-logger = logging.getLogger('sqaaas.reporting.plugins.fairEvaluator')
+logger = logging.getLogger('sqaaas.reporting.plugins.fairEva')
 
 
-class fairEvaluatorValidator(sqaaas_utils.BaseValidator):
+class fairEvaValidator(sqaaas_utils.BaseValidator):
     valid = False
 
     def parse(self, file_name):
@@ -26,10 +26,9 @@ class fairEvaluatorValidator(sqaaas_utils.BaseValidator):
                         valid = False
 
                     result.append({"id": json_res[sb][key],
-                                    "evidence": json_res[sb][key]['indicator'],
-                                    "valid": valid,
-                                    "standard": {"title": "RDA Indicators", "version": "v1.0",
-                                        "link": "https://doi.org/10.15497/rda00050"
+                                   "valid": valid,
+                                    "description": json_res[sb][key]['msg'],
+                                    "evidence": "Indicator: %s | Check: https://doi.org/10.15497/rda00050" % json_res[sb][key]['name'],
                                     }
                                 })
         if len(result) > 0:
@@ -37,6 +36,11 @@ class fairEvaluatorValidator(sqaaas_utils.BaseValidator):
 
         return {
             'valid': 'true',
-            'subcriteria': result
+            'subcriteria': result,
+            'standard': {'title': 'RDA Indicators',
+                         'version': 'v1.0',
+                         'url': 'https://doi.org/10.15497/rda00050'
+            },
+            'data_unstructured': 'TODO'
         }
 

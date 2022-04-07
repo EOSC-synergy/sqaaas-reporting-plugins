@@ -1,4 +1,4 @@
-# SQAaaS reporting validator plugin for the fairEvaluator tool
+# SQAaaS reporting validator plugin for the fairEva tool
 
 [![License](https://img.shields.io/github/license/fzhu2e/GraphEM)](https://opensource.org/licenses/GPL-3.0)
 
@@ -10,12 +10,12 @@
 
 
 ## Description
-This plugin validates the output of the [fairEvaluator](https://github.com/EOSC-synergy/FAIR_eva) tool."
+This plugin validates the output of the [fairEva](https://github.com/EOSC-synergy/FAIR_eva) tool."
 
 ## Quick start
 The plugin can be installed from this repository using `pip`:
 ```
-$ pip install git+https://github.com/EOSC-synergy/sqaaas-reporting-plugins@main#egg=report2sqaaas-plugin-fairEvaluator&subdirectory=qc_fair_fairEvaluator
+$ pip install git+https://github.com/EOSC-synergy/sqaaas-reporting-plugins@main#egg=report2sqaaas-plugin-fairEva&subdirectory=qc_fair_fairEva
 ```
 ### Configuration
 No additional configuration is needed. The plugin is added to the
@@ -25,7 +25,7 @@ No additional configuration is needed. The plugin is added to the
 The plugin can be readily used through the CLI offered by the
 [report2sqaaas](https://github.com/eosc-synergy/sqaaas-reporting) module:
 ```
-$ report2sqaaas fairEvaluator fairEvaluator.stdout
+$ report2sqaaas fairEva fairEva.stdout
 ```
 
 Note that you will need to have the
