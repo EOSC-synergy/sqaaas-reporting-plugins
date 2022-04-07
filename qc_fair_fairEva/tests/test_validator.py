@@ -17,7 +17,8 @@ def fairEva_stdout():
             "weight":2
          },
          "test_status":"fail",
-         "indicator":"rda_a1_01m"
+         "name":"rda_a1_01m",
+         "msg":"rda_a1_01m"
       }
    },
    "findable":{
@@ -29,7 +30,8 @@ def fairEva_stdout():
             "weight":3
          },
          "test_status":"pass",
-         "indicator":"rda_f1_01d"
+         "name":"rda_f1_01d",
+         "msg":"rda_f1_01d"
       }
    },
    "interoperable":{
@@ -41,7 +43,8 @@ def fairEva_stdout():
             "weight":2
          },
          "test_status":"fail",
-         "indicator":"rda_i1_01d"
+         "name":"rda_i1_01d",
+         "msg":"rda_i1_01d"
       }
    },
    "reusable":{
@@ -53,7 +56,8 @@ def fairEva_stdout():
             "weight":3
          },
          "test_status":"fail",
-         "indicator":"rda_r1_01m"
+         "name":"rda_r1_01m",
+         "msg":"rda_r1_01m"
       },
       "result":{
          "points":17.5,
