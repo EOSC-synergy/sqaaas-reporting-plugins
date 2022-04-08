@@ -12,6 +12,7 @@ def flake8_stdout(request):
     with stdout.open() as fp:
         return fp.read()
 
+
 @pytest.fixture
 def validator_opts(flake8_stdout):
     class_args = {
@@ -38,4 +39,3 @@ def test_validate_method_output(validator):
     assert 'valid' in list(result)
     assert 'subcriteria' in list(result)
     assert type(result['subcriteria']) is list
-

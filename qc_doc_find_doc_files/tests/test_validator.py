@@ -14,6 +14,7 @@ def find_doc_files_stdout(request):
         json_data = json.load(fp)
         return json.dumps(json_data)
 
+
 @pytest.fixture
 def validator_opts(find_doc_files_stdout):
     class_args = {
