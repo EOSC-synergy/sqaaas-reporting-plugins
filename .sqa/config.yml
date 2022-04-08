@@ -6,7 +6,6 @@ config:
       repo: https://github.com/EOSC-synergy/sqaaas-tooling
 environment:
   JPL_DOCKERFORCEBUILD: enabled
-  JPL_KEEPGOING: enabled
 sqa_criteria:
   QC.Sty:
     repos:
