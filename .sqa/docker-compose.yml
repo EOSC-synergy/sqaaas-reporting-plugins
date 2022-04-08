@@ -7,4 +7,14 @@ services:
       target: /sqaaas-build
       type: bind
     working_dir: /sqaaas-build
+  qc.sec_bandit:
+    command: sleep 6000000
+    build:
+      context: ./github.com/EOSC-synergy/sqaaas-tooling/QC.Sec/bandit
+      dockerfile: Dockerfile
+    volumes:
+    - source: ./
+      target: /sqaaas-build
+      type: bind
+    working_dir: /sqaaas-build
 version: '3.7'
