@@ -8,6 +8,7 @@ from report2sqaaas_plugins_json_not_empty.main import JsonNotEmptyValidator
 def json_not_empty_stdout():
     return """{"foo": "bar"}"""
 
+
 @pytest.fixture
 def validator_opts(json_not_empty_stdout):
     class_args = {

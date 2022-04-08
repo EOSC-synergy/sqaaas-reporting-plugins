@@ -3,7 +3,8 @@ import pathlib
 import pytest
 from types import SimpleNamespace
 
-from report2sqaaas_plugins_no_output_parsing.main import NoOutputParsingValidator
+from report2sqaaas_plugins_no_output_parsing.main import \
+    NoOutputParsingValidator
 
 
 @pytest.fixture
@@ -41,4 +42,3 @@ def test_validate_method_output(validator):
     assert 'valid' in list(result)
     assert 'subcriteria' in list(result)
     assert type(result['subcriteria']) is list
-

@@ -8,6 +8,7 @@ from report2sqaaas_plugins_boolean.main import BooleanValidator
 def boolean_stdout():
     return "False"
 
+
 @pytest.fixture
 def validator_opts(boolean_stdout):
     class_args = {

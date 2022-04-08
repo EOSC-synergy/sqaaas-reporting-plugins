@@ -33,7 +33,7 @@ class Flake8Validator(sqaaas_utils.BaseValidator):
         data = sqaaas_utils.load_data(self.opts.stdout.strip())
         lines = data.split('\n')
         lines = list(filter(None, lines))
-        pattern = '(.+):(\d+):(\d+): ([A-Z]\d{3}) (.+)'
+        pattern = r'(.+):(\d+):(\d+): ([A-Z]\d{3}) (.+)'
         summary = {
             'stylistic': {
                 'warnings': 0,

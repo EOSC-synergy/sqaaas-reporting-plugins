@@ -14,6 +14,7 @@ def bandit_stdout(request):
         json_data = json.load(fp)
         return json.dumps(json_data)
 
+
 @pytest.fixture
 def validator_opts(bandit_stdout):
     class_args = {
@@ -40,4 +41,3 @@ def test_validate_method_output(validator):
     assert 'valid' in list(result)
     assert 'subcriteria' in list(result)
     assert type(result['subcriteria']) is list
-
