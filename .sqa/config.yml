@@ -1,0 +1,17 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: 1.3.0
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Sty:
+    repos:
+      this_repo:
+        commands:
+        - flake8 qc_*
+        container: qc.sty_skinny-corn-llama
+timeout: 600
