@@ -29,10 +29,8 @@ class fairEva(sqaaas_utils.BaseValidator):
                     result.append({"id": json_res[sb][key]['name'],
                                    "valid": valid,
                                    "description": json_res[sb][key]['msg'],
-                                   "evidence": "Indicator: %s | Check: https://doi.org/10.15497/rda00050" 
-                                   % json_res[sb][key]['name'],
-                                    }
-                                  )
+                                   "evidence": "Indicator: %s | Check: https://doi.org/10.15497/rda00050"
+                                   % json_res[sb][key]['name']})
         if len(result) > 0:
             self.valid = True
 
