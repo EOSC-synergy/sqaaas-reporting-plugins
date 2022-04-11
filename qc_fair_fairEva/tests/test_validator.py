@@ -93,5 +93,4 @@ def test_validate_method_output(validator):
     assert type(result) is dict
     assert 'valid' in list(result)
     assert 'subcriteria' in list(result)
-    assert type(result['subcriteria']) is list
-    
+    assert type(result['subcriteria']) is list 
