@@ -25,13 +25,12 @@ class fairEva(sqaaas_utils.BaseValidator):
                         valid = True
                     else:
                         valid = False
-
+                    url = "https://doi.org/10.15497/rda00050"
+                    evidence = "Indicator: %s | Check: %s" % (key, url)
                     result.append({"id": json_res[sb][key]['name'],
                                    "valid": valid,
                                    "description": json_res[sb][key]['msg'],
-                                   "evidence": "Indicator: %s | 
-                                   Check: https://doi.org/10.15497/rda00050"
-                                   % json_res[sb][key]['name']})
+                                   "evidence": evidence})
         if len(result) > 0:
             self.valid = True
 
