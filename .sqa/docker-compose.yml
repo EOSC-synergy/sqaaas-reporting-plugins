@@ -17,4 +17,12 @@ services:
       target: /sqaaas-build
       type: bind
     working_dir: /sqaaas-build
+  qc.uni_pytest:
+    command: sleep 6000000
+    image: safesecurity/pytest@sha256:a30e4cc62e596caf2b32c4004f7036f1b7c0830eef111fec478ad0e30ccb92b8
+    volumes:
+    - source: ./
+      target: /sqaaas-build
+      type: bind
+    working_dir: /sqaaas-build
 version: '3.7'
