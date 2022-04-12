@@ -23,13 +23,6 @@ sqa_criteria:
     repos:
       this_repo:
         commands:
-        - |
-          #!/usr/bin/env bash
-          for plugin in qc_*
-          do
-            pip install $plugin
-            pip install -r $plugin/test-requirements.txt
-            pytest -svv $plugin
-          done
+        - /usr/bin/env sh .sqa/script.pytest.sh
         container: qc.uni_pytest
 timeout: 600
