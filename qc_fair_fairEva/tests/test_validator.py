@@ -79,12 +79,12 @@ def validator_opts(fairEva_stdout):
 
 @pytest.fixture
 def validator(validator_opts):
-    return fairEvaValidator(validator_opts)
+    return fairEva(validator_opts)
 
 
 @pytest.mark.dependency()
 def test_is_validate_method_defined(validator_opts):
-    assert fairEvaValidator(validator_opts).validate()
+    assert fairEva(validator_opts).validate()
 
 
 @pytest.mark.dependency(depends=["test_is_validate_method_defined"])
