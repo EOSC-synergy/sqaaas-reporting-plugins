@@ -19,4 +19,17 @@ sqa_criteria:
         commands:
         - bandit qc_doc_find_doc_files/tests/test_validator.py --severity-level high --confidence-level high
         container: qc.sec_bandit
+  QC.Uni:
+    repos:
+      this_repo:
+        commands:
+        - |
+          #!/usr/bin/env bash
+          for plugin in qc_*
+          do
+            pip install $plugin
+            pip install -r $plugin/test-requirements.txt
+            pytest -svv $plugin
+          done
+        container: qc.uni_pytest
 timeout: 600
