@@ -1,2 +1,4 @@
 pytest>=6.2.5
 pytest-dependency>=0.5.1
+# report2sqaaas == 1.2.0
+git+https://github.com/EOSC-synergy/sqaaas-reporting@1.2.0#egg=report2sqaaas
