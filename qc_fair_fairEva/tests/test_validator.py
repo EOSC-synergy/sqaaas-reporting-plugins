@@ -1,7 +1,7 @@
 import pytest
 from types import SimpleNamespace
 
-from report2sqaaas_plugins_fairEva.main import fairEvaValidator
+from report2sqaaas_plugins_fairEva.main import fairEva
 
 
 @pytest.fixture
