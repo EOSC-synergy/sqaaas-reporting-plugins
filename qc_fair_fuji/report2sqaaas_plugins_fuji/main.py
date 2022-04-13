@@ -107,8 +107,7 @@ class FujiValidator(sqaaas_utils.BaseValidator):
                 "valid": (passed_rd_indicators.get(rda_criteria) is not None),
                 "description": self.rda_all[rda_criteria],
                 "evidence": ("Found: " if passed_rd_indicators.get(
-                    rda_criteria) is not None else "Not found: ") +
-                            self.rda_all[rda_criteria]
+                    rda_criteria) is not None else "Not found: ") + self.rda_all[rda_criteria]
             })
 
         if len(subcriteria) > 0:
