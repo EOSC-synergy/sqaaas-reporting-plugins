@@ -1,8 +1,7 @@
+import pytest
 import json
 import pathlib
-import pytest
 from types import SimpleNamespace
-
 from report2sqaaas_plugins_fuji.main import FujiValidator
 
 
@@ -41,4 +40,3 @@ def test_validate_method_output(validator):
     assert 'valid' in list(result)
     assert 'subcriteria' in list(result)
     assert type(result['subcriteria']) is list
-    
