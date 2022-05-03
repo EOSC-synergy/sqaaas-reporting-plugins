@@ -17,4 +17,12 @@ services:
       target: /sqaaas-build
       type: bind
     working_dir: /sqaaas-build
+  qc.uni_pytest:
+    command: sleep 6000000
+    image: python:3.9.12-buster
+    volumes:
+    - source: ./
+      target: /sqaaas-build
+      type: bind
+    working_dir: /sqaaas-build
 version: '3.7'

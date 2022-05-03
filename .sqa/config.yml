@@ -17,6 +17,12 @@ sqa_criteria:
     repos:
       this_repo:
         commands:
-        - bandit qc_doc_find_doc_files/tests/test_validator.py --severity-level high --confidence-level high
+        - bandit -r qc_* --severity-level high --confidence-level high
         container: qc.sec_bandit
+  QC.Uni:
+    repos:
+      this_repo:
+        commands:
+        - /usr/bin/env sh .sqa/script.pytest.sh
+        container: qc.uni_pytest
 timeout: 600
