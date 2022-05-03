@@ -1,2 +1,0 @@
-# Install report2sqaaas from 'main' branch
-git+https://github.com/EOSC-synergy/sqaaas-reporting@main#egg=report2sqaaas
