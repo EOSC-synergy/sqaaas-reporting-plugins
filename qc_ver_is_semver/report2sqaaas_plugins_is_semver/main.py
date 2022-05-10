@@ -1,5 +1,4 @@
 import logging
-import json
 import semver
 
 from report2sqaaas import utils as sqaaas_utils
@@ -48,13 +47,14 @@ class IsSemverValidator(sqaaas_utils.BaseValidator):
                         if semver.compare(latest_tag, tag) < 0:
                             latest_tag = tag
 
+        evidence_data = subcriterion_data['evidence']
         if subcriterion_valid:
-            evidence = subcriterion_data['evidence']['success'] % latest_tag
+            evidence = evidence_data['success'] % latest_tag
         else:
             if has_release_tag:
-                evidence = subcriterion_data['evidence']['failure'] % latest_tag
+                evidence = evidence_data['failure'] % latest_tag
             else:
-                evidence = subcriterion_data['evidence']['failure_no_tag']
+                evidence = evidence_data['failure_no_tag']
 
         subcriteria.append({
             'id': subcriterion,
