@@ -92,10 +92,11 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             try:
                 r.raise_for_status()
             except requests.exceptions.HTTPError as e:
-                logger.error((
+                evidence = (
                     'Cannot check compliance with Open Source Initiative\'s '
                     '%s licenses: %s' % (e, _keyword)
-                ))
+                )
+                logger.error(evidence)
             else:
                 license_list = r.json()
                 licenses = [
