@@ -69,6 +69,20 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         return subcriteria
 
     def validate_qc_lic02(self, license_type):
+        def do_request(osi_endpoint):
+            r = None
+            try:
+                r = requests.get(osi_endpoint, verify=False)
+                r.raise_for_status()
+            except requests.exceptions.HTTPError as e:
+                evidence = ((
+                    'Cannot access Open Source Initiative\'s API endpoint '
+                    '<%s>: %s' % (osi_endpoint, e)
+                ))
+                logger.error(evidence)
+            finally:
+                return r
+
         subcriteria = []
         for subcriterion in [
                 {
@@ -87,28 +101,34 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             _keyword = subcriterion['keyword']
             subcriterion_data = self.criterion_data[_id]
             subcriterion_valid = False
-            OSI_ENDPOINT = 'https://api.opensource.org/licenses/%s' % _endpoint
-            r = requests.get(OSI_ENDPOINT)
-            try:
-                r.raise_for_status()
-            except requests.exceptions.HTTPError as e:
-                evidence = (
-                    'Cannot check compliance with Open Source Initiative\'s '
-                    '%s licenses: %s' % (e, _keyword)
-                )
-                logger.error(evidence)
-            else:
-                license_list = r.json()
-                licenses = [
-                    license_data['id'] for license_data in license_list
-                ]
-                if license_type in licenses:
-                    subcriterion_valid = True
-                    evidence = subcriterion_data['evidence']['success']
-                else:
-                    evidence = subcriterion_data['evidence']['failure']
-                evidence = evidence % license_type
-                logger.info(evidence)
+
+            OSI_ENDPOINTS = [
+                'https://api.opensource.org/licenses/%s' % _endpoint,
+                'https://api.opensource.org.s3.amazonaws.com/licenses/'
+                'licenses.json'
+            ]
+            osi_request_succeed = False
+            for osi_endpoint in OSI_ENDPOINTS:
+                r = do_request(osi_endpoint)
+                if r:
+                    osi_request_succeed = True
+                    license_list = r.json()
+                    licenses = [
+                        license_data['id'] for license_data in license_list
+                    ]
+                    if license_type in licenses:
+                        subcriterion_valid = True
+                        evidence = subcriterion_data['evidence']['success']
+                    else:
+                        evidence = subcriterion_data['evidence']['failure']
+                    evidence = evidence % license_type
+                    logger.info(evidence)
+                    break
+            if not osi_request_succeed:
+                evidence = ((
+                    'Could not access any of the available Open Source '
+                    'Initiative\'s endpoints: %s' % OSI_ENDPOINTS
+                ))
 
             subcriteria.append({
                 'id': _id,
