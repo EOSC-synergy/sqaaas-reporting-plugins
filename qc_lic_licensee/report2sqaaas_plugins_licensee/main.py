@@ -98,7 +98,6 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         ]:
             _id = subcriterion['id']
             _endpoint = subcriterion['osi_endpoint']
-            _keyword = subcriterion['keyword']
             subcriterion_data = self.criterion_data[_id]
             subcriterion_valid = False
 
