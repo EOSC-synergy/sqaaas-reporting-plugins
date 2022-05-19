@@ -72,7 +72,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         def do_request(osi_endpoint):
             r = None
             try:
-                r = requests.get(osi_endpoint, verify=False)
+                r = requests.get(osi_endpoint, verify=False)  # nosec
                 r.raise_for_status()
             except requests.exceptions.HTTPError as e:
                 evidence = ((
