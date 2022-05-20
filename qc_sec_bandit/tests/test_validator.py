@@ -1,4 +1,3 @@
-import json
 import pathlib
 import pytest
 from types import SimpleNamespace
@@ -9,10 +8,9 @@ from report2sqaaas_plugins_bandit.main import BanditValidator
 @pytest.fixture
 def bandit_stdout(request):
     file = pathlib.Path(request.node.fspath.strpath)
-    stdout = file.with_name('bandit.out.json')
+    stdout = file.with_name('bandit.out')
     with stdout.open() as fp:
-        json_data = json.load(fp)
-        return json.dumps(json_data)
+        return fp.read()
 
 
 @pytest.fixture

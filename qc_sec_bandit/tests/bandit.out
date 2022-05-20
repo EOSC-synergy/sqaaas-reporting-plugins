@@ -1,3 +1,5 @@
+[main]	INFO	Found project level .bandit file: ./.bandit
+[utils]	WARNING	Unable to parse config file ./.bandit or missing [bandit] section
 {
   "errors": [],
   "generated_at": "2022-03-03T20:20:25Z",
