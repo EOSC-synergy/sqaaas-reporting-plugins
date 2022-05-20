@@ -21,19 +21,15 @@ class BanditValidator(sqaaas_utils.BaseValidator):
     def remove_lines_matching(self, pattern):
         new_stdout_list = []
         stdout_lines = self.opts.stdout.split('\n')
-        logger.debug('Split stdout by newline: %s' % stdout_lines)
 
         for line in stdout_lines:
-            logger.debug('LINE: %s' % line)
             if not re.search(pattern, line):
-                logger.debug('Adding line: %s' % line)
                 new_stdout_list.append(line)
             else:
                 logger.debug((
                     'Removing line from stdout (matches pattern <%s>): '
                     '%s' % (pattern, line)
                 ))
-        logger.debug('>>>> %s' % '\n'.join(new_stdout_list))
 
         return '\n'.join(new_stdout_list)
 
