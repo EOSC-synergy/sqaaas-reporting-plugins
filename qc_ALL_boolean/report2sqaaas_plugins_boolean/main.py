@@ -17,6 +17,15 @@ class BooleanValidator(sqaaas_utils.BaseValidator):
         'url': 'https://github.com/indigo-dc/sqa-baseline/releases/tag/v4.0',
     }
 
+    @staticmethod
+    def populate_parser(parser):
+        parser.add_argument(
+            'criterion',
+            metavar='CRITERION_ID',
+            type=str,
+            help=('Identifier of the criterion. ')
+        )
+
     def validate(self):
         criterion_data = sqaaas_utils.load_criterion_from_standard(
             self.opts.criterion
