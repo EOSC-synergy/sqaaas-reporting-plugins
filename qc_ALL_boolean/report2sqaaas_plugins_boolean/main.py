@@ -18,12 +18,12 @@ class BooleanValidator(sqaaas_utils.BaseValidator):
     }
 
     def validate(self):
-        criterion = self.get_criterion()
         criterion_data = sqaaas_utils.load_criterion_from_standard(
-            criterion
+            self.opts.criterion
         )
+        subcriterion_name = self.get_subcriterion()
         subcriteria = []
-        subcriterion_data = criterion_data[self.opts.subcriterion]
+        subcriterion_data = criterion_data[subcriterion_name]
         subcriterion_valid = False
         evidence = None
 
@@ -43,7 +43,7 @@ class BooleanValidator(sqaaas_utils.BaseValidator):
             self.valid = False
 
         subcriteria.append({
-            'id': self.opts.subcriterion,
+            'id': subcriterion_name,
             'description': subcriterion_data['description'],
             'valid': subcriterion_valid,
             'evidence': evidence
