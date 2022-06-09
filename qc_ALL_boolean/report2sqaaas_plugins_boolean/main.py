@@ -19,7 +19,7 @@ class BooleanValidator(sqaaas_utils.BaseValidator):
 
     def validate(self):
         criterion_data = sqaaas_utils.load_criterion_from_standard(
-            criterion
+            self.opts.criterion
         )
         subcriterion_name = self.get_subcriterion()
         subcriteria = []
