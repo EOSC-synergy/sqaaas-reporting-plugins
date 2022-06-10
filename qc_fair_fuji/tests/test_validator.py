@@ -1,35 +1,36 @@
-import pathlib
 import pytest
+import json
+import pathlib
 from types import SimpleNamespace
-
-from report2sqaaas_plugins_bandit.main import BanditValidator
+from report2sqaaas_plugins_fuji.main import FujiValidator
 
 
 @pytest.fixture
-def bandit_stdout(request):
+def fuji_stdout(request):
     file = pathlib.Path(request.node.fspath.strpath)
-    stdout = file.with_name('bandit.out')
+    stdout = file.with_name('fuji.out.json')
     with stdout.open() as fp:
-        return fp.read()
+        json_data = json.load(fp)
+        return json.dumps(json_data)
 
 
 @pytest.fixture
-def validator_opts(bandit_stdout):
+def validator_opts(fuji_stdout):
     class_args = {
-        'validator': 'bandit',
-        'stdout': bandit_stdout
+        'validator': 'fuji',
+        'stdout': fuji_stdout
     }
     return SimpleNamespace(**class_args)
 
 
 @pytest.fixture
 def validator(validator_opts):
-    return BanditValidator(validator_opts)
+    return FujiValidator(validator_opts)
 
 
 @pytest.mark.dependency()
 def test_is_validate_method_defined(validator_opts):
-    assert BanditValidator(validator_opts).validate()
+    assert FujiValidator(validator_opts).validate()
 
 
 @pytest.mark.dependency(depends=["test_is_validate_method_defined"])

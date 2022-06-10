@@ -1,12 +1,13 @@
 import logging
+import semver
 
 from report2sqaaas import utils as sqaaas_utils
 
 
-logger = logging.getLogger('sqaaas.reporting.plugins.json_not_empty')
+logger = logging.getLogger('sqaaas.reporting.plugins.is_semver')
 
 
-class JsonNotEmptyValidator(sqaaas_utils.BaseValidator):
+class IsSemverValidator(sqaaas_utils.BaseValidator):
     valid = False
     standard = {
         'title': (
@@ -18,34 +19,45 @@ class JsonNotEmptyValidator(sqaaas_utils.BaseValidator):
     }
 
     def validate(self):
+        criterion = 'QC.Ver'
         criterion_data = sqaaas_utils.load_criterion_from_standard(
-            self.opts.criterion
+            criterion
         )
-        subcriterion_name = self.get_subcriterion()
         subcriteria = []
-        subcriterion_data = criterion_data[subcriterion_name]
+
+        subcriterion = 'QC.Ver01'
+        subcriterion_data = criterion_data[subcriterion]
         subcriterion_valid = False
         evidence = None
+        has_release_tag = False
 
         try:
             data = sqaaas_utils.load_json(self.opts.stdout)
-        except ValueError as e:
+            logger.debug('Parsing output: %s' % data)
+        except ValueError:
             data = {}
-            logger.error('Input data does not contain a valid JSON: %s' % e)
+            logger.error('Input data does not contain a valid JSON')
         else:
             if data:
-                subcriterion_valid = True
-                evidence = subcriterion_data['evidence']['success']
-                logger.debug('Found a non-empty JSON payload')
-            else:
-                evidence = subcriterion_data['evidence']['failure']
-                logger.debug('JSON payload is empty')
+                has_release_tag = True
+                latest_tag = data[0]
+                for tag in data:
+                    if semver.VersionInfo.isvalid(tag):
+                        subcriterion_valid = True
+                        if semver.compare(latest_tag, tag) < 0:
+                            latest_tag = tag
 
-        if evidence:
-            logger.info(evidence)
+        evidence_data = subcriterion_data['evidence']
+        if subcriterion_valid:
+            evidence = evidence_data['success'] % latest_tag
+        else:
+            if has_release_tag:
+                evidence = evidence_data['failure'] % latest_tag
+            else:
+                evidence = evidence_data['failure_no_tag']
 
         subcriteria.append({
-            'id': subcriterion_name,
+            'id': subcriterion,
             'description': subcriterion_data['description'],
             'valid': subcriterion_valid,
             'evidence': evidence
