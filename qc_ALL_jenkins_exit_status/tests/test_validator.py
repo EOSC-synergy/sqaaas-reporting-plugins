@@ -1,5 +1,3 @@
-import json
-import pathlib
 import pytest
 from types import SimpleNamespace
 
@@ -8,9 +6,16 @@ from report2sqaaas_plugins_jenkins_exit_status.main import \
 
 
 @pytest.fixture
-def validator_opts():
+def jenkins_exit_status_stdout():
+    return "None"
+
+
+@pytest.fixture
+def validator_opts(jenkins_exit_status_stdout):
     class_args = {
         'validator': 'jenkins_exit_status',
+        'criterion': 'SvcQC.Dep',
+        'subcriterion': 'SvcQC.Dep01',
         'status': 'SUCCESS'
     }
     return SimpleNamespace(**class_args)
