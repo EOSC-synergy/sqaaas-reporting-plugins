@@ -15,7 +15,7 @@ This plugin validates the output of the [no_output_parsing](https://github.com/e
 ## Quick start
 The plugin can be installed from this repository using `pip`:
 ```
-$ pip install git+https://github.com/EOSC-synergy/sqaaas-reporting-plugins@main#egg=report2sqaaas-plugin-no_output_parsing&subdirectory=qc_doc_no_output_parsing
+$ pip install git+https://github.com/EOSC-synergy/sqaaas-reporting-plugins@main#egg=report2sqaaas-plugin-no_output_parsing&subdirectory=qc_ALL_no_output_parsing
 ```
 ### Configuration
 No additional configuration is needed. The plugin is added to the
