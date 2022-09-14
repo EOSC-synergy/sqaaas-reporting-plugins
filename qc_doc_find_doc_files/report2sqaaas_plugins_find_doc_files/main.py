@@ -58,15 +58,18 @@ class FindDocFilesValidator(sqaaas_utils.BaseValidator):
                         else:
                             evidence = subcriterion_data['evidence']['success']
                             subcriterion_valid = True
+
+                    requirement_level = subcriterion_data['requirement_level']
                     if evidence:
                         subcriteria.append({
                             'id': subcriterion,
                             'description': subcriterion_data['description'],
                             'valid': subcriterion_valid,
-                            'evidence': evidence
+                            'evidence': evidence,
+                            'requirement_level': requirement_level
                         })
                         logger.info(evidence)
-                    requirement_level = subcriterion_data['requirement_level']
+
                     if (
                         (not subcriterion_valid) and
                         (requirement_level in ['MUST'])

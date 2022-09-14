@@ -56,15 +56,16 @@ class IsSemverValidator(sqaaas_utils.BaseValidator):
             else:
                 evidence = evidence_data['failure_no_tag']
 
+        requirement_level = subcriterion_data['requirement_level']
         subcriteria.append({
             'id': subcriterion,
             'description': subcriterion_data['description'],
             'valid': subcriterion_valid,
-            'evidence': evidence
+            'evidence': evidence,
+            'requirement_level': requirement_level
         })
 
         self.valid = subcriterion_valid
-        requirement_level = subcriterion_data['requirement_level']
         if (
             (not subcriterion_valid) and
             (requirement_level in ['MUST'])

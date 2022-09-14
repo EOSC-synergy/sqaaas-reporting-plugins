@@ -85,14 +85,15 @@ class Flake8Validator(sqaaas_utils.BaseValidator):
                     linting_type, metrics
                 ))
 
+            requirement_level = subcriterion_data['requirement_level']
             subcriteria.append({
                 'id': subcriterion,
                 'description': subcriterion_data['description'] % file_type,
                 'valid': subcriterion_valid,
-                'evidence': evidence
+                'evidence': evidence,
+                'requirement_level': requirement_level
             })
 
-            requirement_level = subcriterion_data['requirement_level']
             if (
                 (not subcriterion_valid) and
                 (requirement_level in ['MUST'])

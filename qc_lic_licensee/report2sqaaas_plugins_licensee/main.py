@@ -41,11 +41,13 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             evidence = subcriterion_data['evidence']['success'] % license_type
         else:
             evidence = subcriterion_data['evidence']['failure']
+        requirement_level = subcriterion_data['requirement_level']
         subcriteria.append({
             'id': subcriterion,
             'description': subcriterion_data['description'],
             'valid': subcriterion_valid,
-            'evidence': evidence
+            'evidence': evidence,
+            'requirement_level': requirement_level
         })
         self.set_valid(subcriterion_data, subcriterion_valid)
         # QC.Lic01.1
@@ -59,11 +61,13 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             evidence = subcriterion_data['evidence']['success'] % license_file
         else:
             evidence = subcriterion_data['evidence']['failure'] % license_file
+        requirement_level = subcriterion_data['requirement_level']
         subcriteria.append({
             'id': subcriterion,
             'description': subcriterion_data['description'],
             'valid': subcriterion_valid,
-            'evidence': evidence
+            'evidence': evidence,
+            'requirement_level': requirement_level
         })
         self.set_valid(subcriterion_data, subcriterion_valid)
         return subcriteria
@@ -129,11 +133,13 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
                     'Initiative\'s endpoints: %s' % OSI_ENDPOINTS
                 ))
 
+            requirement_level = subcriterion_data['requirement_level']
             subcriteria.append({
                 'id': _id,
                 'description': subcriterion_data['description'],
                 'valid': subcriterion_valid,
-                'evidence': evidence
+                'evidence': evidence,
+                'requirement_level': requirement_level
             })
             self.set_valid(subcriterion_data, subcriterion_valid)
         return subcriteria
