@@ -3,9 +3,9 @@ from setuptools import setup
 
 
 setup(
-    name='report2sqaaas-plugin-no_output_parsing',
+    name='report2sqaaas-plugin-jenkins_exit_status',
     version='1.2.0',
-    description='Output validator for the no_output_parsing tool',
+    description='Output validator for the jenkins_exit_status tool',
     author='Pablo Orviz',
     author_email='orviz@ifca.unican.es',
     url='http://github.com/eosc-synergy/sqaaas-reporting-plugins',
@@ -20,7 +20,7 @@ setup(
     packages=find_packages(),
     entry_points={
         'sqaaas.validators': [
-            'no_output_parsing = report2sqaaas_plugins_no_output_parsing.main:NoOutputParsingValidator', # noqa
+            'jenkins_exit_status = report2sqaaas_plugins_jenkins_exit_status.main:JenkinsExitStatusValidator', # noqa
         ],
     },
 )
