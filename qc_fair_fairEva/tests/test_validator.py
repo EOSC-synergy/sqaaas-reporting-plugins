@@ -1,71 +1,17 @@
+import json
+import pathlib
 import pytest
 from types import SimpleNamespace
-
 from report2sqaaas_plugins_fairEva.main import fairEva
 
 
 @pytest.fixture
-def fairEva_stdout():
-    return """
-    {
-   "accessible":{
-      "rda_a1_01m":{
-         "points":0,
-         "score":{
-            "earned":0,
-            "total":100,
-            "weight":2
-         },
-         "test_status":"fail",
-         "name":"rda_a1_01m",
-         "msg":"rda_a1_01m"
-      }
-   },
-   "findable":{
-      "rda_f1_01d":{
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":3
-         },
-         "test_status":"pass",
-         "name":"rda_f1_01d",
-         "msg":"rda_f1_01d"
-      }
-   },
-   "interoperable":{
-      "rda_i1_01d":{
-         "points":0,
-         "score":{
-            "earned":0,
-            "total":100,
-            "weight":2
-         },
-         "test_status":"fail",
-         "name":"rda_i1_01d",
-         "msg":"rda_i1_01d"
-      }
-   },
-   "reusable":{
-      "rda_r1_01m":{
-         "points":40.0,
-         "score":{
-            "earned":40.0,
-            "total":100,
-            "weight":3
-         },
-         "test_status":"fail",
-         "name":"rda_r1_01m",
-         "msg":"rda_r1_01m"
-      },
-      "result":{
-         "points":17.5,
-         "color":"#E74C3C"
-      }
-   }
-}
-    """
+def fairEva_stdout(request):
+    file = pathlib.Path(request.node.fspath.strpath)
+    stdout = file.with_name('fairEva.out.json')
+    with stdout.open() as fp:
+        json_data = json.load(fp)
+        return json.dumps(json_data)
 
 
 @pytest.fixture
