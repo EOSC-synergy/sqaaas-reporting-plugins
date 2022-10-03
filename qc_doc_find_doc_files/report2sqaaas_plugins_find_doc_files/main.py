@@ -64,6 +64,7 @@ class FindDocFilesValidator(sqaaas_utils.BaseValidator):
                         subcriteria.append({
                             'id': subcriterion,
                             'description': subcriterion_data['description'],
+                            'hint': subcriterion_data['hint'],
                             'valid': subcriterion_valid,
                             'evidence': evidence,
                             'requirement_level': requirement_level

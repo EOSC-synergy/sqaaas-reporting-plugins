@@ -39,6 +39,7 @@ class JenkinsExitStatusValidator(sqaaas_utils.BaseValidator):
         subcriteria.append({
             'id': subcriterion_name,
             'description': subcriterion_data['description'],
+            'hint': subcriterion_data['hint'],
             'valid': subcriterion_valid,
             'evidence': evidence,
             'requirement_level': requirement_level
