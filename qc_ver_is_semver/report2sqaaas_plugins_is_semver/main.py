@@ -27,6 +27,7 @@ class IsSemverValidator(sqaaas_utils.BaseValidator):
         subcriterion_valid = {}
         has_release_tags = False
         latest_tag = None
+        tags_semver = {}  # semver-compliance for tags
 
         try:
             data = sqaaas_utils.load_json(self.opts.stdout)
@@ -39,7 +40,6 @@ class IsSemverValidator(sqaaas_utils.BaseValidator):
                 has_release_tags = True
                 # Check QC.Ver01 & QC.Ver02
                 latest_tag = data[0]
-                tags_semver = {}  # semver-compliance for tags
                 for tag in data:
                     # is latest tag?
                     if semver.compare(latest_tag, tag) < 0:
