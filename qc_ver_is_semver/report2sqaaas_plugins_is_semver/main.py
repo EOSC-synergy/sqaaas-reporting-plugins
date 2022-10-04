@@ -54,7 +54,7 @@ class IsSemverValidator(sqaaas_utils.BaseValidator):
         # QC.Ver01.0: uses tags for releases
         # QC.Ver01: latest tag is semver
         # QC.Ver02: all tags are semver
-        subcriterion_valid['QC.Ver01.01'] = has_release_tags
+        subcriterion_valid['QC.Ver01.0'] = has_release_tags
         subcriterion_valid['QC.Ver01'] = tags_semver.get(latest_tag, False)
         subcriterion_valid['QC.Ver02'] = all(tags_semver.values())
 
