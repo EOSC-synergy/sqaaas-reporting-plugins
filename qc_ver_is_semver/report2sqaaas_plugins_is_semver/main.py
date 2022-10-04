@@ -24,12 +24,9 @@ class IsSemverValidator(sqaaas_utils.BaseValidator):
             criterion
         )
         subcriteria = []
-
-        subcriterion = 'QC.Ver01'
-        subcriterion_data = criterion_data[subcriterion]
-        subcriterion_valid = False
-        evidence = None
-        has_release_tag = False
+        subcriterion_valid = {}
+        has_release_tags = False
+        latest_tag = None
 
         try:
             data = sqaaas_utils.load_json(self.opts.stdout)
@@ -39,39 +36,57 @@ class IsSemverValidator(sqaaas_utils.BaseValidator):
             logger.error('Input data does not contain a valid JSON')
         else:
             if data:
-                has_release_tag = True
+                has_release_tags = True
+                # Check QC.Ver01 & QC.Ver02
                 latest_tag = data[0]
+                tags_semver = {}  # semver-compliance for tags
                 for tag in data:
+                    # is latest tag?
+                    if semver.compare(latest_tag, tag) < 0:
+                        latest_tag = tag
+                    # is semver?
+                    _is_tag_semver = False
                     if semver.VersionInfo.isvalid(tag):
+                        _is_tag_semver = True
                         subcriterion_valid = True
-                        if semver.compare(latest_tag, tag) < 0:
-                            latest_tag = tag
+                    tags_semver[tag] = _is_tag_semver
 
-        evidence_data = subcriterion_data['evidence']
-        if subcriterion_valid:
-            evidence = evidence_data['success'] % latest_tag
-        else:
-            if has_release_tag:
-                evidence = evidence_data['failure'] % latest_tag
+        # QC.Ver01.0: uses tags for releases
+        # QC.Ver01: latest tag is semver
+        # QC.Ver02: all tags are semver
+        subcriterion_valid['QC.Ver01.01'] = has_release_tags
+        subcriterion_valid['QC.Ver01'] = tags_semver.get(latest_tag, False)
+        subcriterion_valid['QC.Ver02'] = all(tags_semver.values())
+
+        must_subcriteria = []
+        for subcriterion in ['QC.Ver01.0', 'QC.Ver01', 'QC.Ver02']:
+            subcriterion_data = criterion_data[subcriterion]
+            # subcriterion_valid = False
+
+            evidence_data = subcriterion_data['evidence']
+            if subcriterion_valid:
+                evidence = evidence_data['success']
             else:
-                evidence = evidence_data['failure_no_tag']
+                evidence = evidence_data['failure']
 
-        requirement_level = subcriterion_data['requirement_level']
-        subcriteria.append({
-            'id': subcriterion,
-            'description': subcriterion_data['description'],
-            'hint': subcriterion_data['hint'],
-            'valid': subcriterion_valid,
-            'evidence': evidence,
-            'requirement_level': requirement_level
-        })
+            if subcriterion in ['QC.Ver01']:
+                evidence = evidence % latest_tag
 
-        self.valid = subcriterion_valid
-        if (
-            (not subcriterion_valid) and
-            (requirement_level in ['MUST'])
-        ):
-            self.valid = False
+            requirement_level = subcriterion_data['requirement_level']
+            _valid = subcriterion_valid[subcriterion]
+            subcriteria.append({
+                'id': subcriterion,
+                'description': subcriterion_data['description'],
+                'hint': subcriterion_data['hint'],
+                'valid': _valid,
+                'evidence': evidence,
+                'requirement_level': requirement_level
+            })
+
+            if requirement_level in ['MUST']:
+                must_subcriteria.append(_valid)
+
+        self.valid = all(must_subcriteria)
 
         return {
             'valid': self.valid,
