@@ -74,7 +74,7 @@ class MarkdownLintValidator(sqaaas_utils.BaseValidator):
         subcriteria.append({
             'id': subcriterion,
             'description': subcriterion_data['description'] % doc_file_type,
-            'hint': subcriterion_data['hint'] % doc_file_type,
+            'hint': subcriterion_data['hint'],
             'valid': subcriterion_valid,
             'evidence': evidence,
             'requirement_level': requirement_level
