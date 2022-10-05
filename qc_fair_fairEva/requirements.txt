@@ -1,3 +1,3 @@
 semver~=2.13
-# report2sqaaas == 1.8.0-alpha1
-git+https://github.com/EOSC-synergy/sqaaas-reporting@1.8.0-alpha1#egg=report2sqaaas
+# report2sqaaas == 1.8.0-alpha2
+git+https://github.com/EOSC-synergy/sqaaas-reporting@1.8.0-alpha2#egg=report2sqaaas
