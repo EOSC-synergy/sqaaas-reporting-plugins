@@ -1,0 +1,92 @@
+{
+	"Golang errors": {},
+	"Issues": [
+		{
+			"severity": "HIGH",
+			"confidence": "HIGH",
+			"cwe": {
+				"id": "295",
+				"url": "https://cwe.mitre.org/data/definitions/295.html"
+			},
+			"rule_id": "G402",
+			"details": "TLS InsecureSkipVerify set true.",
+			"file": "/sqaaas-build/github.com/grycap/oscar/pkg/utils/minio.go",
+			"code": "63: \t\ttr := &http.Transport{\n64: \t\t\tTLSClientConfig: &tls.Config{InsecureSkipVerify: true},\n65: \t\t}\n",
+			"line": "64",
+			"column": "33",
+			"nosec": false,
+			"suppressions": null
+		},
+		{
+			"severity": "HIGH",
+			"confidence": "HIGH",
+			"cwe": {
+				"id": "295",
+				"url": "https://cwe.mitre.org/data/definitions/295.html"
+			},
+			"rule_id": "G402",
+			"details": "TLS InsecureSkipVerify set true.",
+			"file": "/sqaaas-build/github.com/grycap/oscar/pkg/types/storage.go",
+			"code": "124: \t\ttr := &http.Transport{\n125: \t\t\tTLSClientConfig: &tls.Config{InsecureSkipVerify: true},\n126: \t\t}\n",
+			"line": "125",
+			"column": "33",
+			"nosec": false,
+			"suppressions": null
+		},
+		{
+			"severity": "HIGH",
+			"confidence": "LOW",
+			"cwe": {
+				"id": "295",
+				"url": "https://cwe.mitre.org/data/definitions/295.html"
+			},
+			"rule_id": "G402",
+			"details": "TLS InsecureSkipVerify may be true.",
+			"file": "/sqaaas-build/github.com/grycap/oscar/pkg/resourcemanager/delegate.go",
+			"code": "242: \t\t// Enable/disable SSL verification\n243: \t\tTLSClientConfig: &tls.Config{InsecureSkipVerify: !cluster.SSLVerify},\n244: \t}\n",
+			"line": "243",
+			"column": "32",
+			"nosec": false,
+			"suppressions": null
+		},
+		{
+			"severity": "HIGH",
+			"confidence": "LOW",
+			"cwe": {
+				"id": "295",
+				"url": "https://cwe.mitre.org/data/definitions/295.html"
+			},
+			"rule_id": "G402",
+			"details": "TLS InsecureSkipVerify may be true.",
+			"file": "/sqaaas-build/github.com/grycap/oscar/pkg/resourcemanager/delegate.go",
+			"code": "166: \t\t\t\t// Enable/disable SSL verification\n167: \t\t\t\tTLSClientConfig: &tls.Config{InsecureSkipVerify: !replica.SSLVerify},\n168: \t\t\t}\n",
+			"line": "167",
+			"column": "34",
+			"nosec": false,
+			"suppressions": null
+		},
+		{
+			"severity": "HIGH",
+			"confidence": "LOW",
+			"cwe": {
+				"id": "295",
+				"url": "https://cwe.mitre.org/data/definitions/295.html"
+			},
+			"rule_id": "G402",
+			"details": "TLS InsecureSkipVerify may be true.",
+			"file": "/sqaaas-build/github.com/grycap/oscar/pkg/resourcemanager/delegate.go",
+			"code": "104: \t\t\t\t// Enable/disable SSL verification\n105: \t\t\t\tTLSClientConfig: &tls.Config{InsecureSkipVerify: !cluster.SSLVerify},\n106: \t\t\t}\n",
+			"line": "105",
+			"column": "34",
+			"nosec": false,
+			"suppressions": null
+		}
+	],
+	"Stats": {
+		"files": 36,
+		"lines": 5090,
+		"nosec": 0,
+		"found": 5
+	},
+	"GosecVersion": "2.13.1"
+}
