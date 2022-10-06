@@ -70,14 +70,16 @@ class MarkdownLintValidator(sqaaas_utils.BaseValidator):
         if evidence:
             logger.info(evidence)
 
+        requirement_level = subcriterion_data['requirement_level']
         subcriteria.append({
             'id': subcriterion,
             'description': subcriterion_data['description'] % doc_file_type,
+            'hint': subcriterion_data['hint'],
             'valid': subcriterion_valid,
-            'evidence': evidence
+            'evidence': evidence,
+            'requirement_level': requirement_level
         })
 
-        requirement_level = subcriterion_data['requirement_level']
         if (
             (not subcriterion_valid) and
             (requirement_level in ['MUST'])
