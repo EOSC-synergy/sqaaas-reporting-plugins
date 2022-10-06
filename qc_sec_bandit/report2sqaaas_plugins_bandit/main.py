@@ -62,6 +62,7 @@ class BanditValidator(sqaaas_utils.BaseValidator):
                     'Bandit found %s high rated security '
                     'issues' % len(data['results'])
                 ))
+            evidence = evidence % self.opts.tool_name
 
             requirement_level = subcriterion_data['requirement_level']
             subcriteria.append({
