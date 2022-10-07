@@ -33,7 +33,7 @@ class JenkinsExitStatusValidator(sqaaas_utils.BaseValidator):
             self.opts.lang_name if hasattr(self.opts, 'lang_name') else None
         )
         tool_name = (
-            self.opts.lang_name if hasattr(self.opts, 'tool_name') else None
+            self.opts.tool_name if hasattr(self.opts, 'tool_name') else None
         )
         standard_kwargs = {
             'lang_name': lang_name, 
