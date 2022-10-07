@@ -39,6 +39,7 @@ class JenkinsExitStatusValidator(sqaaas_utils.BaseValidator):
             'lang_name': lang_name, 
             'tool_name': tool_name
         }
+        logger.debug('Standard keywords generated: %s' % standard_kwargs)
 
         # evidence 
         if self.opts.status in ['SUCCESS']:
