@@ -41,11 +41,8 @@ class IsSemverValidator(sqaaas_utils.BaseValidator):
             if data:
                 has_release_tags = True
                 # Check QC.Ver01 & QC.Ver02
-                latest_tag = data[0]
+                latest_tag = sorted(data)[-1]
                 for tag in data:
-                    # is latest tag?
-                    if semver.compare(latest_tag, tag) < 0:
-                        latest_tag = tag
                     # is semver?
                     _is_tag_semver = False
                     if semver.VersionInfo.isvalid(tag):
@@ -87,7 +84,7 @@ class IsSemverValidator(sqaaas_utils.BaseValidator):
                 must_subcriteria.append(_valid)
 
         self.valid = all(must_subcriteria)
-
+        logger.debug(subcriteria)
         return {
             'valid': self.valid,
             'subcriteria': subcriteria,
