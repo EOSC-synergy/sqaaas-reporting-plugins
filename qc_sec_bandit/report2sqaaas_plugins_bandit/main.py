@@ -39,6 +39,11 @@ class BanditValidator(sqaaas_utils.BaseValidator):
             criterion
         )
         subcriteria = []
+        standard_kwargs = {
+            'lang_name': 'Python',
+            'tool_name': 'bandit'
+        }
+        
         new_stdout = self.remove_lines_matching(r'^\[\w+\]')
         logger.debug('New stdout: %s' % new_stdout)
         try:
@@ -62,12 +67,12 @@ class BanditValidator(sqaaas_utils.BaseValidator):
                     'Bandit found %s high rated security '
                     'issues' % len(data['results'])
                 ))
-            evidence = evidence % self.opts.tool_name
+            evidence = evidence.format(**standard_kwargs)
 
             requirement_level = subcriterion_data['requirement_level']
             subcriteria.append({
                 'id': subcriterion,
-                'description': subcriterion_data['description'],
+                'description': subcriterion_data['description'].format(**standard_kwargs),
                 'hint': subcriterion_data['hint'],
                 'valid': subcriterion_valid,
                 'evidence': evidence,

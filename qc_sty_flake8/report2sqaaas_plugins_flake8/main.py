@@ -42,6 +42,11 @@ class Flake8Validator(sqaaas_utils.BaseValidator):
             'logical': 0,
             'analytical': 0
         }
+        standard_kwargs = {
+            'lang_name': 'Python',
+            'tool_name': 'flake8 (pycodestyle, pyflakes, mccabe)'
+        }
+
         if not lines:
             logger.error('No flake8 output has been generated')
         else:
@@ -75,9 +80,7 @@ class Flake8Validator(sqaaas_utils.BaseValidator):
                 evidence = subcriterion_data['evidence']['success']
             else:
                 evidence = subcriterion_data['evidence']['failure']
-            file_type = 'Python'
-            file_standard = 'flake8 (pycodestyle, pyflakes, mccabe)'
-            evidence = evidence % (file_type, file_standard)
+            evidence = evidence.format(**standard_kwargs)
             logger.info(evidence)
 
             for linting_type, metrics in summary.items():
@@ -88,7 +91,7 @@ class Flake8Validator(sqaaas_utils.BaseValidator):
             requirement_level = subcriterion_data['requirement_level']
             subcriteria.append({
                 'id': subcriterion,
-                'description': subcriterion_data['description'] % file_type,
+                'description': subcriterion_data['description'].format(**standard_kwargs),
                 'hint': subcriterion_data['hint'],
                 'valid': subcriterion_valid,
                 'evidence': evidence,

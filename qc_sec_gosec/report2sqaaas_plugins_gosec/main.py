@@ -24,6 +24,11 @@ class GoSecValidator(sqaaas_utils.BaseValidator):
             criterion
         )
         subcriteria = []
+        standard_kwargs = {
+            'lang_name': 'Go',
+            'tool_name': 'gosec'
+        }
+
         try:
             data = sqaaas_utils.load_json(self.opts.stdout)
             logger.debug('Parsing output: %s' % data)
@@ -45,12 +50,12 @@ class GoSecValidator(sqaaas_utils.BaseValidator):
             else:
                 evidence = subcriterion_data['evidence']['success']
                 logger.info(evidence)
-            evidence = evidence % self.opts.tool_name
+            evidence = evidence.format(**standard_kwargs)
 
             requirement_level = subcriterion_data['requirement_level']
             subcriteria.append({
                 'id': subcriterion,
-                'description': subcriterion_data['description'],
+                'description': subcriterion_data['description'].format(**standard_kwargs),
                 'hint': subcriterion_data['hint'],
                 'valid': subcriterion_valid,
                 'evidence': evidence,

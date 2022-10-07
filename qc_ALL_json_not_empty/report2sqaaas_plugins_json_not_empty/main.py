@@ -27,6 +27,18 @@ class JsonNotEmptyValidator(sqaaas_utils.BaseValidator):
         subcriterion_valid = False
         evidence = None
 
+        # Common kwargs
+        lang_name = (
+            self.opts.lang_name if hasattr(self.opts, 'lang_name') else None
+        )
+        tool_name = (
+            self.opts.lang_name if hasattr(self.opts, 'tool_name') else None
+        )
+        standard_kwargs = {
+            'lang_name': lang_name, 
+            'tool_name': tool_name
+        }
+
         try:
             data = sqaaas_utils.load_json(self.opts.stdout)
         except ValueError as e:
@@ -40,6 +52,7 @@ class JsonNotEmptyValidator(sqaaas_utils.BaseValidator):
             else:
                 evidence = subcriterion_data['evidence']['failure']
                 logger.debug('JSON payload is empty')
+            evidence.format(**standard_kwargs)
 
         if evidence:
             logger.info(evidence)
@@ -47,7 +60,7 @@ class JsonNotEmptyValidator(sqaaas_utils.BaseValidator):
         requirement_level = subcriterion_data['requirement_level']
         subcriteria.append({
             'id': subcriterion_name,
-            'description': subcriterion_data['description'],
+            'description': subcriterion_data['description'].format(**standard_kwargs),
             'hint': subcriterion_data['hint'],
             'valid': subcriterion_valid,
             'evidence': evidence,
