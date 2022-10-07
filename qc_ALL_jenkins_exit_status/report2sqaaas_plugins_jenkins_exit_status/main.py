@@ -34,7 +34,7 @@ class JenkinsExitStatusValidator(sqaaas_utils.BaseValidator):
             evidence = subcriterion_data['evidence']['success']
         else:
             evidence = subcriterion_data['evidence']['failure']
-        if 'tool_name' in self.opts:
+        if hasattr(self.opts, 'tool_name'):
             logger.debug('<tool_name> in opts: %s' % self.opts)
             evidence = evidence % self.opts.tool_name
             logger.debug('Resultant evidence: %s' % evidence)
