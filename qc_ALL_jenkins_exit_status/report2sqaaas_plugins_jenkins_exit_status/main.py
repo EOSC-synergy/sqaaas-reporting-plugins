@@ -47,7 +47,7 @@ class JenkinsExitStatusValidator(sqaaas_utils.BaseValidator):
             evidence = subcriterion_data['evidence']['success']
         else:
             evidence = subcriterion_data['evidence']['failure']
-        evidence.format(**standard_kwargs)
+        evidence = evidence.format(**standard_kwargs)
 
         requirement_level = subcriterion_data['requirement_level']
         subcriteria.append({

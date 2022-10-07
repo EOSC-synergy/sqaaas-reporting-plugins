@@ -52,7 +52,7 @@ class JsonNotEmptyValidator(sqaaas_utils.BaseValidator):
             else:
                 evidence = subcriterion_data['evidence']['failure']
                 logger.debug('JSON payload is empty')
-            evidence.format(**standard_kwargs)
+            evidence = evidence.format(**standard_kwargs)
 
         if evidence:
             logger.info(evidence)
