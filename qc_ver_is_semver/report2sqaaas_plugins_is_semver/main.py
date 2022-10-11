@@ -19,6 +19,10 @@ class IsSemverValidator(sqaaas_utils.BaseValidator):
     }
 
     def validate(self):
+        """
+        Expects a list of Git tags ordered by creation time (from more recent
+        to older)
+        """
         criterion = 'QC.Ver'
         criterion_data = sqaaas_utils.load_criterion_from_standard(
             criterion
@@ -41,7 +45,7 @@ class IsSemverValidator(sqaaas_utils.BaseValidator):
             if data:
                 has_release_tags = True
                 # Check QC.Ver01 & QC.Ver02
-                latest_tag = sorted(data)[-1]
+                latest_tag = data[0] # expects latest tag on first element
                 for tag in data:
                     # is semver?
                     _is_tag_semver = False
