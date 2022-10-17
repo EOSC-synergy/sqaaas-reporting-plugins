@@ -110,7 +110,9 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             OSI_ENDPOINTS = [
                 'https://api.opensource.org/licenses/%s' % _endpoint,
                 'https://api.opensource.org.s3.amazonaws.com/licenses/'
-                'licenses.json'
+                'licenses.json',
+                'https://raw.githubusercontent.com/spdx/'
+                'license-list-data/master/json/licenses.json'
             ]
             osi_request_succeed = False
             for osi_endpoint in OSI_ENDPOINTS:
