@@ -110,9 +110,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             OSI_ENDPOINTS = [
                 'https://api.opensource.org/licenses/%s' % _endpoint,
                 'https://api.opensource.org.s3.amazonaws.com/licenses/'
-                'licenses.json',
-                'https://raw.githubusercontent.com/spdx/'
-                'license-list-data/master/json/licenses.json'
+                'licenses.json'
             ]
             osi_request_succeed = False
             for osi_endpoint in OSI_ENDPOINTS:
@@ -124,6 +122,15 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
                         license_data['id'] for license_data in license_list
                     ]
                     if license_type in licenses:
+                        license_osi = license_type
+                    else:
+                        license_osi = None
+                        for license_data in license_list:
+                            for identifiers in  license_data['identifiers']:
+                                if identifiers['identifier'] == license_type:
+                                    license_osi = license_data['id']
+                                    break
+                    if license_osi in licenses:
                         subcriterion_valid = True
                         evidence = subcriterion_data['evidence']['success']
                     else:
