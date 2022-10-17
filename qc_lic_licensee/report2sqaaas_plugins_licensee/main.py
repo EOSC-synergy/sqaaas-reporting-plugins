@@ -126,7 +126,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
                     else:
                         license_osi = None
                         for license_data in license_list:
-                            for identifiers in  license_data['identifiers']:
+                            for identifiers in license_data['identifiers']:
                                 if identifiers['identifier'] == license_type:
                                     license_osi = license_data['id']
                                     break
