@@ -91,7 +91,9 @@ class Flake8Validator(sqaaas_utils.BaseValidator):
             requirement_level = subcriterion_data['requirement_level']
             subcriteria.append({
                 'id': subcriterion,
-                'description': subcriterion_data['description'].format(**standard_kwargs),
+                'description': subcriterion_data['description'].format(
+                    **standard_kwargs
+                ),
                 'hint': subcriterion_data['hint'],
                 'valid': subcriterion_valid,
                 'evidence': evidence,
