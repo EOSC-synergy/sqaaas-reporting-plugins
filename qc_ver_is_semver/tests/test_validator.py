@@ -9,7 +9,7 @@ from report2sqaaas_plugins_is_semver.main import IsSemverValidator
 @pytest.fixture
 def is_semver_stdout(request):
     file = pathlib.Path(request.node.fspath.strpath)
-    stdout = file.with_name('sample.out.udocker.json')
+    stdout = file.with_name('sample.out.json')
     with stdout.open() as fp:
         json_data = json.load(fp)
         return json.dumps(json_data)

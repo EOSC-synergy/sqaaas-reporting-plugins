@@ -43,7 +43,7 @@ class BanditValidator(sqaaas_utils.BaseValidator):
             'lang_name': 'Python',
             'tool_name': 'bandit'
         }
-        
+
         new_stdout = self.remove_lines_matching(r'^\[\w+\]')
         logger.debug('New stdout: %s' % new_stdout)
         try:
@@ -72,7 +72,9 @@ class BanditValidator(sqaaas_utils.BaseValidator):
             requirement_level = subcriterion_data['requirement_level']
             subcriteria.append({
                 'id': subcriterion,
-                'description': subcriterion_data['description'].format(**standard_kwargs),
+                'description': subcriterion_data['description'].format(
+                    **standard_kwargs
+                ),
                 'hint': subcriterion_data['hint'],
                 'valid': subcriterion_valid,
                 'evidence': evidence,

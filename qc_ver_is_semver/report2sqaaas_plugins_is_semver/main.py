@@ -45,7 +45,7 @@ class IsSemverValidator(sqaaas_utils.BaseValidator):
             if data:
                 has_release_tags = True
                 # Check QC.Ver01 & QC.Ver02
-                latest_tag = data[0] # expects latest tag on first element
+                latest_tag = data[0]  # expects latest tag on first element
                 for tag in data:
                     # is semver?
                     _is_tag_semver = False

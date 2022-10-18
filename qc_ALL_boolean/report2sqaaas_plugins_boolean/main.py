@@ -44,7 +44,7 @@ class BooleanValidator(sqaaas_utils.BaseValidator):
             self.opts.tool_name if hasattr(self.opts, 'tool_name') else None
         )
         standard_kwargs = {
-            'lang_name': lang_name, 
+            'lang_name': lang_name,
             'tool_name': tool_name
         }
 
@@ -59,7 +59,9 @@ class BooleanValidator(sqaaas_utils.BaseValidator):
         requirement_level = subcriterion_data['requirement_level']
         subcriteria.append({
             'id': subcriterion_name,
-            'description': subcriterion_data['description'].format(**standard_kwargs),
+            'description': subcriterion_data['description'].format(
+                **standard_kwargs
+            ),
             'hint': subcriterion_data['hint'],
             'valid': subcriterion_valid,
             'evidence': evidence,
