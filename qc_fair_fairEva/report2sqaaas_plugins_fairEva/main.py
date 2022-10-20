@@ -10,7 +10,15 @@ class fairEva(sqaaas_utils.BaseValidator):
     valid = False
 
     def parse(self, file_name):
-        return sqaaas_utils.load_json(file_name)
+        # hackish way to sort the issue with jenkins
+        data = sqaaas_utils.load_data(file_name)
+        data = data.strip()
+        data = data[1:-1]
+        data = data.rstrip('\\n')
+        data = data.replace('\\n', ' ')
+        data = data.replace('\\', '')
+
+        return sqaaas_utils.load_json(data)
 
     def validate(self):
         logger.debug('Running SQAaaS\' <%s> validator' % self.name)
