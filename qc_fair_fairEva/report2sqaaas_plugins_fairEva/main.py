@@ -22,6 +22,14 @@ class fairEva(sqaaas_utils.BaseValidator):
 
     def validate(self):
         logger.debug('Running SQAaaS\' <%s> validator' % self.name)
+
+        # FIXME Same hint for all
+        criterion = 'QC.FAIR'
+        criterion_data = sqaaas_utils.load_criterion_from_standard(
+            criterion
+        )
+        hint = criterion_data['QC.FAIR01']['hint']
+
         json_res = self.parse(self.opts.stdout)
         result = []
         subcriteria_groups = ['findable', 'accessible',
@@ -38,6 +46,7 @@ class fairEva(sqaaas_utils.BaseValidator):
                     result.append({"id": json_res[sb][key]['name'],
                                    "valid": valid,
                                    "description": json_res[sb][key]['msg'],
+                                   "hint": hint,
                                    "evidence": evidence})
         if len(result) > 0:
             self.valid = True
