@@ -171,30 +171,37 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             logger.error('Input data does not contain a valid JSON: %s' % e)
         else:
             at_least_one_license = False
-            trusted_licenses_no = 0
+            confidence_level = 0
+            file_name = None
             for license_data in data['matched_files']:
-                file_name = license_data['filename']
-                if not license_data.get('matcher', None):
-                    logger.warn(
+                matched_license = license_data.get('matched_license', None)
+                if not matched_license or matched_license in ['NONE']:
+                    logger.warning('Matched license\'s value is NONE. Skipping..')
+                    continue
+
+                matcher_data = license_data.get('matcher', None)
+                if not matcher_data:
+                    logger.warning(
                         'Matcher data not found for file <%s>. '
                         'Skipping..' % file_name
                     )
-                    continue
-                matched_license = license_data['matched_license']
-                confidence_level = license_data['matcher']['confidence']
-                if confidence_level > self.threshold:
-                    at_least_one_license = True
-                    trusted_licenses_no += 1
+                else:
+                    confidence_level = matcher_data['confidence']
+                    if confidence_level > self.threshold:
+                        logger.debug(license_data['filename'])
+                        file_name = license_data['filename']
+                        at_least_one_license = True
+                    break
             if at_least_one_license:
                 self.valid = True
                 logger.info((
                     'Open source\'s <%s> license found (file: %s, confidence '
                     'level: %s)' % (
-                        matched_license, confidence_level, file_name
+                        matched_license, file_name, confidence_level
                     )
                 ))
             else:
-                logger.warn('No valid LICENSE found')
+                logger.warning('No valid LICENSE found')
 
         subcriteria.extend(self.validate_qc_lic01(matched_license, file_name))
         # FIXME QC.Lic02 is NOT part of parsing licensee output, but for the
