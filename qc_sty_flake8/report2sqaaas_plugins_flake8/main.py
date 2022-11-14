@@ -48,7 +48,9 @@ class Flake8Validator(sqaaas_utils.BaseValidator):
         }
 
         if not lines:
-            logger.error('No flake8 output has been generated')
+            logger.info(
+                'No flake8 output has been generated: assuming no errors'
+            )
         else:
             for line in lines:
                 try:
@@ -76,35 +78,35 @@ class Flake8Validator(sqaaas_utils.BaseValidator):
                             if code[0] in ['C']:
                                 summary['analytical'] += 1
 
-            if subcriterion_valid:
-                evidence = subcriterion_data['evidence']['success']
-            else:
-                evidence = subcriterion_data['evidence']['failure']
-            evidence = evidence.format(**standard_kwargs)
-            logger.info(evidence)
-
             for linting_type, metrics in summary.items():
                 logger.info('Linting %s issues found: %s' % (
                     linting_type, metrics
                 ))
 
-            requirement_level = subcriterion_data['requirement_level']
-            subcriteria.append({
-                'id': subcriterion,
-                'description': subcriterion_data['description'].format(
-                    **standard_kwargs
-                ),
-                'hint': subcriterion_data['hint'],
-                'valid': subcriterion_valid,
-                'evidence': evidence,
-                'requirement_level': requirement_level
-            })
+        if subcriterion_valid:
+            evidence = subcriterion_data['evidence']['success']
+        else:
+            evidence = subcriterion_data['evidence']['failure']
+        evidence = evidence.format(**standard_kwargs)
+        logger.info(evidence)
 
-            if (
-                (not subcriterion_valid) and
-                (requirement_level in ['MUST'])
-            ):
-                self.valid = False
+        requirement_level = subcriterion_data['requirement_level']
+        subcriteria.append({
+            'id': subcriterion,
+            'description': subcriterion_data['description'].format(
+                **standard_kwargs
+            ),
+            'hint': subcriterion_data['hint'],
+            'valid': subcriterion_valid,
+            'evidence': evidence,
+            'requirement_level': requirement_level
+        })
+
+        if (
+            (not subcriterion_valid) and
+            (requirement_level in ['MUST'])
+        ):
+            self.valid = False
 
         return {
             'valid': self.valid,
