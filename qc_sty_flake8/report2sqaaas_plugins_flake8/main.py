@@ -8,7 +8,7 @@ logger = logging.getLogger('sqaaas.reporting.plugins.flake8')
 
 
 class Flake8Validator(sqaaas_utils.BaseValidator):
-    valid = False
+    valid = True
     standard = {
         'title': (
             'A set of Common Software Quality Assurance Baseline Criteria for '
