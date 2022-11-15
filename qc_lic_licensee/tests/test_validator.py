@@ -9,7 +9,9 @@ from report2sqaaas_plugins_licensee.main import LicenseeValidator
 @pytest.fixture
 def licensee_stdout(request):
     file = pathlib.Path(request.node.fspath.strpath)
-    stdout = file.with_name('licensee.out.json')
+    # stdout = file.with_name('licensee.out.json')
+    # stdout = file.with_name('licensee.out.1.json')
+    stdout = file.with_name('licensee.out.confidence.json')
     with stdout.open() as fp:
         json_data = json.load(fp)
         return json.dumps(json_data)
