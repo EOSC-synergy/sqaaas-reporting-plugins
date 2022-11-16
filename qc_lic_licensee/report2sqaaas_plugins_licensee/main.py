@@ -55,6 +55,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         subcriterion = 'QC.Lic01.1'
         subcriterion_data = self.criterion_data[subcriterion]
         subcriterion_valid = False
+        print(">>>>>>>>>>>>>>>>>>>>> %s" % license_file)
         license_path = pathlib.Path(license_file)
         evidence = None
         if license_path.parent.as_posix() in ['.']:
