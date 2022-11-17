@@ -143,14 +143,15 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
                         evidence = subcriterion_data['evidence']['success']
                     else:
                         evidence = subcriterion_data['evidence']['failure']
-                    evidence = evidence % license_type
-                    logger.info(evidence)
                     break
+
+            evidence = evidence.format(**standard_kwargs)
             if not osi_request_succeed:
                 evidence = ((
                     'Could not access any of the available Open Source '
                     'Initiative\'s endpoints: %s' % OSI_ENDPOINTS
                 ))
+            logger.debug(evidence)
 
             requirement_level = subcriterion_data['requirement_level']
             subcriteria.append({
@@ -158,7 +159,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
                 'description': subcriterion_data['description'],
                 'hint': subcriterion_data['hint'],
                 'valid': subcriterion_valid,
-                'evidence': evidence.format(**standard_kwargs),
+                'evidence': evidence,
                 'requirement_level': requirement_level
             })
             self.set_valid(subcriterion_data, subcriterion_valid)
