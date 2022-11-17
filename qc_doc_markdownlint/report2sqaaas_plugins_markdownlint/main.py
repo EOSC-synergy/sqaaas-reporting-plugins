@@ -51,6 +51,11 @@ class MarkdownLintValidator(sqaaas_utils.BaseValidator):
         subcriterion_valid = False
         evidence = None
 
+        standard_kwargs = {
+            'doc_file_type': self.opts.doc_file_type,
+            'doc_file_standard': self.opts.doc_file_standard
+        }
+
         try:
             data = sqaaas_utils.load_json(self.opts.stdout)
         except ValueError:
@@ -63,17 +68,16 @@ class MarkdownLintValidator(sqaaas_utils.BaseValidator):
         else:
             evidence = subcriterion_data['evidence']['failure']
 
-        doc_file_type = self.opts.doc_file_type
-        doc_file_standard = self.opts.doc_file_standard
-
-        evidence = evidence % doc_file_standard
+        evidence = evidence.format(**standard_kwargs)
         if evidence:
             logger.info(evidence)
 
         requirement_level = subcriterion_data['requirement_level']
         subcriteria.append({
             'id': subcriterion,
-            'description': subcriterion_data['description'] % doc_file_type,
+            'description': subcriterion_data['description'].format(
+                **standard_kwargs
+            ),
             'hint': subcriterion_data['hint'],
             'valid': subcriterion_valid,
             'evidence': evidence,
@@ -88,7 +92,7 @@ class MarkdownLintValidator(sqaaas_utils.BaseValidator):
         else:
             self.valid = True
 
-        if doc_file_type in ['Markdown']:
+        if standard_kwargs['doc_file_type'] in ['Markdown']:
             data_to_return = self.parse_markdownlint(data)
         else:
             data_to_return = data
