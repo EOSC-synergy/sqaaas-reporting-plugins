@@ -36,9 +36,14 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         subcriterion_data = self.criterion_data[subcriterion]
         subcriterion_valid = False
         evidence = None
+        standard_kwargs = {
+            'license_type': license_type,
+            'license_file': license_file
+        }
+
         if self.valid:
             subcriterion_valid = True
-            evidence = subcriterion_data['evidence']['success'] % license_type
+            evidence = subcriterion_data['evidence']['success']
         else:
             evidence = subcriterion_data['evidence']['failure']
         requirement_level = subcriterion_data['requirement_level']
@@ -47,7 +52,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             'description': subcriterion_data['description'],
             'hint': subcriterion_data['hint'],
             'valid': subcriterion_valid,
-            'evidence': evidence,
+            'evidence': evidence.format(**standard_kwargs),
             'requirement_level': requirement_level
         })
         self.set_valid(subcriterion_data, subcriterion_valid)
@@ -55,21 +60,20 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         subcriterion = 'QC.Lic01.1'
         subcriterion_data = self.criterion_data[subcriterion]
         subcriterion_valid = False
-        print(">>>>>>>>>>>>>>>>>>>>> %s" % license_file)
         license_path = pathlib.Path(license_file)
         evidence = None
         if license_path.parent.as_posix() in ['.']:
             subcriterion_valid = True
-            evidence = subcriterion_data['evidence']['success'] % license_file
+            evidence = subcriterion_data['evidence']['success']
         else:
-            evidence = subcriterion_data['evidence']['failure'] % license_file
+            evidence = subcriterion_data['evidence']['failure']
         requirement_level = subcriterion_data['requirement_level']
         subcriteria.append({
             'id': subcriterion,
             'description': subcriterion_data['description'],
             'hint': subcriterion_data['hint'],
             'valid': subcriterion_valid,
-            'evidence': evidence,
+            'evidence': evidence.format(**standard_kwargs),
             'requirement_level': requirement_level
         })
         self.set_valid(subcriterion_data, subcriterion_valid)
@@ -90,6 +94,9 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             finally:
                 return r
 
+        standard_kwargs = {
+            'license_type': license_type
+        }
         subcriteria = []
         for subcriterion in [
                 {
@@ -151,7 +158,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
                 'description': subcriterion_data['description'],
                 'hint': subcriterion_data['hint'],
                 'valid': subcriterion_valid,
-                'evidence': evidence,
+                'evidence': evidence.format(**standard_kwargs),
                 'requirement_level': requirement_level
             })
             self.set_valid(subcriterion_data, subcriterion_valid)
