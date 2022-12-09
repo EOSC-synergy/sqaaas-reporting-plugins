@@ -1,5 +1,11 @@
 # Reporting plugins (aka validators) for the SQAaaS platform
 
+[![SQAaaS badge shields.io](https://img.shields.io/badge/sqaaas%20software-gold-yellow)](https://api.eu.badgr.io/public/assertions/oT8RAE5zSjeHnvz1TSVfSQ "SQAaaS gold badge achieved")
+
+#### Achievements 
+[![SQAaaS badge](https://github.com/EOSC-synergy/SQAaaS/raw/master/badges/badges_150x116/badge_software_gold.png)](https://api.eu.badgr.io/public/assertions/oT8RAE5zSjeHnvz1TSVfSQ "SQAaaS gold badge achieved")
+
+
 This repository hosts the official set of plugins used to validate the output
 of the tools used by the SQAaaS solution in order to assess the quality of
 software, services and their data.
