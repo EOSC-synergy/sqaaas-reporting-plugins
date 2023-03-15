@@ -109,9 +109,9 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
                 license_data = r.json()
                 for license in license_data['licenses']:
                     if (license['isOsiApproved']
-                        and license['licenseId'] == license_type):
-                           is_approved = True
-                           break
+                       and license['licenseId'] == license_type):
+                        is_approved = True
+                        break
 
             return (is_approved, spdx_request_succeed)
 
@@ -133,9 +133,9 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
                     for license_data in license_list:
                         for identifier in license_data['identifiers']:
                             if (identifier['scheme'] in ['SPDX']
-                                and identifier['identifier'] == license_type):
-                                   _valid = True
-                                   break
+                               and identifier['identifier'] == license_type):
+                                _valid = True
+                                break
             return (_valid, osi_request_succeed)
 
         standard_kwargs = {
