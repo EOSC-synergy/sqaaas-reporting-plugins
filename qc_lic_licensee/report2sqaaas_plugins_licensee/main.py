@@ -220,6 +220,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             confidence_level = 0
             file_name = None
             for license_data in data['matched_files']:
+                # 'matched_license' key contains SPDX-compliant value
                 matched_license = license_data.get('matched_license', None)
                 if not matched_license or matched_license in ['NONE']:
                     logger.warning(
