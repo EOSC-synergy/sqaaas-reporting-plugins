@@ -95,7 +95,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             finally:
                 return r
 
-        def is_osi_approved_by_spdx():
+        def is_osi_approved_by_spdx(license_type):
             SPDX_ENDPOINT = (
                 'https://raw.githubusercontent.com/spdx/license-list-data/'
                 'main/json/licenses.json'
@@ -108,8 +108,8 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
                 spdx_request_succeed = True
                 license_data = r.json()
                 for license in license_data['licenses']:
-                    if (license['isOsiApproved']) and
-                       (license['licenseId'] == license_type):
+                    if (license['isOsiApproved']
+                        and license['licenseId'] == license_type):
                            is_approved = True
                            break
 
@@ -132,8 +132,8 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
                     # Use SPDX identifiers
                     for license_data in license_list:
                         for identifier in license_data['identifiers']:
-                            if (identifier['scheme'] in ['SPDX']) and
-                               (identifier['identifier'] == license_type):
+                            if (identifier['scheme'] in ['SPDX']
+                                and identifier['identifier'] == license_type):
                                    _valid = True
                                    break
             return (_valid, osi_request_succeed)
