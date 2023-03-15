@@ -80,15 +80,15 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         return subcriteria
 
     def validate_qc_lic02(self, license_type):
-        def do_request(osi_endpoint):
+        def do_request(endpoint):
             r = None
             try:
-                r = requests.get(osi_endpoint, verify=False)  # nosec
+                r = requests.get(endpoint, verify=False)  # nosec
                 r.raise_for_status()
             except requests.exceptions.HTTPError as e:
                 evidence = ((
                     'Cannot access Open Source Initiative\'s API endpoint '
-                    '<%s>: %s' % (osi_endpoint, e)
+                    '<%s>: %s' % (endpoint, e)
                 ))
                 logger.error(evidence)
             finally:
