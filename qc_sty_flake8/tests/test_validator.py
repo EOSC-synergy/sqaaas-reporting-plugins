@@ -9,6 +9,7 @@ from report2sqaaas_plugins_flake8.main import Flake8Validator
 def flake8_stdout(request):
     file = pathlib.Path(request.node.fspath.strpath)
     stdout = file.with_name('flake8.out')
+    # stdout = file.with_name('empty.out')
     with stdout.open() as fp:
         return fp.read()
 
