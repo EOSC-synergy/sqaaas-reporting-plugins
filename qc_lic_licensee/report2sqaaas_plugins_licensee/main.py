@@ -185,7 +185,9 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             for license_data in data['matched_files']:
                 matched_license = license_data.get('matched_license', None)
                 if not matched_license or matched_license in ['NONE']:
-                    logger.warning('Matched license\'s value is NONE. Skipping..')
+                    logger.warning(
+                        'Matched license\'s value is NONE. Skipping..'
+                    )
                     continue
 
                 matcher_data = license_data.get('matcher', None)
