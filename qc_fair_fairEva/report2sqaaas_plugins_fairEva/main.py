@@ -62,5 +62,5 @@ class fairEva(sqaaas_utils.BaseValidator):
                          'version': 'v1.0',
                          'url': 'https://doi.org/10.15497/rda00050'
                          },
-            'data_unstructured': 'TODO'
+            'data_unstructured': json_res
         }
