@@ -29,6 +29,7 @@ class IsSemverValidator(sqaaas_utils.BaseValidator):
         )
         subcriteria = []
         subcriteria_validity = {}
+        standard_kwargs = {}
         has_release_tags = False
         latest_tag = None
         tags_semver = {}  # semver-compliance for tags
@@ -53,6 +54,8 @@ class IsSemverValidator(sqaaas_utils.BaseValidator):
                         _is_tag_semver = True
                     tags_semver[tag] = _is_tag_semver
 
+        standard_kwargs['latest_tag'] = latest_tag
+
         # QC.Ver01.0: uses tags for releases
         # QC.Ver01: latest tag is semver
         # QC.Ver02: all tags are semver
@@ -71,16 +74,13 @@ class IsSemverValidator(sqaaas_utils.BaseValidator):
             else:
                 evidence = evidence_data['failure']
 
-            if subcriterion in ['QC.Ver01']:
-                evidence = evidence % latest_tag
-
             requirement_level = subcriterion_data['requirement_level']
             subcriteria.append({
                 'id': subcriterion,
                 'description': subcriterion_data['description'],
                 'hint': subcriterion_data['hint'],
                 'valid': _valid,
-                'evidence': evidence,
+                'evidence': evidence.format(**standard_kwargs),
                 'requirement_level': requirement_level
             })
 
