@@ -20,6 +20,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         'url': 'https://github.com/indigo-dc/sqa-baseline/releases/tag/v4.0',
     }
     criterion_data = None
+    use_spdx = True
 
     def set_valid(self, subcriterion_data, subcriterion_valid):
         requirement_level = subcriterion_data['requirement_level']
@@ -80,19 +81,62 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         return subcriteria
 
     def validate_qc_lic02(self, license_type):
-        def do_request(osi_endpoint):
+        def do_request(endpoint):
             r = None
             try:
-                r = requests.get(osi_endpoint, verify=False)  # nosec
+                r = requests.get(endpoint, verify=False)  # nosec
                 r.raise_for_status()
             except requests.exceptions.HTTPError as e:
                 evidence = ((
                     'Cannot access Open Source Initiative\'s API endpoint '
-                    '<%s>: %s' % (osi_endpoint, e)
+                    '<%s>: %s' % (endpoint, e)
                 ))
                 logger.error(evidence)
             finally:
                 return r
+
+        def is_osi_approved_by_spdx(license_type):
+            SPDX_ENDPOINT = (
+                'https://raw.githubusercontent.com/spdx/license-list-data/'
+                'main/json/licenses.json'
+            )
+            spdx_request_succeed = False
+            is_approved = False
+
+            r = do_request(SPDX_ENDPOINT)
+            if r:
+                spdx_request_succeed = True
+                license_data = r.json()
+                for license in license_data['licenses']:
+                    if (license['isOsiApproved']
+                       and license['licenseId'] == license_type):
+                        is_approved = True
+                        break
+
+            return (is_approved, spdx_request_succeed)
+
+        def check_osi_api(license_type, endpoint):
+            OSI_ENDPOINTS = [
+                'https://api.opensource.org/licenses/%s' % endpoint,
+                'https://api.opensource.org.s3.amazonaws.com/licenses/'
+                'licenses.json'
+            ]
+            osi_request_succeed = False
+            _valid = False
+
+            for osi_endpoint in OSI_ENDPOINTS:
+                r = do_request(osi_endpoint)
+                if r:
+                    osi_request_succeed = True
+                    license_list = r.json()
+                    # Use SPDX identifiers
+                    for license_data in license_list:
+                        for identifier in license_data['identifiers']:
+                            if (identifier['scheme'] in ['SPDX']
+                               and identifier['identifier'] == license_type):
+                                _valid = True
+                                break
+            return (_valid, osi_request_succeed)
 
         standard_kwargs = {
             'license_type': license_type
@@ -114,43 +158,36 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             _endpoint = subcriterion['osi_endpoint']
             subcriterion_data = self.criterion_data[_id]
             subcriterion_valid = False
+            _use_spdx = False
 
-            OSI_ENDPOINTS = [
-                'https://api.opensource.org/licenses/%s' % _endpoint,
-                'https://api.opensource.org.s3.amazonaws.com/licenses/'
-                'licenses.json'
-            ]
-            osi_request_succeed = False
-            for osi_endpoint in OSI_ENDPOINTS:
-                r = do_request(osi_endpoint)
-                if r:
-                    osi_request_succeed = True
-                    license_list = r.json()
-                    licenses = [
-                        license_data['id'] for license_data in license_list
-                    ]
-                    if license_type in licenses:
-                        license_osi = license_type
-                    else:
-                        license_osi = None
-                        for license_data in license_list:
-                            for identifiers in license_data['identifiers']:
-                                if identifiers['identifier'] == license_type:
-                                    license_osi = license_data['id']
-                                    break
-                    if license_osi in licenses:
-                        subcriterion_valid = True
-                        evidence = subcriterion_data['evidence']['success']
-                    else:
-                        evidence = subcriterion_data['evidence']['failure']
-                    break
+            if _id in ['QC.Lic02'] and self.use_spdx:
+                _use_spdx = True
+                logger.debug(
+                    'Using SPDX endpoint to get OSI-approved licenses'
+                )
+                (
+                    subcriterion_valid,
+                    request_succeed
+                ) = is_osi_approved_by_spdx(license_type)
+            else:
+                (
+                    subcriterion_valid,
+                    request_succeed
+                ) = check_osi_api(license_type, _endpoint)
 
+            if subcriterion_valid:
+                evidence = subcriterion_data['evidence']['success']
+            else:
+                evidence = subcriterion_data['evidence']['failure']
             evidence = evidence.format(**standard_kwargs)
-            if not osi_request_succeed:
-                evidence = ((
-                    'Could not access any of the available Open Source '
-                    'Initiative\'s endpoints: %s' % OSI_ENDPOINTS
-                ))
+
+            if not request_succeed:
+                _org = 'Open Source Initiative'
+                if _use_spdx:
+                    _org = 'SPDX'
+                evidence = (
+                    'Could not access any of the available %s endpoints' % _org
+                )
             logger.debug(evidence)
 
             requirement_level = subcriterion_data['requirement_level']
@@ -183,9 +220,12 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             confidence_level = 0
             file_name = None
             for license_data in data['matched_files']:
+                # 'matched_license' key contains SPDX-compliant value
                 matched_license = license_data.get('matched_license', None)
                 if not matched_license or matched_license in ['NONE']:
-                    logger.warning('Matched license\'s value is NONE. Skipping..')
+                    logger.warning(
+                        'Matched license\'s value is NONE. Skipping..'
+                    )
                     continue
 
                 matcher_data = license_data.get('matcher', None)

@@ -53,7 +53,7 @@ class IsSemverValidator(sqaaas_utils.BaseValidator):
                     if semver.VersionInfo.isvalid(tag):
                         _is_tag_semver = True
                     tags_semver[tag] = _is_tag_semver
-        
+
         standard_kwargs['latest_tag'] = latest_tag
 
         # QC.Ver01.0: uses tags for releases
