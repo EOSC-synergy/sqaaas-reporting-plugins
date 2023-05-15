@@ -42,7 +42,7 @@ class fairEva(sqaaas_utils.BaseValidator):
                         _evidence = _subcriterion_data['evidence']['failure']
                         if json_res[group][key]['test_status'] == "pass":
                             valid = True
-                            _evidence = _subcriterion_data['evidence']['failure']
+                            _evidence = _subcriterion_data['evidence']['success']
                         else:
                             valid = False
                         result.append(
