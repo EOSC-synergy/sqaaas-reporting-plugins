@@ -37,21 +37,24 @@ class fairEva(sqaaas_utils.BaseValidator):
                         'Could not find <%s> RDA indicator in the '
                         'standard' % _key
                     )
-                if key != 'result':
-                    if json_res[group][key]['test_status'] == "pass":
-                        valid = True
-                    else:
-                        valid = False
-                    result.append(
-                        {
-                            "id": _key,
-                            "valid": valid,
-                            "description": _subcriterion_data['description'],
-                            "hint": _subcriterion_data['hint'],
-                            "evidence": _subcriterion_data['evidence'],
-                            "requirement_level": _subcriterion_data['requirement_level']
-                        }
-                    )
+                else:
+                    if key != 'result':
+                        _evidence = _subcriterion_data['evidence']['failure']
+                        if json_res[group][key]['test_status'] == "pass":
+                            valid = True
+                            _evidence = _subcriterion_data['evidence']['failure']
+                        else:
+                            valid = False
+                        result.append(
+                            {
+                                "id": _key,
+                                "valid": valid,
+                                "description": _subcriterion_data['description'],
+                                "hint": _subcriterion_data['hint'],
+                                "evidence": _evidence,
+                                "requirement_level": _subcriterion_data['requirement_level']
+                            }
+                        )
         if len(result) > 0:
             self.valid = True
 
