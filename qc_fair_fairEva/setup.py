@@ -6,8 +6,7 @@ setup(
     name='report2sqaaas-plugin-fairEva',
     version='1.0.0',
     description='Output validator for the fairEva tool',
-    author='Fernando Aguilar',
-    author_email='aguilarf@ifca.unican.es',
+    author='Fernando Aguilar <aguilarf@ifca.unican.es>, Pablo Orviz <orviz@ifca.unican.es>',
     url='http://github.com/eosc-synergy/sqaaas-reporting-plugins',
     classifiers=[
         'Intended Audience :: Developers',
