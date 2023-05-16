@@ -15,31 +15,46 @@ class fairEva(sqaaas_utils.BaseValidator):
     def validate(self):
         logger.debug('Running SQAaaS\' <%s> validator' % self.name)
 
-        # FIXME Same hint for all
-        criterion = 'QC.FAIR'
-        criterion_data = sqaaas_utils.load_criterion_from_standard(
-            criterion
-        )
-        hint = criterion_data['QC.FAIR01']['hint']
-
         json_res = self.parse(self.opts.stdout)
         result = []
-        subcriteria_groups = ['findable', 'accessible',
-                              'interoperable', 'reusable']
-        for sb in subcriteria_groups:
-            for key in json_res[sb]:
-                if key != 'result':
-                    if json_res[sb][key]['test_status'] == "pass":
-                        valid = True
-                    else:
-                        valid = False
-                    url = "https://doi.org/10.15497/rda00050"
-                    evidence = "Indicator: %s | Check: %s" % (key, url)
-                    result.append({"id": json_res[sb][key]['name'],
-                                   "valid": valid,
-                                   "description": json_res[sb][key]['msg'],
-                                   "hint": hint,
-                                   "evidence": evidence})
+
+        subcriteria_groups = {
+            'findable': 'QC.FAIR.F',
+            'accessible': 'QC.FAIR.A',
+            'interoperable': 'QC.FAIR.I',
+            'reusable': 'QC.FAIR.R'
+        }
+        for group, criterion in subcriteria_groups.items():
+            _criterion_data = sqaaas_utils.load_criterion_from_standard(
+                criterion
+            )
+            for key in json_res[group]:
+                _key = key.upper()
+                try:
+                    _subcriterion_data = _criterion_data[_key]
+                except KeyError:
+                    logger.error(
+                        'Could not find <%s> RDA indicator in the '
+                        'standard' % _key
+                    )
+                else:
+                    if key != 'result':
+                        _evidence = _subcriterion_data['evidence']['failure']
+                        if json_res[group][key]['test_status'] == "pass":
+                            valid = True
+                            _evidence = _subcriterion_data['evidence']['success']
+                        else:
+                            valid = False
+                        result.append(
+                            {
+                                "id": _key,
+                                "valid": valid,
+                                "description": _subcriterion_data['description'],
+                                "hint": _subcriterion_data['hint'],
+                                "evidence": _evidence,
+                                "requirement_level": _subcriterion_data['requirement_level']
+                            }
+                        )
         if len(result) > 0:
             self.valid = True
 
@@ -50,5 +65,5 @@ class fairEva(sqaaas_utils.BaseValidator):
                          'version': 'v1.0',
                          'url': 'https://doi.org/10.15497/rda00050'
                          },
-            'data_unstructured': 'TODO'
+            'data_unstructured': json_res
         }
