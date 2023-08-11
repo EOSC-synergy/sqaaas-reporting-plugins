@@ -1,0 +1,150 @@
+{
+    "created": 1691741205.9872751,
+    "duration": 0.023392438888549805,
+    "exitcode": 1,
+    "root": "/home/pablo/repos/eosc-synergy/sqaaas-reporting-plugins/qc_ALL_boolean",
+    "environment": {},
+    "summary": {
+        "failed": 1,
+        "skipped": 1,
+        "total": 2,
+        "collected": 2
+    },
+    "collectors": [
+        {
+            "nodeid": "",
+            "outcome": "passed",
+            "result": [
+                {
+                    "nodeid": "test-requirements.txt",
+                    "type": "DoctestTextfile"
+                },
+                {
+                    "nodeid": "report2sqaaas_plugins_boolean/__init__.py",
+                    "type": "Package"
+                },
+                {
+                    "nodeid": "tests/test_validator.py",
+                    "type": "Module"
+                }
+            ]
+        },
+        {
+            "nodeid": "test-requirements.txt",
+            "outcome": "passed",
+            "result": []
+        },
+        {
+            "nodeid": "report2sqaaas_plugins_boolean/__init__.py",
+            "outcome": "passed",
+            "result": []
+        },
+        {
+            "nodeid": "tests/test_validator.py",
+            "outcome": "passed",
+            "result": [
+                {
+                    "nodeid": "tests/test_validator.py::test_is_validate_method_defined",
+                    "type": "Function",
+                    "lineno": 26
+                },
+                {
+                    "nodeid": "tests/test_validator.py::test_validate_method_output",
+                    "type": "Function",
+                    "lineno": 31
+                }
+            ]
+        }
+    ],
+    "tests": [
+        {
+            "nodeid": "tests/test_validator.py::test_is_validate_method_defined",
+            "lineno": 26,
+            "outcome": "failed",
+            "keywords": [
+                "test_is_validate_method_defined",
+                "dependency",
+                "pytestmark",
+                "tests/test_validator.py",
+                "qc_ALL_boolean"
+            ],
+            "setup": {
+                "duration": 0.0001979549997486174,
+                "outcome": "passed"
+            },
+            "call": {
+                "duration": 0.0002470800027367659,
+                "outcome": "failed",
+                "crash": {
+                    "path": "/home/pablo/repos/eosc-synergy/sqaaas-reporting-plugins/venv/lib/python3.9/site-packages/report2sqaaas_plugins_boolean/main.py",
+                    "lineno": 31,
+                    "message": "AttributeError: 'types.SimpleNamespace' object has no attribute 'criterion'"
+                },
+                "traceback": [
+                    {
+                        "path": "tests/test_validator.py",
+                        "lineno": 29,
+                        "message": ""
+                    },
+                    {
+                        "path": "../venv/lib/python3.9/site-packages/report2sqaaas_plugins_boolean/main.py",
+                        "lineno": 31,
+                        "message": "AttributeError"
+                    }
+                ],
+                "stdout": "2023-08-11 10:06:45,977 - sqaaas.reporting - INFO - Running SQAaaS' <boolean> validator\n",
+                "log": [
+                    {
+                        "name": "sqaaas.reporting",
+                        "msg": "Running SQAaaS' <boolean> validator",
+                        "args": null,
+                        "levelname": "INFO",
+                        "levelno": 20,
+                        "pathname": "/home/pablo/repos/eosc-synergy/sqaaas-reporting-plugins/venv/lib/python3.9/site-packages/report2sqaaas/utils.py",
+                        "filename": "utils.py",
+                        "module": "utils",
+                        "exc_info": null,
+                        "exc_text": null,
+                        "stack_info": null,
+                        "lineno": 51,
+                        "funcName": "__init__",
+                        "created": 1691741205.9773612,
+                        "msecs": 977.3612022399902,
+                        "relativeCreated": 50.922393798828125,
+                        "thread": 140173381121856,
+                        "threadName": "MainThread",
+                        "processName": "MainProcess",
+                        "process": 8263,
+                        "asctime": "2023-08-11 10:06:45,977"
+                    }
+                ],
+                "longrepr": "validator_opts = namespace(validator='boolean', stdout='False', subcriterion='QC.Met01')\n\n    @pytest.mark.dependency()\n    def test_is_validate_method_defined(validator_opts):\n>       assert BooleanValidator(validator_opts).validate()\n\ntests/test_validator.py:29: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\nself = <report2sqaaas_plugins_boolean.main.BooleanValidator object at 0x7f7ca764d1f0>\n\n    def validate(self):\n        criterion_data = sqaaas_utils.load_criterion_from_standard(\n>           self.opts.criterion\n        )\nE       AttributeError: 'types.SimpleNamespace' object has no attribute 'criterion'\n\n../venv/lib/python3.9/site-packages/report2sqaaas_plugins_boolean/main.py:31: AttributeError"
+            },
+            "teardown": {
+                "duration": 0.00019736000103875995,
+                "outcome": "passed"
+            }
+        },
+        {
+            "nodeid": "tests/test_validator.py::test_validate_method_output",
+            "lineno": 31,
+            "outcome": "skipped",
+            "keywords": [
+                "test_validate_method_output",
+                "dependency",
+                "pytestmark",
+                "tests/test_validator.py",
+                "qc_ALL_boolean"
+            ],
+            "setup": {
+                "duration": 0.00012504200276453048,
+                "outcome": "skipped",
+                "longrepr": "('/home/pablo/repos/eosc-synergy/sqaaas-reporting-plugins/venv/lib/python3.9/site-packages/pytest_dependency.py', 103, 'Skipped: test_validate_method_output depends on test_is_validate_method_defined')"
+            },
+            "teardown": {
+                "duration": 7.441600610036403e-05,
+                "outcome": "passed"
+            }
+        }
+    ]
+}
