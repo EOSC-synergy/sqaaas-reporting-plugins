@@ -1,2 +1,2 @@
-# report2sqaaas == 1.10.0
-git+https://github.com/EOSC-synergy/sqaaas-reporting@1.10.0#egg=report2sqaaas
+# report2sqaaas == 1.12.0
+git+https://github.com/EOSC-synergy/sqaaas-reporting@1.12.0#egg=report2sqaaas
