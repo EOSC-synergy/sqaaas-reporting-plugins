@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='report2sqaaas-plugin-fairEva',
-    version='1.1.0',
+    version='1.13.0',
     description='Output validator for the fairEva tool',
     author='Fernando Aguilar <aguilarf@ifca.unican.es>, Pablo Orviz <orviz@ifca.unican.es>',
     url='http://github.com/eosc-synergy/sqaaas-reporting-plugins',
