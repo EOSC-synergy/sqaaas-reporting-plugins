@@ -1,502 +1,684 @@
 {
-   "accessible":{
-      "rda_a1_01m":{
-         "color":"#2ECC71",
-         "msg":"No access information can be found in the metadata. Please, add information to the following term(s): [['access', ''], ['rights', '']]| Metadata: rights.: ...     text_value  ... qualifier\n33  openAccess  ...          \n\n[1 rows x 4 columns]",
-         "name":"rda_a1_01m",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":15
-         },
-         "test_status":"pass"
-      },
-      "rda_a1_02d":{
-         "color":"#2ECC71",
-         "msg":"No se ha encontrado informacion sobre el acceso en los metadatos. Por favor, añada los siguientes terminos en sus metadatos: [['access', ''], ['rights', '']]: | Metadata: rights.: ...     text_value  ... qualifier\n33  openAccess  ...          \n\n[1 rows x 4 columns]",
-         "name":"rda_a1_02d",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":20
-         },
-         "test_status":"pass"
-      },
-      "rda_a1_02m":{
-         "color":"#2ECC71",
-         "msg":"Searching metadata terms in https://digital.csic.es/handle/10261/244749?mode=full?mode=full | \nFOUND: contributor.author | \nFOUND: contributor.author | \nFOUND: contributor.author | \nFOUND: contributor.author | \nFOUND: contributor.author | \nFOUND: contributor.author | \nFOUND: contributor.author | \nFOUND: coverage.spatial | \nFOUND: coverage.temporal | \nFOUND: date.accessioned | \nFOUND: date.available | \nFOUND: date.created | \nFOUND: date.issued | \nFOUND: identifier.citation | \nFOUND: identifier.uri | \nFOUND: description. | \nFOUND: description.sponsorship | \nFOUND: description.tableofcontents | \nFOUND: format. | \nFOUND: format. | \nFOUND: language.iso | \nFOUND: publisher. | \nFOUND: relation. | \nFOUND: relation. | \nFOUND: relation. | \nFOUND: relation. | \nFOUND: relation.isreferencedby | \nFOUND: relation.uri | \nFOUND: relation.uri | \nFOUND: relation.uri | \nFOUND: relation.uri | \nFOUND: relation.uri | \nFOUND: rights. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: title. | \nFOUND: type. | \nFOUND: type. | \nFOUND: identifier.doi | \nFOUND: description.peerreviewed | \nFOUND: rights.license | \nFOUND: contributor.funder | \nFOUND: contributor.funder | \nFOUND: contributor.funder | \nFOUND: contributor.funder | \nFOUND: relation.csic | \nFOUND: identifier.funder | \nFOUND: identifier.funder | \nFOUND: identifier.funder | \nFOUND: contributor.orcid | \nFOUND: contributor.orcid | \nFOUND: contributor.orcid | \nFOUND: contributor.orcid | \nFOUND: contributor.orcid | \nFOUND: contributor.orcid | \nFOUND: contributor.orcid | \nFOUND: contributor.contactPerson | \nFOUND: contributor.dataCollector | \nFOUND: contributor.dataCollector | \nFOUND: contributor.dataCollector | \nFOUND: contributor.dataCollector | \nFOUND: contributor.dataCollector | \nFOUND: contributor.distributor | \nFOUND: contributor.distributor | \nFOUND: contributor.distributor | \nFOUND: contributor.projectLeader | \nFOUND: contributor.projectLeader | \nFOUND: contributor.researcher | \nFOUND: contributor.researcher | \nFOUND: contributor.researcher | \nFOUND: contributor.researcher | \nFOUND: contributor.researcher | \nFOUND: contributor.researcher | \nFOUND: contributor.researcher | \nFOUND: subject.uri | \nFOUND: subject.uri | \nFOUND: subject.uri | \nFOUND: subject.uri | \nFOUND: subject.uri | \nFOUND: subject.uri | \nFOUND: subject.uri | \nFOUND: subject.uri | \nFOUND: subject.uri | \nFOUND: type.coar | \nNOT FOUND: description.abstract | \nNOT FOUND: embargo.terms | \nFound metadata terms (Human accesibility): 103/105",
-         "name":"rda_a1_02m",
-         "points":98.09523809523812,
-         "score":{
-            "earned":98.09523809523812,
-            "total":100,
-            "weight":20
-         },
-         "test_status":"pass"
-      },
-      "rda_a1_03d":{
-         "color":"#2ECC71",
-         "msg":"\n Files can be downloaded: [{'Server': 'nginx/1.14.1', 'Date': 'Mon, 19 Sep 2022 07:13:30 GMT', 'Content-Type': 'application/json', 'Content-Length': '420', 'Connection': 'keep-alive', 'Cache-Control': 'private', 'Expires': 'Thu, 01 Jan 1970 00:00:00 GMT', 'Set-Cookie': 'JSESSIONID=36D276C53D71CFB76459B45CBA5C8474; Path=/rest; Secure; HttpOnly'}, {'Server': 'nginx/1.14.1', 'Date': 'Mon, 19 Sep 2022 07:13:30 GMT', 'Content-Type': 'application/json', 'Content-Length': '437', 'Connection': 'keep-alive', 'Cache-Control': 'private', 'Expires': 'Thu, 01 Jan 1970 00:00:00 GMT', 'Set-Cookie': 'JSESSIONID=14E7B1685AF8D5B04B671C32BF15C61E; Path=/rest; Secure; HttpOnly'}, {'Server': 'nginx/1.14.1', 'Date': 'Mon, 19 Sep 2022 07:13:31 GMT', 'Content-Type': 'application/json', 'Content-Length': '429', 'Connection': 'keep-alive', 'Cache-Control': 'private', 'Expires': 'Thu, 01 Jan 1970 00:00:00 GMT', 'Set-Cookie': 'JSESSIONID=9A28F7BE2DB00656FAB2FDA4E4FE97FE; Path=/rest; Secure; HttpOnly'}, {'Server': 'nginx/1.14.1', 'Date': 'Mon, 19 Sep 2022 07:13:31 GMT', 'Content-Type': 'application/json', 'Content-Length': '428', 'Connection': 'keep-alive', 'Cache-Control': 'private', 'Expires': 'Thu, 01 Jan 1970 00:00:00 GMT', 'Set-Cookie': 'JSESSIONID=0986A72917707556111A4C59FD41063B; Path=/rest; Secure; HttpOnly'}, {'Server': 'nginx/1.14.1', 'Date': 'Mon, 19 Sep 2022 07:13:31 GMT', 'Content-Type': 'application/json', 'Content-Length': '429', 'Connection': 'keep-alive', 'Cache-Control': 'private', 'Expires': 'Thu, 01 Jan 1970 00:00:00 GMT', 'Set-Cookie': 'JSESSIONID=FF6CDE6008181979D4640E553654E642; Path=/rest; Secure; HttpOnly'}, {'Server': 'nginx/1.14.1', 'Date': 'Mon, 19 Sep 2022 07:13:31 GMT', 'Content-Type': 'application/json', 'Content-Length': '432', 'Connection': 'keep-alive', 'Cache-Control': 'private', 'Expires': 'Thu, 01 Jan 1970 00:00:00 GMT', 'Set-Cookie': 'JSESSIONID=AC3821EC1B1E3349510E72BBC2D7CFAA; Path=/rest; Secure; HttpOnly'}, {'Server': 'nginx/1.14.1', 'Date': 'Mon, 19 Sep 2022 07:13:31 GMT', 'Content-Type': 'application/json', 'Content-Length': '427', 'Connection': 'keep-alive', 'Cache-Control': 'private', 'Expires': 'Thu, 01 Jan 1970 00:00:00 GMT', 'Set-Cookie': 'JSESSIONID=7FC72C0EDBE176785B1D7AA8EA6F8D46; Path=/rest; Secure; HttpOnly'}]\n 0    https://digital.csic.es/rest/bitstreams/1738653\n1    https://digital.csic.es/rest/bitstreams/1778987\n2    https://digital.csic.es/rest/bitstreams/1778988\n3    https://digital.csic.es/rest/bitstreams/1778991\n4    https://digital.csic.es/rest/bitstreams/1778992\n5    https://digital.csic.es/rest/bitstreams/1778993\n6    https://digital.csic.es/rest/bitstreams/1778994\nName: link, dtype: object",
-         "name":"rda_a1_03d",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":20
-         },
-         "test_status":"pass"
-      },
-      "rda_a1_03m":{
-         "color":"#2ECC71",
-         "msg":"Searching metadata terms in https://digital.csic.es/handle/10261/244749?mode=full | \nFOUND: contributor.author | \nFOUND: contributor.author | \nFOUND: contributor.author | \nFOUND: contributor.author | \nFOUND: contributor.author | \nFOUND: contributor.author | \nFOUND: contributor.author | \nFOUND: coverage.spatial | \nFOUND: coverage.temporal | \nFOUND: date.accessioned | \nFOUND: date.available | \nFOUND: date.created | \nFOUND: date.issued | \nFOUND: identifier.citation | \nFOUND: identifier.uri | \nFOUND: description. | \nFOUND: description.abstract | \nFOUND: description.sponsorship | \nFOUND: description.tableofcontents | \nFOUND: format. | \nFOUND: format. | \nFOUND: language.iso | \nFOUND: publisher. | \nFOUND: relation. | \nFOUND: relation. | \nFOUND: relation. | \nFOUND: relation. | \nFOUND: relation.isreferencedby | \nFOUND: relation.uri | \nFOUND: relation.uri | \nFOUND: relation.uri | \nFOUND: relation.uri | \nFOUND: relation.uri | \nFOUND: rights. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: subject. | \nFOUND: title. | \nFOUND: type. | \nFOUND: type. | \nFOUND: identifier.doi | \nFOUND: description.peerreviewed | \nFOUND: embargo.terms | \nFOUND: rights.license | \nFOUND: contributor.funder | \nFOUND: contributor.funder | \nFOUND: contributor.funder | \nFOUND: contributor.funder | \nFOUND: relation.csic | \nFOUND: identifier.funder | \nFOUND: identifier.funder | \nFOUND: identifier.funder | \nFOUND: contributor.orcid | \nFOUND: contributor.orcid | \nFOUND: contributor.orcid | \nFOUND: contributor.orcid | \nFOUND: contributor.orcid | \nFOUND: contributor.orcid | \nFOUND: contributor.orcid | \nFOUND: contributor.contactPerson | \nFOUND: contributor.dataCollector | \nFOUND: contributor.dataCollector | \nFOUND: contributor.dataCollector | \nFOUND: contributor.dataCollector | \nFOUND: contributor.dataCollector | \nFOUND: contributor.distributor | \nFOUND: contributor.distributor | \nFOUND: contributor.distributor | \nFOUND: contributor.projectLeader | \nFOUND: contributor.projectLeader | \nFOUND: contributor.researcher | \nFOUND: contributor.researcher | \nFOUND: contributor.researcher | \nFOUND: contributor.researcher | \nFOUND: contributor.researcher | \nFOUND: contributor.researcher | \nFOUND: contributor.researcher | \nFOUND: subject.uri | \nFOUND: subject.uri | \nFOUND: subject.uri | \nFOUND: subject.uri | \nFOUND: subject.uri | \nFOUND: subject.uri | \nFOUND: subject.uri | \nFOUND: subject.uri | \nFOUND: subject.uri | \nFOUND: type.coar | \nFound metadata terms (Human accesibility): 105/105 \nMetadata found via Identifier",
-         "name":"rda_a1_03m",
-         "points":100.0,
-         "score":{
-            "earned":100.0,
-            "total":100,
-            "weight":20
-         },
-         "test_status":"pass"
-      },
-      "rda_a1_04d":{
-         "color":"#2ECC71",
-         "msg":"Los Objetos Digitales pueden descargarse utilizando el protocolo HTTP-GET",
-         "name":"rda_a1_04d",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":20
-         },
-         "test_status":"pass"
-      },
-      "rda_a1_04m":{
-         "color":"#2ECC71",
-         "msg":"Metadata can be accessed through these protocols: ['http']",
-         "name":"rda_a1_04m",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":20
-         },
-         "test_status":"pass"
-      },
-      "rda_a1_05d":{
-         "color":"#2ECC71",
-         "msg":"Data is accessible automatically via HTTP:\n https://digital.csic.es/rest/bitstreams/1738653\n https://digital.csic.es/rest/bitstreams/1778987\n https://digital.csic.es/rest/bitstreams/1778988\n https://digital.csic.es/rest/bitstreams/1778991\n https://digital.csic.es/rest/bitstreams/1778992\n https://digital.csic.es/rest/bitstreams/1778993\n https://digital.csic.es/rest/bitstreams/1778994",
-         "name":"rda_a1_05d",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":15
-         },
-         "test_status":"pass"
-      },
-      "rda_a1_1_01d":{
-         "color":"#2ECC71",
-         "msg":"Los Objetos Digitales pueden descargarse utilizando el protocolo HTTP-GET (gratuito)",
-         "name":"rda_a1_1_01d",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":15
-         },
-         "test_status":"pass"
-      },
-      "rda_a1_1_01m":{
-         "color":"#2ECC71",
-         "msg":"Metadata is accessible using these free protocols: ['http']",
-         "name":"rda_a1_1_01m",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":20
-         },
-         "test_status":"pass"
-      },
-      "rda_a1_2_01d":{
-         "color":"#2ECC71",
-         "msg":"DIGITAL.CSIC allow access management and authentication and authorisation from CSIC CAS",
-         "name":"rda_a1_2_01d",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":10
-         },
-         "test_status":"pass"
-      },
-      "rda_a2_01m":{
-         "color":"#2ECC71",
-         "msg":"DIGITAL.CSIC preservation policy is available at: https://digital.csic.es/dc/politicas/#politica8",
-         "name":"rda_a2_01m",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":20
-         },
-         "test_status":"pass"
-      }
-   },
-   "findable":{
-      "rda_f1_01d":{
-         "color":"#2ECC71",
-         "msg":"Sus (meta)datos estan identificados con los siguientes identificadores y tipos: | http://hdl.handle.net/10261/244749: ['handle', 'url'] | | 10.20350/digitalCSIC/13919: ['doi', 'handle'] | ",
-         "name":"rda_f1_01d",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":20
-         },
-         "test_status":"pass"
-      },
-      "rda_f1_01m":{
-         "color":"#2ECC71",
-         "msg":"Sus (meta)datos estan identificados con los siguientes identificadores y tipos: | http://hdl.handle.net/10261/244749: ['handle', 'url'] | | 10.20350/digitalCSIC/13919: ['doi', 'handle'] | ",
-         "name":"rda_f1_01m",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":20
-         },
-         "test_status":"pass"
-      },
-      "rda_f1_02d":{
-         "color":"#2ECC71",
-         "msg":"Sus (meta)datos estan identificados con los siguientes identificadores y tipos: | 10.20350/digitalCSIC/13919: ['doi', 'handle'] | ",
-         "name":"rda_f1_02d",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":20
-         },
-         "test_status":"pass"
-      },
-      "rda_f1_02m":{
-         "color":"#2ECC71",
-         "msg":"Sus (meta)datos estan identificados con los siguientes identificadores y tipos: | 10.20350/digitalCSIC/13919: ['doi', 'handle'] | ",
-         "name":"rda_f1_02m",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":20
-         },
-         "test_status":"pass"
-      },
-      "rda_f2_01m":{
-         "color":"#2ECC71",
-         "msg":"Comprobando Dublin Core... Todos los terminos de metadatos obligatorios incluidos | Checking Dublin Core as multidisciplinar schema... Todos los terminos de metadatos obligatorios incluidos",
-         "name":"rda_f2_01m",
-         "points":100.0,
-         "score":{
-            "earned":100.0,
-            "total":100,
-            "weight":20
-         },
-         "test_status":"pass"
-      },
-      "rda_f3_01m":{
-         "color":"#2ECC71",
-         "msg":"Sus datos estan identificados con los siguientes identificadores y tipos| http://hdl.handle.net/10261/244749: ['handle', 'url'] | | 10.20350/digitalCSIC/13919: ['doi', 'handle'] | ",
-         "name":"rda_f3_01m",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":20
-         },
-         "test_status":"pass"
-      },
-      "rda_f4_01m":{
-         "color":"#2ECC71",
-         "msg":"Su Objeto Digital esta disponible a traves del protocolo OAI-PMH",
-         "name":"rda_f4_01m",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":20
-         },
-         "test_status":"pass"
-      }
-   },
-   "interoperable":{
-      "rda_i1_01d":{
-         "color":"#2ECC71",
-         "msg":"Potential datasets files found: ['/bitstream/10261/244749/15/FESEM-EDS.zip', '/bitstream/10261/244749/15/FESEM-EDS.zip', '/bitstream/10261/244749/16/LIBS.zip', '/bitstream/10261/244749/16/LIBS.zip', '/bitstream/10261/244749/19/LIF.zip', '/bitstream/10261/244749/19/LIF.zip', '/bitstream/10261/244749/20/NLOM.zip', '/bitstream/10261/244749/20/NLOM.zip', '/bitstream/10261/244749/21/PHOTOS.zip', '/bitstream/10261/244749/21/PHOTOS.zip', '/bitstream/10261/244749/22/Readme%20grisailles.txt', '/bitstream/10261/244749/22/Readme%20grisailles.txt']",
-         "name":"rda_i1_01d",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":15
-         },
-         "test_status":"pass"
-      },
-      "rda_i1_01m":{
-         "color":"#2ECC71",
-         "msg":"| Found potential vocabulary: COAR - Controlled vocabulary. Data: purl.org/coar\n",
-         "name":"rda_i1_01m",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":15
-         },
-         "test_status":"pass"
-      },
-      "rda_i1_02d":{
-         "color":"#E74C3C",
-         "msg":"No machine-actionable metadata format found. OAI-PMH endpoint may help",
-         "name":"rda_i1_02d",
-         "points":0.0,
-         "score":{
-            "earned":0.0,
-            "total":100,
-            "weight":15
-         },
-         "test_status":"fail"
-      },
-      "rda_i1_02m":{
-         "color":"#E74C3C",
-         "msg":"No machine-actionable metadata format found. OAI-PMH endpoint may help",
-         "name":"rda_i1_02m",
-         "points":0.0,
-         "score":{
-            "earned":0.0,
-            "total":100,
-            "weight":15
-         },
-         "test_status":"fail"
-      },
-      "rda_i2_01d":{
-         "color":"#2ECC71",
-         "msg":"\nControlled vocabulary purl.org/coar has PID: None",
-         "name":"rda_i2_01d",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":10
-         },
-         "test_status":"pass"
-      },
-      "rda_i2_01m":{
-         "color":"#2ECC71",
-         "msg":"\nControlled vocabulary purl.org/coar has PID: None",
-         "name":"rda_i2_01m",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":15
-         },
-         "test_status":"pass"
-      },
-      "rda_i3_01d":{
-         "color":"#2ECC71",
-         "msg":"Sus (meta)datos hacen referencia a los siguientes Objetos Digitales: | info:eu-repo/grantAgreement/AEI/Plan Estatal de Investigación Científica y Técnica y de Innovación 2017-2020/PID2019-104220RB-I00/ES/SISTEMATIZACION DE METODOS Y PROTOCOLOS DE CONSERVACION INTEGRAL DE MATERIALES Y COLECCIONES DEL PATRIMONIO CULTURAL, SU CARACTERIZACION ARQUEOMETRICA Y VALORIZACION SOCIAL/: ['handle'] | ",
-         "name":"rda_i3_01d",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":10
-         },
-         "test_status":"pass"
-      },
-      "rda_i3_01m":{
-         "color":"#2ECC71",
-         "msg":"No contributors found with persistent identifiers (ORCID). You should add some reference on the following element(s): [['identifier', 'funder']]| Qualified references to related object: https://www.wikidata.org/wiki/Q6058031| Qualified references to related object: info:eu-repo/grantAgreement/AEI/Plan Estatal de Investigación Científica y Técnica y de Innovación 2017-2020/PID2019-104220RB-I00/ES/SISTEMATIZACION DE METODOS Y PROTOCOLOS DE CONSERVACION INTEGRAL DE MATERIALES Y COLECCIONES DEL PATRIMONIO CULTURAL, SU CARACTERIZACION ARQUEOMETRICA Y VALORIZACION SOCIAL/| Qualified references to related object: Villegas Broncano, María Ángeles [0000-0002-9727-5478]| Qualified references to related object: Comunidad de Madrid",
-         "name":"rda_i3_01m",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":15
-         },
-         "test_status":"pass"
-      },
-      "rda_i3_02d":{
-         "color":"#2ECC71",
-         "msg":"Sus (meta)datos hacen referencia a los siguientes Objetos Digitales: | info:eu-repo/grantAgreement/AEI/Plan Estatal de Investigación Científica y Técnica y de Innovación 2017-2020/PID2019-104220RB-I00/ES/SISTEMATIZACION DE METODOS Y PROTOCOLOS DE CONSERVACION INTEGRAL DE MATERIALES Y COLECCIONES DEL PATRIMONIO CULTURAL, SU CARACTERIZACION ARQUEOMETRICA Y VALORIZACION SOCIAL/: ['handle'] | ",
-         "name":"rda_i3_02d",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":10
-         },
-         "test_status":"pass"
-      },
-      "rda_i3_02m":{
-         "color":"#2ECC71",
-         "msg":"Sus (meta)datos hacen referencia a los siguientes Objetos Digitales: | info:eu-repo/grantAgreement/AEI/Plan Estatal de Investigación Científica y Técnica y de Innovación 2017-2020/PID2019-104220RB-I00/ES/SISTEMATIZACION DE METODOS Y PROTOCOLOS DE CONSERVACION INTEGRAL DE MATERIALES Y COLECCIONES DEL PATRIMONIO CULTURAL, SU CARACTERIZACION ARQUEOMETRICA Y VALORIZACION SOCIAL/: ['handle'] | ",
-         "name":"rda_i3_02m",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":10
-         },
-         "test_status":"pass"
-      },
-      "rda_i3_03m":{
-         "color":"#2ECC71",
-         "msg":"Sus (meta)datos hacen referencia a los siguientes Objetos Digitales: | info:eu-repo/grantAgreement/AEI/Plan Estatal de Investigación Científica y Técnica y de Innovación 2017-2020/PID2019-104220RB-I00/ES/SISTEMATIZACION DE METODOS Y PROTOCOLOS DE CONSERVACION INTEGRAL DE MATERIALES Y COLECCIONES DEL PATRIMONIO CULTURAL, SU CARACTERIZACION ARQUEOMETRICA Y VALORIZACION SOCIAL/: ['handle'] | ",
-         "name":"rda_i3_03m",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":15
-         },
-         "test_status":"pass"
-      },
-      "rda_i3_04m":{
-         "color":"#2ECC71",
-         "msg":"Sus (meta)datos hacen referencia a los siguientes Objetos Digitales: | info:eu-repo/grantAgreement/AEI/Plan Estatal de Investigación Científica y Técnica y de Innovación 2017-2020/PID2019-104220RB-I00/ES/SISTEMATIZACION DE METODOS Y PROTOCOLOS DE CONSERVACION INTEGRAL DE MATERIALES Y COLECCIONES DEL PATRIMONIO CULTURAL, SU CARACTERIZACION ARQUEOMETRICA Y VALORIZACION SOCIAL/: ['handle'] | ",
-         "name":"rda_i3_04m",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":10
-         },
-         "test_status":"pass"
-      }
-   },
-   "reusable":{
-      "rda_r1_01m":{
-         "color":"#2ECC71",
-         "msg":"Checking Dublin Core as multidisciplinar schema... Todos los terminos de metadatos obligatorios incluidos",
-         "name":"rda_r1_01m",
-         "points":100.0,
-         "score":{
-            "earned":100.0,
-            "total":100,
-            "weight":20
-         },
-         "test_status":"pass"
-      },
-      "rda_r1_1_01m":{
-         "color":"#2ECC71",
-         "msg":"License information can not be found. Please, include the license in this term: [['rights', 'license', '']]| License found: rights.license: ... https://creativecommons.org/licenses/by/4.0/",
-         "name":"rda_r1_1_01m",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":20
-         },
-         "test_status":"pass"
-      },
-      "rda_r1_1_02m":{
-         "color":"#2ECC71",
-         "msg":"License information can not be found. Please, include the license in this term: [['rights', 'license', '']]| Machine-Actionable license found: rights.license: ... https://creativecommons.org/licenses/by/4.0/",
-         "name":"rda_r1_1_02m",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":15
-         },
-         "test_status":"pass"
-      },
-      "rda_r1_1_03m":{
-         "color":"#2ECC71",
-         "msg":"License information can not be found. Please, include the license in this term: [['rights', 'license', '']]| Standard license found: rights.license: ... https://creativecommons.org/licenses/by/4.0/",
-         "name":"rda_r1_1_03m",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":15
-         },
-         "test_status":"pass"
-      },
-      "rda_r1_2_01m":{
-         "color":"#F4D03F",
-         "msg":"Provenance information can not be found. Please, include the info in this term: [['description', 'provenance'], ['date', 'created'], ['description', 'abstract'], ['description', ''], ['relation', '']]| Provenance info found: date.created | Provenance info found: description.abstract | Provenance info found: description. | Provenance info found: relation. ",
-         "name":"rda_r1_2_01m",
-         "points":80.0,
-         "score":{
-            "earned":80.0,
-            "total":100,
-            "weight":15
-         },
-         "test_status":"pass"
-      },
-      "rda_r1_2_02m":{
-         "color":"#F4D03F",
-         "msg":"Provenance information can not be found. Please, include the info in this term: [['description', 'provenance'], ['date', 'created'], ['description', 'abstract'], ['description', ''], ['relation', '']]| Provenance info found: date.created | Provenance info found: description.abstract | Provenance info found: description. | Provenance info found: relation. ",
-         "name":"rda_r1_2_02m",
-         "points":80.0,
-         "score":{
-            "earned":80.0,
-            "total":100,
-            "weight":10
-         },
-         "test_status":"pass"
-      },
-      "rda_r1_3_01d":{
-         "color":"#2ECC71",
-         "msg":"Potential datasets files found: ['/bitstream/10261/244749/15/FESEM-EDS.zip', '/bitstream/10261/244749/15/FESEM-EDS.zip', '/bitstream/10261/244749/16/LIBS.zip', '/bitstream/10261/244749/16/LIBS.zip', '/bitstream/10261/244749/19/LIF.zip', '/bitstream/10261/244749/19/LIF.zip', '/bitstream/10261/244749/20/NLOM.zip', '/bitstream/10261/244749/20/NLOM.zip', '/bitstream/10261/244749/21/PHOTOS.zip', '/bitstream/10261/244749/21/PHOTOS.zip', '/bitstream/10261/244749/22/Readme%20grisailles.txt', '/bitstream/10261/244749/22/Readme%20grisailles.txt']",
-         "name":"rda_r1_3_01d",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":20
-         },
-         "test_status":"pass"
-      },
-      "rda_r1_3_01m":{
-         "color":"#2ECC71",
-         "msg":"DIGITAL.CSIC supports qualified Dublin Core as well as other discipline agnostics schemes like DataCite. Terms found",
-         "name":"rda_r1_3_01m",
-         "points":100.0,
-         "score":{
-            "earned":100.0,
-            "total":100,
-            "weight":20
-         },
-         "test_status":"pass"
-      },
-      "rda_r1_3_02d":{
-         "color":"#2ECC71",
-         "msg":"Potential datasets files found: ['/bitstream/10261/244749/15/FESEM-EDS.zip', '/bitstream/10261/244749/15/FESEM-EDS.zip', '/bitstream/10261/244749/16/LIBS.zip', '/bitstream/10261/244749/16/LIBS.zip', '/bitstream/10261/244749/19/LIF.zip', '/bitstream/10261/244749/19/LIF.zip', '/bitstream/10261/244749/20/NLOM.zip', '/bitstream/10261/244749/20/NLOM.zip', '/bitstream/10261/244749/21/PHOTOS.zip', '/bitstream/10261/244749/21/PHOTOS.zip', '/bitstream/10261/244749/22/Readme%20grisailles.txt', '/bitstream/10261/244749/22/Readme%20grisailles.txt']",
-         "name":"rda_r1_3_02d",
-         "points":100,
-         "score":{
-            "earned":100,
-            "total":100,
-            "weight":15
-         },
-         "test_status":"pass"
-      },
-      "rda_r1_3_02m":{
-         "color":"#2ECC71",
-         "msg":"Dublin Core defined in XML: https://dublincore.org/schemas/xmls/qdc/2008/02/11/dc.xsd",
-         "name":"rda_r1_3_02m",
-         "points":100.0,
-         "score":{
-            "earned":100.0,
-            "total":100,
-            "weight":20
-         },
-         "test_status":"pass"
-      }
-   }
+    "7c9dfb3c-7db0-4424-8843-ada2143b00a0": {
+        "accessible": {
+            "rda_a1_01m": {
+                "color": "#F4D03F",
+                "msg": [
+                    {
+                        "message": "Found 2 metadata elements for accessing the data: ['downloadURL', 'identifiers']",
+                        "points": 40
+                    },
+                    {
+                        "message": "Found a license for the data",
+                        "points": 10
+                    },
+                    {
+                        "message": "License listed in SPDX license list",
+                        "points": 10
+                    }
+                ],
+                "name": "rda_a1_01m",
+                "points": 60,
+                "score": {
+                    "earned": 60,
+                    "total": 100,
+                    "weight": 15
+                },
+                "test_status": "indeterminate"
+            },
+            "rda_a1_02d": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "Documentation for the manual obtention of the data can be found in https://epos-eu.github.io/EPOS-DCAT-AP/v3/#properties-for-catalog-record",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_a1_02d",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 20
+                },
+                "test_status": "pass"
+            },
+            "rda_a1_02m": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "Documentation for the manual obtention of the metadata can be found in https://github.com/epos-eu/Hands-On-EPOS-API",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_a1_02m",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 20
+                },
+                "test_status": "pass"
+            },
+            "rda_a1_03d": {
+                "color": "#E74C3C",
+                "msg": [
+                    {
+                        "message": "Error while making a request to endpoint: https://hdl.handle.net/api/handles/DT5206/SVO (status code: 404)",
+                        "points": 0
+                    }
+                ],
+                "name": "rda_a1_03d",
+                "points": 0,
+                "score": {
+                    "earned": 0,
+                    "total": 100,
+                    "weight": 20
+                },
+                "test_status": "fail"
+            },
+            "rda_a1_03m": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "Metadata record could be retrieved from metadata identifier: 7c9dfb3c-7db0-4424-8843-ada2143b00a0",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_a1_03m",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 20
+                },
+                "test_status": "pass"
+            },
+            "rda_a1_04d": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "Found 1 standarised protocols to access the data: ['https']",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_a1_04d",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 20
+                },
+                "test_status": "pass"
+            },
+            "rda_a1_04m": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "Found a standarised protocol to access the metadata record: https",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_a1_04m",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 20
+                },
+                "test_status": "pass"
+            },
+            "rda_a1_05d": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "Data can be accessed programmatically: the URL is resolvable: https://en.vedur.is/earthquakes-and-volcanism",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_a1_05d",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 15
+                },
+                "test_status": "pass"
+            },
+            "rda_a1_1_01d": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "Found free protocol/s to access the data: https",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_a1_1_01d",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 15
+                },
+                "test_status": "pass"
+            },
+            "rda_a1_1_01m": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "Found a free protocol to access the metadata record: https",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_a1_1_01m",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 20
+                },
+                "test_status": "pass"
+            },
+            "rda_a1_2_01d": {
+                "color": "#E74C3C",
+                "msg": "OAI-PMH is a open protocol without any Authorization or Authentication required",
+                "name": "rda_a1_2_01d",
+                "points": 0,
+                "score": {
+                    "earned": 0,
+                    "total": 100,
+                    "weight": 10
+                },
+                "test_status": "fail"
+            },
+            "rda_a2_01m": {
+                "color": "#F4D03F",
+                "msg": "Preservation policy depends on the authority where this Digital Object is stored",
+                "name": "rda_a2_01m",
+                "points": 50,
+                "score": {
+                    "earned": 50,
+                    "total": 100,
+                    "weight": 20
+                },
+                "test_status": "fail"
+            }
+        },
+        "findable": {
+            "rda_f1_01d": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "Found persistent identifier for the data: DT5206/SVO",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_f1_01d",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 20
+                },
+                "test_status": "pass"
+            },
+            "rda_f1_01m": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "Found persistent identifier for the metadata: 7c9dfb3c-7db0-4424-8843-ada2143b00a0",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_f1_01m",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 20
+                },
+                "test_status": "pass"
+            },
+            "rda_f1_02d": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "Found a globally unique identifier for the data: DT5206/SVO",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_f1_02d",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 20
+                },
+                "test_status": "pass"
+            },
+            "rda_f1_02m": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "Found a globally unique identifier for the metadata: 7c9dfb3c-7db0-4424-8843-ada2143b00a0",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_f1_02m",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 20
+                },
+                "test_status": "pass"
+            },
+            "rda_f2_01m": {
+                "color": "#F4D03F",
+                "msg": [
+                    "Found 8 (out of 15) metadata elements matching 'Dublin Core Metadata for Resource Discovery' elements"
+                ],
+                "name": "rda_f2_01m",
+                "points": 56,
+                "score": {
+                    "earned": 56,
+                    "total": 100,
+                    "weight": 20
+                },
+                "test_status": "indeterminate"
+            },
+            "rda_f3_01m": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "Metadata includes identifier/s for the data: [{'type': 'plain', 'value': 'DT5206/SVO'}]",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_f3_01m",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 20
+                },
+                "test_status": "pass"
+            },
+            "rda_f4_01m": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "Metadata is gathered programmatically through HTTP (API REST), thus can be harvested and indexed.",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_f4_01m",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 20
+                },
+                "test_status": "pass"
+            }
+        },
+        "interoperable": {
+            "rda_i1_01d": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "Your data uses a correct way to present information present in https://www.iana.org/assignments/media-types/media-types.xhtml ",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_i1_01d",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 15
+                },
+                "test_status": "pass"
+            },
+            "rda_i1_01m": {
+                "color": "#E74C3C",
+                "msg": "There is no standard used to express knowledge. Suggested controlled vocabularies: Library of Congress, Geonames, etc.",
+                "name": "rda_i1_01m",
+                "points": 0,
+                "score": {
+                    "earned": 0,
+                    "total": 100,
+                    "weight": 15
+                },
+                "test_status": "fail"
+            },
+            "rda_i1_02d": {
+                "color": "#E74C3C",
+                "msg": "Cannot find any value for term <terms_data_model> in configuration",
+                "name": "rda_i1_02d",
+                "points": 0,
+                "score": {
+                    "earned": 0,
+                    "total": 100,
+                    "weight": 15
+                },
+                "test_status": "fail"
+            },
+            "rda_i1_02m": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "The metadata standard in use provides a machine-understandable knowledge expression: ['DCAT']",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_i1_02m",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 15
+                },
+                "test_status": "pass"
+            },
+            "rda_i2_01d": {
+                "color": "#E74C3C",
+                "msg": [
+                    {
+                        "message": "This test implies access to the content of the data and match terms used there with FAIR-compliant vocabularies. As it is defined, its implementation is too costly",
+                        "points": 0
+                    }
+                ],
+                "name": "rda_i2_01d",
+                "points": 0,
+                "score": {
+                    "earned": 0,
+                    "total": 100,
+                    "weight": 10
+                },
+                "test_status": "fail"
+            },
+            "rda_i2_01m": {
+                "color": "#E74C3C",
+                "msg": "No controlled vocabularies found. Suggested: ORCID, Library of Congress, Geonames, etc.",
+                "name": "rda_i2_01m",
+                "points": 0,
+                "score": {
+                    "earned": 0,
+                    "total": 100,
+                    "weight": 15
+                },
+                "test_status": "fail"
+            },
+            "rda_i3_01d": {
+                "color": "#E74C3C",
+                "msg": [
+                    {
+                        "message": "This test implies checking the presence of qualified references within the content of the data. As it is defined, its implementation is too costly.",
+                        "points": 0
+                    }
+                ],
+                "name": "rda_i3_01d",
+                "points": 0,
+                "score": {
+                    "earned": 0,
+                    "total": 100,
+                    "weight": 10
+                },
+                "test_status": "fail"
+            },
+            "rda_i3_01m": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "Your metadata has qualified references to other metadata",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_i3_01m",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 15
+                },
+                "test_status": "pass"
+            },
+            "rda_i3_02d": {
+                "color": "#E74C3C",
+                "msg": [
+                    {
+                        "message": "This test implies checking the presence of qualified references within the content of the data. As it is defined, its implementation is too costly.",
+                        "points": 0
+                    }
+                ],
+                "name": "rda_i3_02d",
+                "points": 0,
+                "score": {
+                    "earned": 0,
+                    "total": 100,
+                    "weight": 10
+                },
+                "test_status": "fail"
+            },
+            "rda_i3_02m": {
+                "color": "#E74C3C",
+                "msg": [
+                    {
+                        "message": "No references to other data.",
+                        "points": 0
+                    }
+                ],
+                "name": "rda_i3_02m",
+                "points": 0,
+                "score": {
+                    "earned": 0,
+                    "total": 100,
+                    "weight": 10
+                },
+                "test_status": "fail"
+            },
+            "rda_i3_03m": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "Your metadata has qualified references to other metadata",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_i3_03m",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 15
+                },
+                "test_status": "pass"
+            },
+            "rda_i3_04m": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "Your metadata has qualified references to other metadata",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_i3_04m",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 10
+                },
+                "test_status": "pass"
+            }
+        },
+        "reusable": {
+            "rda_r1_01m": {
+                "color": "#E74C3C",
+                "msg": [
+                    {
+                        "message": "Found 4 metadata elements that enhance reusability: [[{'format': 'json', 'href': 'c26a24f2-24a3-4cdb-8840-75a6284e3f8a', 'label': 'JSON', 'originalFormat': 'json', 'type': 'ORIGINAL'}], 'v1.0', 'https://en.vedur.is/earthquakes-and-volcanism', 'https://spdx.org/licenses/CC-BY-NC-SA-4.0.html']",
+                        "points": 36.36363636363637
+                    }
+                ],
+                "name": "rda_r1_01m",
+                "points": 36.36363636363637,
+                "score": {
+                    "earned": 36.36363636363637,
+                    "total": 100,
+                    "weight": 20
+                },
+                "test_status": "fail"
+            },
+            "rda_r1_1_01m": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "The license is: https://spdx.org/licenses/CC-BY-NC-SA-4.0.html",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_r1_1_01m",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 20
+                },
+                "test_status": "pass"
+            },
+            "rda_r1_1_02m": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "License/s in use are considered as standard according to SPDX license list: ['https://spdx.org/licenses/CC-BY-NC-SA-4.0.html'] (points: 100)",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_r1_1_02m",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 15
+                },
+                "test_status": "pass"
+            },
+            "rda_r1_1_03m": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": [
+                            {
+                                "message": "License/s are machine readable according to SPDX",
+                                "points": 100
+                            }
+                        ],
+                        "points": 100
+                    }
+                ],
+                "name": "rda_r1_1_03m",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 15
+                },
+                "test_status": "pass"
+            },
+            "rda_r1_2_01m": {
+                "color": "#E74C3C",
+                "msg": "No access information can be found in the metadata for: [['curationAndProvenanceObligations', '']]. Please double-check the value/s provided for 'terms_provenance' configuration parameter",
+                "name": "rda_r1_2_01m",
+                "points": 0,
+                "score": {
+                    "earned": 0,
+                    "total": 100,
+                    "weight": 15
+                },
+                "test_status": "fail"
+            },
+            "rda_r1_2_02m": {
+                "color": "#E74C3C",
+                "msg": "No access information can be found in the metadata for: [['curationAndProvenanceObligations', '']]. Please double-check the value/s provided for 'terms_provenance' configuration parameter",
+                "name": "rda_r1_2_02m",
+                "points": 0,
+                "score": {
+                    "earned": 0,
+                    "total": 100,
+                    "weight": 10
+                },
+                "test_status": "fail"
+            },
+            "rda_r1_3_01d": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "Your item follows the comunity standard formats:   JSON",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_r1_3_01d",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 20
+                },
+                "test_status": "pass"
+            },
+            "rda_r1_3_01m": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "Metadata standard in use complies with a community standard according to FAIRsharing.org",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_r1_3_01m",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 20
+                },
+                "test_status": "pass"
+            },
+            "rda_r1_3_02d": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "Your data standard is expressed in compliance with a  machine-understandable community standard",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_r1_3_02d",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 15
+                },
+                "test_status": "pass"
+            },
+            "rda_r1_3_02m": {
+                "color": "#2ECC71",
+                "msg": [
+                    {
+                        "message": "The metadata standard in use is compliant with a machine-understandable community standard",
+                        "points": 100
+                    }
+                ],
+                "name": "rda_r1_3_02m",
+                "points": 100,
+                "score": {
+                    "earned": 100,
+                    "total": 100,
+                    "weight": 20
+                },
+                "test_status": "pass"
+            }
+        }
+    }
 }

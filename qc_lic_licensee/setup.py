@@ -1,10 +1,8 @@
-from setuptools import find_packages
-from setuptools import setup
-
+from setuptools import find_packages, setup
 
 setup(
     name='report2sqaaas-plugin-licensee',
-    version='1.2.0',
+    version='1.14.0',
     description='Output validator for the licensee tool',
     author='Pablo Orviz',
     author_email='orviz@ifca.unican.es',

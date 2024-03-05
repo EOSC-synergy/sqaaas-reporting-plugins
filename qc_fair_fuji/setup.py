@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='report2sqaaas-plugin-fuji',
-    version='1.0.0',
+    version='1.14.0',
     description='Output validator for the F-UJI tool',
     author='Wilko Steinhoff',
     author_email='wilko.steinhoff@dans.knaw.nl',

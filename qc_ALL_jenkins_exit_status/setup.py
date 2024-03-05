@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='report2sqaaas-plugin-jenkins_exit_status',
-    version='1.2.0',
+    version='1.14.0',
     description='Output validator for the jenkins_exit_status tool',
     author='Pablo Orviz',
     author_email='orviz@ifca.unican.es',

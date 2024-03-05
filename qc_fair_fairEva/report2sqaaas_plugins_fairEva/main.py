@@ -16,7 +16,7 @@ class fairEva(sqaaas_utils.BaseValidator):
         logger.debug('Running SQAaaS\' <%s> validator' % self.name)
 
         json_res = self.parse(self.opts.stdout)
-        result = []
+        instances = []
 
         subcriteria_groups = {
             'findable': 'QC.FAIR.F',
@@ -24,37 +24,41 @@ class fairEva(sqaaas_utils.BaseValidator):
             'interoperable': 'QC.FAIR.I',
             'reusable': 'QC.FAIR.R'
         }
-        for group, criterion in subcriteria_groups.items():
-            _criterion_data = sqaaas_utils.load_criterion_from_standard(
-                criterion
-            )
-            for key in json_res[group]:
-                _key = key.upper()
-                try:
-                    _subcriterion_data = _criterion_data[_key]
-                except KeyError:
-                    logger.error(
-                        'Could not find <%s> RDA indicator in the '
-                        'standard' % _key
-                    )
-                else:
-                    if key != 'result':
-                        _evidence = _subcriterion_data['evidence']['failure']
-                        if json_res[group][key]['test_status'] == "pass":
-                            valid = True
-                            _evidence = _subcriterion_data['evidence']['success']
-                        else:
-                            valid = False
-                        result.append(
-                            {
-                                "id": _key,
-                                "valid": valid,
-                                "description": _subcriterion_data['description'],
-                                "hint": _subcriterion_data['hint'],
-                                "evidence": _evidence,
-                                "requirement_level": _subcriterion_data['requirement_level']
-                            }
+        for instance_id, instance_data in json_res.items():
+            instance_list = []
+            for group, criterion in subcriteria_groups.items():
+                _criterion_data = sqaaas_utils.load_criterion_from_standard(criterion)
+                for key in instance_data[group]:
+                    _key = key.upper()
+                    try:
+                        _subcriterion_data = _criterion_data[_key]
+                    except KeyError:
+                        logger.error(
+                            "Could not find <%s> RDA indicator in the standard" % _key
                         )
+                    else:
+                        if key != "result":
+                            _evidence = _subcriterion_data["evidence"]["failure"]
+                            if instance_data[group][key]["test_status"] == "pass":
+                                valid = True
+                                _evidence = _subcriterion_data["evidence"]["success"]
+                            else:
+                                valid = False
+                            instance_list.append(
+                                {
+                                    "id": _key,
+                                    "valid": valid,
+                                    "description": _subcriterion_data["description"],
+                                    "hint": _subcriterion_data["hint"],
+                                    "evidence": _evidence,
+                                    "requirement_level": _subcriterion_data[
+                                        "requirement_level"
+                                    ],
+                                }
+                            )
+            instances.append(instance_list)
+        # NOTE: For the time being just report about first match
+        result = instances[0]
         if len(result) > 0:
             self.valid = True
 

@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='report2sqaaas-plugin-cff',
-    version='1.0.0',
+    version='1.14.0',
     description='Output validator for the cffconvert tool',
     author='Pablo Orviz',
     author_email='orviz@ifca.unican.es',
