@@ -52,7 +52,8 @@ class fairEva(sqaaas_utils.BaseValidator):
                                 "description": _subcriterion_data['description'],
                                 "hint": _subcriterion_data['hint'],
                                 "evidence": _evidence,
-                                "requirement_level": _subcriterion_data['requirement_level']
+                                "requirement_level": _subcriterion_data['requirement_level'],
+                                "points": json_res[group][key]['points']
                             }
                         )
         if len(result) > 0:
