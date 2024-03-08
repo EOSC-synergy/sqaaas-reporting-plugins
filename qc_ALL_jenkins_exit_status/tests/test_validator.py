@@ -6,8 +6,7 @@
 from types import SimpleNamespace
 
 import pytest
-from report2sqaaas_plugins_jenkins_exit_status.main import \
-    JenkinsExitStatusValidator
+from report2sqaaas_plugins_jenkins_exit_status.main import JenkinsExitStatusValidator
 
 
 @pytest.fixture
