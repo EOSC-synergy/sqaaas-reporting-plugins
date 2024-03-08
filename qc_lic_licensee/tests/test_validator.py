@@ -1,8 +1,8 @@
 import json
 import pathlib
-import pytest
 from types import SimpleNamespace
 
+import pytest
 from report2sqaaas_plugins_licensee.main import LicenseeValidator
 
 
@@ -11,7 +11,7 @@ def licensee_stdout(request):
     file = pathlib.Path(request.node.fspath.strpath)
     # stdout = file.with_name('licensee.out.json')
     # stdout = file.with_name('licensee.out.1.json')
-    stdout = file.with_name('licensee.out.confidence.json')
+    stdout = file.with_name("licensee.out.confidence.json")
     with stdout.open() as fp:
         json_data = json.load(fp)
         return json.dumps(json_data)
@@ -19,10 +19,7 @@ def licensee_stdout(request):
 
 @pytest.fixture
 def validator_opts(licensee_stdout):
-    class_args = {
-        'validator': 'licensee',
-        'stdout': licensee_stdout
-    }
+    class_args = {"validator": "licensee", "stdout": licensee_stdout}
     return SimpleNamespace(**class_args)
 
 
@@ -40,4 +37,4 @@ def test_is_validate_method_defined(validator_opts):
 def test_validate_method_output(validator):
     result = validator.validate()
     assert type(result) is dict
-    assert 'valid' in list(result)
+    assert "valid" in list(result)

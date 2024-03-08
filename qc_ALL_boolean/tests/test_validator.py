@@ -1,6 +1,6 @@
-import pytest
 from types import SimpleNamespace
 
+import pytest
 from report2sqaaas_plugins_boolean.main import BooleanValidator
 
 
@@ -12,9 +12,9 @@ def boolean_stdout():
 @pytest.fixture
 def validator_opts(boolean_stdout):
     class_args = {
-        'validator': 'boolean',
-        'stdout': boolean_stdout,
-        'subcriterion': 'QC.Met01'
+        "validator": "boolean",
+        "stdout": boolean_stdout,
+        "subcriterion": "QC.Met01",
     }
     return SimpleNamespace(**class_args)
 
@@ -33,4 +33,4 @@ def test_is_validate_method_defined(validator_opts):
 def test_validate_method_output(validator):
     result = validator.validate()
     assert type(result) is dict
-    assert 'valid' in list(result)
+    assert "valid" in list(result)

@@ -6,8 +6,7 @@ import logging
 
 from report2sqaaas import utils as sqaaas_utils
 
-
-logger = logging.getLogger('sqaaas.reporting.plugins.pytest')
+logger = logging.getLogger("sqaaas.reporting.plugins.pytest")
 
 
 class PytestValidator(sqaaas_utils.BaseValidator):

@@ -2,9 +2,9 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-import pytest
 from types import SimpleNamespace
 
+import pytest
 from report2sqaaas_plugins_pytest.main import PytestValidator
 
 
@@ -16,10 +16,7 @@ def pytest_stdout():
 
 @pytest.fixture
 def validator_opts(pytest_stdout):
-    class_args = {
-        'validator': 'pytest',
-        'stdout': pytest_stdout
-    }
+    class_args = {"validator": "pytest", "stdout": pytest_stdout}
     return SimpleNamespace(**class_args)
 
 
@@ -37,4 +34,4 @@ def test_is_validate_method_defined(validator_opts):
 def test_validate_method_output(validator):
     result = validator.validate()
     assert type(result) is dict
-    assert 'valid' in list(result)
+    assert "valid" in list(result)
