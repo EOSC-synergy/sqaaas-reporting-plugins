@@ -37,7 +37,7 @@ def load_requirements():
 
 setup(
     name="report2sqaaas-plugin-pytest",
-    version="1.0.0",
+    version="2.0.0",
     description="Output validator for the pytest tool",
     author="Pablo Orviz",
     author_email="orviz@ifca.unican.es",

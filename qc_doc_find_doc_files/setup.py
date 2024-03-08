@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="report2sqaaas-plugin-find_doc_files",
-    version="1.14.0",
+    version="2.0.0",
     description="Output validator for the find_doc_files.py tool",
     author="Pablo Orviz",
     author_email="orviz@ifca.unican.es",
