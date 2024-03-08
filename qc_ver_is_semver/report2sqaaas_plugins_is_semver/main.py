@@ -18,10 +18,8 @@ class IsSemverValidator(sqaaas_utils.BaseValidator):
     }
 
     def validate(self):
-        """
-        Expects a list of Git tags ordered by creation time (from more recent
-        to older)
-        """
+        """Expects a list of Git tags ordered by creation time (from more
+        recent to older)"""
         criterion = "QC.Ver"
         criterion_data = sqaaas_utils.load_criterion_from_standard(criterion)
         subcriteria = []
