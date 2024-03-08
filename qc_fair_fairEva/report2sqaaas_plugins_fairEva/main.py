@@ -1,9 +1,13 @@
+# SPDX-FileCopyrightText: Copyright contributors to the Software Quality Assurance as a Service (SQAaaS) project <sqaaas@ibergrid.eu>
+# SPDX-FileContributor: 2017-2024 Pablo Orviz <orviz@ifca.unican.es>
+#
+# SPDX-License-Identifier: GPL-3.0-only
+
 import logging
 
 from report2sqaaas import utils as sqaaas_utils
 
-
-logger = logging.getLogger('sqaaas.reporting.plugins.fairEva')
+logger = logging.getLogger("sqaaas.reporting.plugins.fairEva")
 
 
 class fairEva(sqaaas_utils.BaseValidator):
@@ -13,16 +17,16 @@ class fairEva(sqaaas_utils.BaseValidator):
         return sqaaas_utils.load_json(file_name)
 
     def validate(self):
-        logger.debug('Running SQAaaS\' <%s> validator' % self.name)
+        logger.debug("Running SQAaaS' <%s> validator" % self.name)
 
         json_res = self.parse(self.opts.stdout)
         instances = []
 
         subcriteria_groups = {
-            'findable': 'QC.FAIR.F',
-            'accessible': 'QC.FAIR.A',
-            'interoperable': 'QC.FAIR.I',
-            'reusable': 'QC.FAIR.R'
+            "findable": "QC.FAIR.F",
+            "accessible": "QC.FAIR.A",
+            "interoperable": "QC.FAIR.I",
+            "reusable": "QC.FAIR.R",
         }
         for instance_id, instance_data in json_res.items():
             instance_list = []
@@ -63,11 +67,12 @@ class fairEva(sqaaas_utils.BaseValidator):
             self.valid = True
 
         return {
-            'valid': 'true',
-            'subcriteria': result,
-            'standard': {'title': 'RDA Indicators',
-                         'version': 'v1.0',
-                         'url': 'https://doi.org/10.15497/rda00050'
-                         },
-            'data_unstructured': json_res
+            "valid": "true",
+            "subcriteria": result,
+            "standard": {
+                "title": "RDA Indicators",
+                "version": "v1.0",
+                "url": "https://doi.org/10.15497/rda00050",
+            },
+            "data_unstructured": json_res,
         }

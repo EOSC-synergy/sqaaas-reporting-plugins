@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: Copyright contributors to the Software Quality Assurance as a Service (SQAaaS) project <sqaaas@ibergrid.eu>
+SPDX-FileContributor: 2017-2024 Pablo Orviz <orviz@ifca.unican.es>
+
+SPDX-License-Identifier: GPL-3.0-only
+-->
+
 # SQAaaS reporting validator plugin for the find_doc_files.py tool
 
 [![License](https://img.shields.io/github/license/fzhu2e/GraphEM)](https://opensource.org/licenses/GPL-3.0)

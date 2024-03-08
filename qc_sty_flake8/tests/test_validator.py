@@ -1,14 +1,19 @@
+# SPDX-FileCopyrightText: Copyright contributors to the Software Quality Assurance as a Service (SQAaaS) project <sqaaas@ibergrid.eu>
+# SPDX-FileContributor: 2017-2024 Pablo Orviz <orviz@ifca.unican.es>
+#
+# SPDX-License-Identifier: GPL-3.0-only
+
 import pathlib
-import pytest
 from types import SimpleNamespace
 
+import pytest
 from report2sqaaas_plugins_flake8.main import Flake8Validator
 
 
 @pytest.fixture
 def flake8_stdout(request):
     file = pathlib.Path(request.node.fspath.strpath)
-    stdout = file.with_name('flake8.out')
+    stdout = file.with_name("flake8.out")
     # stdout = file.with_name('empty.out')
     with stdout.open() as fp:
         return fp.read()
@@ -16,10 +21,7 @@ def flake8_stdout(request):
 
 @pytest.fixture
 def validator_opts(flake8_stdout):
-    class_args = {
-        'validator': 'flake8',
-        'stdout': flake8_stdout
-    }
+    class_args = {"validator": "flake8", "stdout": flake8_stdout}
     return SimpleNamespace(**class_args)
 
 
@@ -37,6 +39,6 @@ def test_is_validate_method_defined(validator_opts):
 def test_validate_method_output(validator):
     result = validator.validate()
     assert type(result) is dict
-    assert 'valid' in list(result)
-    assert 'subcriteria' in list(result)
-    assert type(result['subcriteria']) is list
+    assert "valid" in list(result)
+    assert "subcriteria" in list(result)
+    assert type(result["subcriteria"]) is list

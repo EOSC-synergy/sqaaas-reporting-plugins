@@ -1,24 +1,26 @@
+# SPDX-FileCopyrightText: Copyright contributors to the Software Quality Assurance as a Service (SQAaaS) project <sqaaas@ibergrid.eu>
+# SPDX-FileContributor: 2017-2024 Pablo Orviz <orviz@ifca.unican.es>
+#
+# SPDX-License-Identifier: GPL-3.0-only
+
 import pathlib
-import pytest
 from types import SimpleNamespace
 
+import pytest
 from report2sqaaas_plugins_gosec.main import GoSecValidator
 
 
 @pytest.fixture
 def gosec_stdout(request):
     file = pathlib.Path(request.node.fspath.strpath)
-    stdout = file.with_name('gosec.out')
+    stdout = file.with_name("gosec.out")
     with stdout.open() as fp:
         return fp.read()
 
 
 @pytest.fixture
 def validator_opts(gosec_stdout):
-    class_args = {
-        'validator': 'gosec',
-        'stdout': gosec_stdout
-    }
+    class_args = {"validator": "gosec", "stdout": gosec_stdout}
     return SimpleNamespace(**class_args)
 
 
@@ -36,6 +38,6 @@ def test_is_validate_method_defined(validator_opts):
 def test_validate_method_output(validator):
     result = validator.validate()
     assert type(result) is dict
-    assert 'valid' in list(result)
-    assert 'subcriteria' in list(result)
-    assert type(result['subcriteria']) is list
+    assert "valid" in list(result)
+    assert "subcriteria" in list(result)
+    assert type(result["subcriteria"]) is list

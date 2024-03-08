@@ -1,15 +1,20 @@
+# SPDX-FileCopyrightText: Copyright contributors to the Software Quality Assurance as a Service (SQAaaS) project <sqaaas@ibergrid.eu>
+# SPDX-FileContributor: 2017-2024 Pablo Orviz <orviz@ifca.unican.es>
+#
+# SPDX-License-Identifier: GPL-3.0-only
+
 import json
 import pathlib
-import pytest
 from types import SimpleNamespace
 
+import pytest
 from report2sqaaas_plugins_find_doc_files.main import FindDocFilesValidator
 
 
 @pytest.fixture
 def find_doc_files_stdout(request):
     file = pathlib.Path(request.node.fspath.strpath)
-    stdout = file.with_name('find_doc_files.out.json')
+    stdout = file.with_name("find_doc_files.out.json")
     with stdout.open() as fp:
         json_data = json.load(fp)
         return json.dumps(json_data)
@@ -17,10 +22,7 @@ def find_doc_files_stdout(request):
 
 @pytest.fixture
 def validator_opts(find_doc_files_stdout):
-    class_args = {
-        'validator': 'find_doc_files',
-        'stdout': find_doc_files_stdout
-    }
+    class_args = {"validator": "find_doc_files", "stdout": find_doc_files_stdout}
     return SimpleNamespace(**class_args)
 
 
@@ -38,4 +40,4 @@ def test_is_validate_method_defined(validator_opts):
 def test_validate_method_output(validator):
     result = validator.validate()
     assert type(result) is dict
-    assert 'valid' in list(result)
+    assert "valid" in list(result)

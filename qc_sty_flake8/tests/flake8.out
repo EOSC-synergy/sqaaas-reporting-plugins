@@ -5,7 +5,7 @@
                                 }
                                 ^
 ./o3api/tests/test_api.py:86:51: W291 trailing whitespace
-        request_q = ''.join([key + "=" + val + "&" 
+        request_q = ''.join([key + "=" + val + "&"
                                                   ^
 ./o3api/tests/test_api.py:87:37: E231 missing whitespace after ','
                              for key,val in plots_tco3_query_dict.items()])

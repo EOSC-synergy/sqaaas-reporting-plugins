@@ -1,6 +1,11 @@
-import pytest
+# SPDX-FileCopyrightText: Copyright contributors to the Software Quality Assurance as a Service (SQAaaS) project <sqaaas@ibergrid.eu>
+# SPDX-FileContributor: 2017-2024 Pablo Orviz <orviz@ifca.unican.es>
+#
+# SPDX-License-Identifier: GPL-3.0-only
+
 from types import SimpleNamespace
 
+import pytest
 from report2sqaaas_plugins_json_not_empty.main import JsonNotEmptyValidator
 
 
@@ -12,9 +17,9 @@ def json_not_empty_stdout():
 @pytest.fixture
 def validator_opts(json_not_empty_stdout):
     class_args = {
-        'validator': 'json_not_empty',
-        'stdout': json_not_empty_stdout,
-        'subcriterion': 'QC.Acc01'
+        "validator": "json_not_empty",
+        "stdout": json_not_empty_stdout,
+        "subcriterion": "QC.Acc01",
     }
     return SimpleNamespace(**class_args)
 
@@ -33,4 +38,4 @@ def test_is_validate_method_defined(validator_opts):
 def test_validate_method_output(validator):
     result = validator.validate()
     assert type(result) is dict
-    assert 'valid' in list(result)
+    assert "valid" in list(result)

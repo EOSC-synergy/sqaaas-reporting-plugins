@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: Copyright contributors to the Software Quality Assurance as a Service (SQAaaS) project <sqaaas@ibergrid.eu>
+SPDX-FileContributor: 2017-2024 Pablo Orviz <orviz@ifca.unican.es>
+
+SPDX-License-Identifier: GPL-3.0-only
+-->
+
 # Reporting plugins (aka validators) for the SQAaaS platform
 
 [![SQAaaS badge shields.io](https://img.shields.io/badge/sqaaas%20software-gold-yellow)](https://api.eu.badgr.io/public/assertions/oT8RAE5zSjeHnvz1TSVfSQ "SQAaaS gold badge achieved")
@@ -13,7 +20,7 @@
 </p>
 
 
-#### Achievements 
+#### Achievements
 [![SQAaaS badge](https://github.com/EOSC-synergy/SQAaaS/raw/master/badges/badges_150x116/badge_software_gold.png)](https://api.eu.badgr.io/public/assertions/oT8RAE5zSjeHnvz1TSVfSQ "SQAaaS gold badge achieved")
 
 
