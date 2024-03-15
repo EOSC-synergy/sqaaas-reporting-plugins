@@ -7,7 +7,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="report2sqaaas-plugin-markdownlint",
-    version="2.0.0",
+    version="2.1.0",
     description="Output validator for the markdownlint tool",
     author="Pablo Orviz",
     author_email="orviz@ifca.unican.es",
