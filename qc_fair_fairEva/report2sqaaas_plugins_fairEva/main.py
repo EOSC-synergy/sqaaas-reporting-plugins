@@ -53,6 +53,7 @@ class fairEva(sqaaas_utils.BaseValidator):
                                     "id": _key,
                                     "valid": valid,
                                     "description": _subcriterion_data["description"],
+                                    "points": instance_data[group][key]["points"],
                                     "hint": _subcriterion_data["hint"],
                                     "evidence": _evidence,
                                     "requirement_level": _subcriterion_data[
