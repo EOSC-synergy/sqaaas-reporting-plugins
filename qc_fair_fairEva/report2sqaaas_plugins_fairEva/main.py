@@ -64,6 +64,7 @@ class fairEva(sqaaas_utils.BaseValidator):
             instances.append(instance_list)
         # NOTE: For the time being just report about first match
         result = instances[0]
+        logger.debug("Only returning data about instance #0: %s" % result)
         if len(result) > 0:
             self.valid = True
 
