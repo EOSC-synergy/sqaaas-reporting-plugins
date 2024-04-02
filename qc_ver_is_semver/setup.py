@@ -38,7 +38,7 @@ def load_requirements():
 
 setup(
     name="report2sqaaas-plugin-is_semver",
-    version="2.0.0",
+    version="2.1.0",
     description="Output validator for the is_semver.py tool",
     author="Pablo Orviz",
     author_email="orviz@ifca.unican.es",
