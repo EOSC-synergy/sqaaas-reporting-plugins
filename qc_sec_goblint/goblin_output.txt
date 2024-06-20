@@ -1,0 +1,4 @@
+[0;34m[Info][Deadcode][0;0;00m [0;34mLogical lines of code (LLoC) summary:[0;0;00m
+  [0;34mlive: 3[0;0;00m
+  [0;34mdead: 0[0;0;00m
+  [0;34mtotal lines: 3[0;0;00m

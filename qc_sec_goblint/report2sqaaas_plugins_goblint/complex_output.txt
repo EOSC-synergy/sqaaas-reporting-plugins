@@ -1,0 +1,14 @@
+[0;34m[Info][Deadcode][0;0;00m [0;34mLogical lines of code (LLoC) summary:[0;0;00m
+  [0;34mlive: 12[0;0;00m
+  [0;34mdead: 0[0;0;00m
+  [0;34mtotal lines: 12[0;0;00m
+[0;33m[Warning][Race][0;0;00m [0;33mMemory location myglobal (race with conf. 110):[0;0;00m [0;35m(data/tests/regression/04-mutex/01-simple_rc.c:4:5-4:13)[0;0;00m
+  [0;33mwrite with [mhp:{tid=[main, t_fun@data/tests/regression/04-mutex/01-simple_rc.c:17:3-17:40#top]}, lock:{mutex1}, thread:[main, t_fun@data/tests/regression/04-mutex/01-simple_rc.c:17:3-17:40#top]] (conf. 110)  (exp: & myglobal)[0;0;00m [0;35m(data/tests/regression/04-mutex/01-simple_rc.c:10:3-10:22)[0;0;00m
+  [0;33mwrite with [mhp:{tid=[main]; created={[main, t_fun@data/tests/regression/04-mutex/01-simple_rc.c:17:3-17:40#top]}}, lock:{mutex2}, thread:[main]] (conf. 110)  (exp: & myglobal)[0;0;00m [0;35m(data/tests/regression/04-mutex/01-simple_rc.c:19:3-19:22)[0;0;00m
+  [0;33mread with [mhp:{tid=[main, t_fun@data/tests/regression/04-mutex/01-simple_rc.c:17:3-17:40#top]}, lock:{mutex1}, thread:[main, t_fun@data/tests/regression/04-mutex/01-simple_rc.c:17:3-17:40#top]] (conf. 110)  (exp: & myglobal)[0;0;00m [0;35m(data/tests/regression/04-mutex/01-simple_rc.c:10:3-10:22)[0;0;00m
+  [0;33mread with [mhp:{tid=[main]; created={[main, t_fun@data/tests/regression/04-mutex/01-simple_rc.c:17:3-17:40#top]}}, lock:{mutex2}, thread:[main]] (conf. 110)  (exp: & myglobal)[0;0;00m [0;35m(data/tests/regression/04-mutex/01-simple_rc.c:19:3-19:22)[0;0;00m
+[0;34m[Info][Race][0;0;00m [0;34mMemory locations race summary:[0;0;00m
+  [0;34msafe: 0[0;0;00m
+  [0;34mvulnerable: 0[0;0;00m
+  [0;34munsafe: 1[0;0;00m
+  [0;34mtotal memory locations: 1[0;0;00m
