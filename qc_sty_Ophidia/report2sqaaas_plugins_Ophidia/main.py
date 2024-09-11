@@ -4,26 +4,24 @@
 
 import logging
 
-from report2sqaaas import utils as sqaaas_utils
 from PyOphidia import client
+from report2sqaaas import utils as sqaaas_utils
 
-logger = logging.getLogger('sqaaas.reporting.plugins.Ophidia')
+logger = logging.getLogger("sqaaas.reporting.plugins.Ophidia")
 
 
 class OphidiaValidator(sqaaas_utils.BaseValidator):
     valid = False
     threshold = 1
+
     def validate(self):
-        res= False
-        data =sqaaas_utils.load_data(self.opts.stdout.strip())
-        
-        ophclient = client.Client(username="oph-user",password="oph-passwd",local_mode=True)
-        res,msg= ophclient.wisvalid(data)
-        print(res,msg)
-        
-        return({'valid':res})
+        res = False
+        data = sqaaas_utils.load_data(self.opts.stdout.strip())
 
+        ophclient = client.Client(
+            username="oph-user", password="oph-passwd", local_mode=True
+        )
+        res, msg = ophclient.wisvalid(data)
+        print(res, msg)
 
-
-
-
+        return {"valid": res}
