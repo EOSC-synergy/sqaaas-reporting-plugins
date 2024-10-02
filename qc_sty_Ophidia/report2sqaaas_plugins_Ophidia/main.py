@@ -19,7 +19,6 @@ class OphidiaValidator(sqaaas_utils.BaseValidator):
         res = False
         validation = json.loads(sqaaas_utils.load_data(self.opts.stdout.strip()))
 
-
         if validation["result"]:
             res = True
         subcriteria = []
