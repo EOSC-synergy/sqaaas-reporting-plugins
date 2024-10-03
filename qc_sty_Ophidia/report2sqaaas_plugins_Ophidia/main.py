@@ -2,10 +2,9 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-import logging
 import json
+import logging
 
-from PyOphidia import client
 from report2sqaaas import utils as sqaaas_utils
 
 logger = logging.getLogger("sqaaas.reporting.plugins.Ophidia")
@@ -24,8 +23,8 @@ class OphidiaValidator(sqaaas_utils.BaseValidator):
         subcriteria = []
         standard = {}
         data_unstructured = {
-            passed: validation[passed_list],
-            failed: validation[failed_list],
+            "passed": validation["passed_list"],
+            "failed": validation["failed_list"],
         }
 
         return {
