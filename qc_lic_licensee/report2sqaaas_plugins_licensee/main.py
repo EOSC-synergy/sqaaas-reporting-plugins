@@ -228,22 +228,23 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
                         file_name = license_data["filename"]
                         at_least_one_license = True
                     break
-            if at_least_one_license:
-                self.valid = True
-                logger.info(
-                    (
-                        "Open source's <%s> license found (file: %s, confidence "
-                        "level: %s)" % (matched_license, file_name, confidence_level)
-                    )
-                )
-            else:
-                logger.warning("No valid LICENSE found")
 
-        subcriteria.extend(self.validate_qc_lic01(matched_license, file_name))
-        # FIXME QC.Lic02 is NOT part of parsing licensee output, but for the
-        # time being it is easier to be checked here as it requires to know
-        # (have as input) the license found
-        subcriteria.extend(self.validate_qc_lic02(matched_license))
+        if at_least_one_license:
+            self.valid = True
+            logger.info(
+                (
+                    "Open source's <%s> license found (file: %s, confidence "
+                    "level: %s)" % (matched_license, file_name, confidence_level)
+                )
+            )
+
+            subcriteria.extend(self.validate_qc_lic01(matched_license, file_name))
+            # FIXME QC.Lic02 is NOT part of parsing licensee output, but for the
+            # time being it is easier to be checked here as it requires to know
+            # (have as input) the license found
+            subcriteria.extend(self.validate_qc_lic02(matched_license))
+        else:
+            logger.warning("No valid LICENSE found")
 
         return {
             "valid": self.valid,

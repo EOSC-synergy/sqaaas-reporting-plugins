@@ -16,7 +16,8 @@ def licensee_stdout(request):
     file = pathlib.Path(request.node.fspath.strpath)
     # stdout = file.with_name('licensee.out.json')
     # stdout = file.with_name('licensee.out.1.json')
-    stdout = file.with_name("licensee.out.confidence.json")
+    # stdout = file.with_name("licensee.out.confidence.json")
+    stdout = file.with_name("20241010-licensee.out.confidence.json")
     with stdout.open() as fp:
         json_data = json.load(fp)
         return json.dumps(json_data)
