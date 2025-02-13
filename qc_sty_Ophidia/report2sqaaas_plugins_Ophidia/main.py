@@ -25,6 +25,7 @@ class OphidiaValidator(sqaaas_utils.BaseValidator):
         data_unstructured = {
             "passed": validation["passed_list"],
             "failed": validation["failed_list"],
+            "reasons": validation["reasons_list"],
         }
 
         return {
