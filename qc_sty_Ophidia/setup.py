@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 import os
-
 from urllib.parse import urlparse
 
 from setuptools import find_packages, setup
@@ -19,31 +18,27 @@ def load_requirements():
     """
     thelibFolder = os.path.dirname(os.path.realpath(__file__))
     requirementPath = thelibFolder + "/requirements.txt"
-
     install_requires = []
     if os.path.isfile(requirementPath):
         with open(requirementPath) as f:
             install_requires = f.read().splitlines()
     install_requires_filtered = []
     for req in install_requires:
-
         if not req.startswith("#"):
             url_parsed = urlparse(req)
             fragment = url_parsed.fragment
             if fragment:
                 fragment = fragment.split("=")[-1]
                 req = "@".join([fragment, req])
-
             install_requires_filtered.append(req)
 
     return install_requires_filtered
 
 
 setup(
-
-    name="report2sqaaas-plugin-goblint",
+    name="report2sqaaas-plugin-Ophidia",
     version="1.0.0",
-    description="Output validator for the analyser tool",
+    description="Output validator for the PyOphidia tool",
     author="Iván Palomo",
     author_email="palomo@ifca.unican.es",
     url="https://github.com/eosc-synergy/sqaaas-reporting-plugins",
@@ -56,15 +51,12 @@ setup(
         ),
         "Environment :: Plugins",
         "Development Status :: 3 - Alpha",
-
     ],
     packages=find_packages(),
     install_requires=load_requirements(),
     entry_points={
-
         "sqaaas.validators": [
-            "goblint = report2sqaaas_plugins_goblint.main:GoblintValidator",  # noqa
-
+            "Ophidia = report2sqaaas_plugins_Ophidia.main:OphidiaValidator",  # noqa
         ],
     },
 )
