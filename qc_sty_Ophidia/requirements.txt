@@ -3,4 +3,4 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 # Install report2sqaaas from 'main' branch
-git+https://github.com/EOSC-synergy/sqaaas-reporting@main#egg=report2sqaaas
+git+https://github.com/EOSC-synergy/sqaaas-reporting@2.0.0#egg=report2sqaaas
