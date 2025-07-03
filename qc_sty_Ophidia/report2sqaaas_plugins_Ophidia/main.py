@@ -28,6 +28,14 @@ class OphidiaValidator(sqaaas_utils.BaseValidator):
             "failed": validation["failed_list"],
             "reasons": validation["reasons_list"],
         }
+        for file_ in validation["passed_list"]:
+            sub={}
+            sub["id"]= file_
+            sub["valid"]= True
+            sub["description"]="Is workflow valid?"
+            sub["evidence"]="According to Pyophidia tools workflow is valid"
+            subcriteria.append(sub)
+            
 
         return {
             "valid": res,
