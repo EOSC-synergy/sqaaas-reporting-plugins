@@ -16,6 +16,7 @@ class OphidiaValidator(sqaaas_utils.BaseValidator):
 
     def validate(self):
         res = False
+        criterion = "QC.Sty"
         validation = json.loads(sqaaas_utils.load_data(self.opts.stdout.strip()))
 
         if validation["result"]:
