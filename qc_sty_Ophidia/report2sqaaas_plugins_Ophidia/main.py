@@ -13,7 +13,7 @@ logger = logging.getLogger("sqaaas.reporting.plugins.Ophidia")
 class OphidiaValidator(sqaaas_utils.BaseValidator):
     valid = False
     threshold = 1
-
+    criterion = "QC.Sty"
     def validate(self):
         res = False
         criterion = "QC.Sty"
