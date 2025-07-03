@@ -3,18 +3,17 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 import os
-
-from setuptools import find_packages
-from setuptools import setup
 from urllib.parse import urlparse
+
+from setuptools import find_packages, setup
 
 
 def load_requirements():
-    """
-    Install dependencies from 'requirements.txt'.
+    """Install dependencies from 'requirements.txt'.
 
-    If the file contains a pip-supported git+https' location for the package,
-    this method transforms it to setuptools' way. Some code has been taken from
+    If the file contains a pip-supported git+https' location for the
+    package, this method transforms it to setuptools' way. Some code has
+    been taken from
     https://stackoverflow.com/a/53069528
     """
     thelibFolder = os.path.dirname(os.path.realpath(__file__))

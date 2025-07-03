@@ -2,9 +2,9 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-import pytest
 from types import SimpleNamespace
 
+import pytest
 from report2sqaaas_plugins_Ophidia.main import OphidiaValidator
 
 
