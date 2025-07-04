@@ -13,9 +13,10 @@ logger = logging.getLogger("sqaaas.reporting.plugins.Ophidia")
 class OphidiaValidator(sqaaas_utils.BaseValidator):
     valid = False
     threshold = 1
-
+    criterion = "QC.Sty"
     def validate(self):
         res = False
+        criterion = "QC.Sty"
         validation = json.loads(sqaaas_utils.load_data(self.opts.stdout.strip()))
 
         if validation["result"]:
@@ -27,6 +28,14 @@ class OphidiaValidator(sqaaas_utils.BaseValidator):
             "failed": validation["failed_list"],
             "reasons": validation["reasons_list"],
         }
+        for file_ in validation["passed_list"]:
+            sub={}
+            sub["id"]= 'QC.Sty01'
+            sub["valid"]= True
+            sub["description"]="Is workflow valid?"
+            sub["evidence"]="According to Pyophidia tools workflow is valid"
+            subcriteria.append(sub)
+            
 
         return {
             "valid": res,
