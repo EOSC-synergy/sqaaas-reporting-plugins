@@ -37,7 +37,14 @@ class OphidiaValidator(sqaaas_utils.BaseValidator):
             sub["hint"]=''
             subcriteria.append(sub)
             
-
+        for file_index in range(len(validation["failed_list"])):
+            sub={}
+            sub["id"]= validation["failied_list"][file_index]
+            sub["valid"]= False
+            sub["description"]="Is workflow valid?"
+            sub["evidence"]=validation["reasons_list"][file_index]
+            sub["hint"]=''
+            subcriteria.append(sub)
         return {
             "valid": res,
             "subcriteria": subcriteria,
