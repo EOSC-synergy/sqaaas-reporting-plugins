@@ -30,10 +30,11 @@ class OphidiaValidator(sqaaas_utils.BaseValidator):
         }
         for file_ in validation["passed_list"]:
             sub={}
-            sub["id"]= 'QC.Sty01'
+            sub["id"]= file_
             sub["valid"]= True
             sub["description"]="Is workflow valid?"
             sub["evidence"]="According to Pyophidia tools workflow is valid"
+            sub["hint"]=''
             subcriteria.append(sub)
             
 
