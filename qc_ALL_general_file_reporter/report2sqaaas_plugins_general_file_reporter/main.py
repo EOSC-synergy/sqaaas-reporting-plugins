@@ -21,7 +21,7 @@ class GeneralFilesValidator(sqaaas_utils.BaseValidator):
 
         if validation["result"]:
             res = True
-        subcriteria = []
+        subcriteria = ['kibohope']
         standard = {}
         data_unstructured = {
             "passed": validation["passed_list"],
