@@ -32,6 +32,7 @@ class GeneralFilesValidator(sqaaas_utils.BaseValidator):
         print('reporter32')
         print(validation.keys())
         print(validation['subcriterion'])
+        subcriteria=validation['subcriterion']
         final_product={
             "valid": res,
             "subcriteria": subcriteria,
