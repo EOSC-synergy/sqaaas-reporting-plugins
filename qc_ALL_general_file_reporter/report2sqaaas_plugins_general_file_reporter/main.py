@@ -29,7 +29,8 @@ class GeneralFilesValidator(sqaaas_utils.BaseValidator):
             "reasons_passed": validation["passed_reasons_list"],
             "reasons_failed": validation["failed_reasons_list"],
         }
-        
+        print(validation.keys())
+        print(validation['subcriterion'])
         final_product={
             "valid": res,
             "subcriteria": subcriteria,
@@ -37,5 +38,6 @@ class GeneralFilesValidator(sqaaas_utils.BaseValidator):
             "data_unstructured": data_unstructured,
         }
         print('reporter39')
+        print(validation['subcriterion'])
         print(final_product['subcriteria'])
         return (final_product)
