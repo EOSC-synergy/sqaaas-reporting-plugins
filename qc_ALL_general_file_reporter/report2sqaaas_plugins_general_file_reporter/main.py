@@ -43,6 +43,7 @@ class GeneralFilesValidator(sqaaas_utils.BaseValidator):
             "data_unstructured": data_unstructured,
         }
         print('reporter39')
+        print(standard)
         print(validation['subcriterion'])
         print(final_product['subcriteria'])
         return (final_product)
