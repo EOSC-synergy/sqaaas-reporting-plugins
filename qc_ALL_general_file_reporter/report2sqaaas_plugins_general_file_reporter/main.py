@@ -21,8 +21,11 @@ class GeneralFilesValidator(sqaaas_utils.BaseValidator):
 
         if validation["result"]:
             res = True
-        subcriteria =  [{'id': 'QC.Sty01', 'description': 'Is the software product following a style standard for notebook files?', 'hint': 'Please check & solve the security weaknesses found by the linter tool', 'valid': True, 'evidence': 'Python files are compliant with flake8 (pycodestyle, pyflakes, mccabe) standard', 'requirement_level': 'RECOMMENDED'}] #validation['subcriterion']
-        standard = {}
+        lang_name = self.opts.lang_name if hasattr(self.opts, "lang_name") else None
+        tool_name = self.opts.tool_name if hasattr(self.opts, "tool_name") else None
+        standard_kwargs = {"lang_name": lang_name, "tool_name": tool_name}
+        logger.debug("Standard keywords generated: %s" % standard_kwargs)
+        standard = self.standard
         data_unstructured = {
             "passed": validation["passed_list"],
             "failed": validation["failed_list"],
