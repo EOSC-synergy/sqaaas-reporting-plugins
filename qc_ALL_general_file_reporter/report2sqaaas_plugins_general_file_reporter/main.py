@@ -25,7 +25,7 @@ class GeneralFilesValidator(sqaaas_utils.BaseValidator):
         tool_name = self.opts.tool_name if hasattr(self.opts, "tool_name") else None
         standard_kwargs = {"lang_name": lang_name, "tool_name": tool_name}
         logger.debug("Standard keywords generated: %s" % standard_kwargs)
-        standard = self.standard
+        standard = {}#self.standard
         data_unstructured = {
             "passed": validation["passed_list"],
             "failed": validation["failed_list"],
