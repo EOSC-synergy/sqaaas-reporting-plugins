@@ -13,6 +13,14 @@ logger = logging.getLogger('sqaaas.reporting.plugins.general_file_reporter')
 
 class GeneralFilesValidator(sqaaas_utils.BaseValidator):
     valid = False
+    standard = {
+        "title": (
+            "A set of Common Software Quality Assurance Baseline Criteria for "
+            "Research Projects"
+        ),
+        "version": "v4.0",
+        "url": "https://github.com/indigo-dc/sqa-baseline/releases/tag/v4.0",
+    }
     
     
     def validate(self):
@@ -25,7 +33,7 @@ class GeneralFilesValidator(sqaaas_utils.BaseValidator):
         tool_name = self.opts.tool_name if hasattr(self.opts, "tool_name") else None
         standard_kwargs = {"lang_name": lang_name, "tool_name": tool_name}
         logger.debug("Standard keywords generated: %s" % standard_kwargs)
-        standard = {}#self.standard
+        standard = self.standard
         data_unstructured = {
             "passed": validation["passed_list"],
             "failed": validation["failed_list"],
@@ -46,4 +54,6 @@ class GeneralFilesValidator(sqaaas_utils.BaseValidator):
         print(standard)
         print(validation['subcriterion'])
         print(final_product['subcriteria'])
+        print('reporter49')
+        print(vars(self))
         return (final_product)
