@@ -204,6 +204,8 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
 
         try:
             data = sqaaas_utils.load_json(self.opts.stdout)
+            print('lic207')
+            print(data)
         except ValueError as e:
             data = {}
             logger.error("Input data does not contain a valid JSON: %s" % e)
