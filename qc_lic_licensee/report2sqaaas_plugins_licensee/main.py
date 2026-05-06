@@ -128,7 +128,10 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             _valid = False
 
             for osi_endpoint in OSI_ENDPOINTS:
-                r = do_request(osi_endpoint)
+                try:
+                   r = do_request(osi_endpoint)
+                except:
+                   continue
                 if r:
                     osi_request_succeed = True
                     license_list = r.json()
