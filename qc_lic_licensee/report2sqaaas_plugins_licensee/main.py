@@ -206,6 +206,8 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             data = sqaaas_utils.load_json(self.opts.stdout)
             print('lic207')
             print(data)
+            with open('licenciado.json','w') as lf:
+                 json.dump(data,fp)
         except ValueError as e:
             data = {}
             logger.error("Input data does not contain a valid JSON: %s" % e)
@@ -248,6 +250,9 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         # FIXME QC.Lic02 is NOT part of parsing licensee output, but for the
         # time being it is easier to be checked here as it requires to know
         # (have as input) the license found
+        print('lic253')
+        print('matched_license')
+        print(matched_license)
         subcriteria.extend(self.validate_qc_lic02(matched_license))
 
         return {
