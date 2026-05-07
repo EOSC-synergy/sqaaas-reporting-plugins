@@ -131,7 +131,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
 
             for osi_endpoint in OSI_ENDPOINTS:
                 try:
-                   r = requests.get('https://opensource.org/api/license/'+license_type)
+                   r = requests.get('https://opensource.org/api/license/')
                    print(r)
                 except:
                    continue
