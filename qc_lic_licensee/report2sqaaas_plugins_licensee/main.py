@@ -105,8 +105,9 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             )
             spdx_request_succeed = False
             is_approved = False
-
+            print('lic108')
             r = do_request(SPDX_ENDPOINT)
+            print('lic110')
             if r:
                 spdx_request_succeed = True
                 license_data = r.json()
@@ -130,7 +131,8 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
 
             for osi_endpoint in OSI_ENDPOINTS:
                 try:
-                   r = do_request(osi_endpoint)
+                   r = requests.get('https://opensource.org/api/license/'+license_type)
+                   print(r)
                 except:
                    continue
                 if r:
@@ -254,6 +256,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         print('lic253')
         print('matched_license')
         print(matched_license)
+        print('lic259')
         subcriteria.extend(self.validate_qc_lic02(matched_license))
 
         return {
