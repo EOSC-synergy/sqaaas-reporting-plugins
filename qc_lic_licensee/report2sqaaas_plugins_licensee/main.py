@@ -7,6 +7,7 @@ import logging
 import pathlib
 
 import requests
+import json
 from report2sqaaas import utils as sqaaas_utils
 
 logger = logging.getLogger("sqaaas.reporting.plugins.licensee")
