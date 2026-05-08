@@ -143,7 +143,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
                     for license_data in license_list:
                         print('lic144')
                         print (license_data.keys())
-                        print(license["spdx_id"])
+                        print(license_data["spdx_id"])
                         print(license_type)
                         for identifier in license_data["identifiers"]:
                             if (
