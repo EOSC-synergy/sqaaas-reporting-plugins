@@ -131,6 +131,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
 
             for osi_endpoint in OSI_ENDPOINTS:
                 try:
+                   print('lic134')
                    r = requests.get('https://opensource.org/api/license/')
                    print(r)
                 except:
@@ -160,7 +161,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             subcriterion_data = self.criterion_data[_id]
             subcriterion_valid = False
             _use_spdx = False
-
+            print('lic164')
             if _id in ["QC.Lic02"] and self.use_spdx:
                 _use_spdx = True
                 logger.debug("Using SPDX endpoint to get OSI-approved licenses")
