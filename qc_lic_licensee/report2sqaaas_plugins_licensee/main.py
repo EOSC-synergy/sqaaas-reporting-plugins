@@ -64,11 +64,18 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         subcriterion_valid = False
         license_path = pathlib.Path(license_file)
         evidence = None
-        if license_path.parent.as_posix() in ["."]:
-            subcriterion_valid = True
-            evidence = subcriterion_data["evidence"]["success"]
-        else:
-            evidence = subcriterion_data["evidence"]["failure"]
+        print('lic67')
+        try:
+        
+           if license_path.parent.as_posix() in ["."]:
+             subcriterion_valid = True
+             evidence = subcriterion_data["evidence"]["success"]
+           else:
+             evidence = subcriterion_data["evidence"]["failure"]
+        
+        except:
+           evidence = subcriterion_data["evidence"]["failure"]
+        
         requirement_level = subcriterion_data["requirement_level"]
         subcriteria.append(
             {
