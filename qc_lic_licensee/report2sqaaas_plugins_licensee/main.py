@@ -145,6 +145,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
                         print (license_data.keys())
                         print(license_data["spdx_id"])
                         print(license_type)
+                        '''
                         for identifier in license_data["identifiers"]:
                             if (
                                 identifier["scheme"] in ["SPDX"]
@@ -152,6 +153,10 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
                             ):
                                 _valid = True
                                 break
+                        '''
+                        if license_data["spdx_id"] == license_type:
+                           _valid = True
+                           break
             return (_valid, osi_request_succeed)
 
         standard_kwargs = {"license_type": license_type}
