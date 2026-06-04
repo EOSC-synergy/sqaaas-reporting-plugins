@@ -7,6 +7,7 @@ import logging
 import pathlib
 
 import requests
+import json
 from report2sqaaas import utils as sqaaas_utils
 
 logger = logging.getLogger("sqaaas.reporting.plugins.licensee")
@@ -61,13 +62,22 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         subcriterion = "QC.Lic01.1"
         subcriterion_data = self.criterion_data[subcriterion]
         subcriterion_valid = False
-        license_path = pathlib.Path(license_file)
-        evidence = None
-        if license_path.parent.as_posix() in ["."]:
-            subcriterion_valid = True
-            evidence = subcriterion_data["evidence"]["success"]
-        else:
-            evidence = subcriterion_data["evidence"]["failure"]
+        try:
+           print('lic66')
+           license_path = pathlib.Path(license_file)
+           evidence = None
+           print('lic69')
+        
+        
+           if license_path.parent.as_posix() in ["."]:
+             subcriterion_valid = True
+             evidence = subcriterion_data["evidence"]["success"]
+           else:
+             evidence = subcriterion_data["evidence"]["failure"]
+        
+        except:
+           evidence = subcriterion_data["evidence"]["failure"]
+        
         requirement_level = subcriterion_data["requirement_level"]
         subcriteria.append(
             {
@@ -106,6 +116,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
             is_approved = False
 
             r = do_request(SPDX_ENDPOINT)
+
             if r:
                 spdx_request_succeed = True
                 license_data = r.json()
@@ -129,21 +140,19 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
 
             for osi_endpoint in OSI_ENDPOINTS:
                 try:
-                   r = do_request(osi_endpoint)
+
+                    r = requests.get("https://opensource.org/api/license/")
+
                 except:
-                   continue
+                    continue
                 if r:
                     osi_request_succeed = True
                     license_list = r.json()
                     # Use SPDX identifiers
                     for license_data in license_list:
-                        for identifier in license_data["identifiers"]:
-                            if (
-                                identifier["scheme"] in ["SPDX"]
-                                and identifier["identifier"] == license_type
-                            ):
-                                _valid = True
-                                break
+                        if license_data["spdx_id"] == license_type:
+                            _valid = True
+                            break
             return (_valid, osi_request_succeed)
 
         standard_kwargs = {"license_type": license_type}
@@ -204,10 +213,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
 
         try:
             data = sqaaas_utils.load_json(self.opts.stdout)
-            print('lic207')
-            print(data)
-            with open('licenciado.json','w') as lf:
-                 json.dump(data,fp)
+
         except ValueError as e:
             data = {}
             logger.error("Input data does not contain a valid JSON: %s" % e)
@@ -250,9 +256,7 @@ class LicenseeValidator(sqaaas_utils.BaseValidator):
         # FIXME QC.Lic02 is NOT part of parsing licensee output, but for the
         # time being it is easier to be checked here as it requires to know
         # (have as input) the license found
-        print('lic253')
-        print('matched_license')
-        print(matched_license)
+
         subcriteria.extend(self.validate_qc_lic02(matched_license))
 
         return {
