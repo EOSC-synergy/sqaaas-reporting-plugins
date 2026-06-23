@@ -38,7 +38,9 @@ class GoSecValidator(sqaaas_utils.BaseValidator):
             subcriterion_data = criterion_data[subcriterion]
             subcriterion_valid = False
             evidence = None
-            if len(data["Issues"]) > 0:
+
+            try:
+              if len(data["Issues"]) > 0:
                 subcriterion_valid = False
                 evidence = subcriterion_data["evidence"]["failure"]
                 logger.warning(
@@ -47,9 +49,15 @@ class GoSecValidator(sqaaas_utils.BaseValidator):
                         "issues" % len(data["Issues"])
                     )
                 )
-            else:
+            
+              else:
                 evidence = subcriterion_data["evidence"]["success"]
                 logger.info(evidence)
+                
+            except:
+                evidence = subcriterion_data["evidence"]["success"]
+                logger.info(evidence)
+                
             evidence = evidence.format(**standard_kwargs)
 
             requirement_level = subcriterion_data["requirement_level"]
